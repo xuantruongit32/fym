@@ -1,5 +1,5 @@
 class Transaction{
-    private String type; // Income, Expense, Transfer
+    private String type; // Income, Expense
     private Account account; // Have account class
     private String category;
     private double amount;
