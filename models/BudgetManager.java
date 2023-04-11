@@ -20,7 +20,7 @@ public class BudgetManager{
         transactions = new HashMap<>();
         tranfers = new ArrayList<>();
     }
-        public void addAccount(){
+        public void addAccount() throws IOException{
             System.out.println("Name of Account want to add: ");
             Scanner scanner= new Scanner(System.in);
             String name = scanner.nextLine(); 
@@ -29,6 +29,13 @@ public class BudgetManager{
             double balance = scanner1.nextDouble(); 
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
+            String fileName = "database/accounts.txt";
+//            File file = new File(fileName);
+//            if(!file.exists()){
+//                file.createNewFile();
+//            }
+            FileWriter writeAccount = new FileWriter("../database/accounts.txt");
+            writeAccount.write("Account name: "+name + "Balance: "+balance + "\n");
             scanner.close();
             scanner1.close();
         }
@@ -109,3 +116,4 @@ public class BudgetManager{
         
 
     }
+
