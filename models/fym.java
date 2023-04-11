@@ -6,10 +6,11 @@ public class fym{
 
         budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he");
         budgetManager.removeAccount("Cash");
-        budgetManager.showAllAccount();
         budgetManager.showAllTransaction();
         budgetManager.showAllIncome();
         budgetManager.showAllExpense();
         budgetManager.showAllTranfer();
+        budgetManager.addAccount();
+        budgetManager.showAllAccount();
     }
 }

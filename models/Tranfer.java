@@ -1,37 +1,37 @@
-class Tranfer{
+public class Tranfer{
     private Account previousAccount; // Have account class
     private Account newAccount; // Have account class
     private double amount;
     private String note;
 
-     Tranfer(Account previousAccount, Account newAccount, double amount, String note){
+     public Tranfer(Account previousAccount, Account newAccount, double amount, String note){
         this.previousAccount = previousAccount;
         this.newAccount = newAccount;
         this.amount = amount;
         this.note = note;
     }
-    Account getPreviousAccount(){
+    public Account getPreviousAccount(){
         return previousAccount;
     }
-    void setPreviousAccount(Account previousAccount){
+    public void setPreviousAccount(Account previousAccount){
         this.previousAccount = previousAccount;
     }
-    Account getNewAccount(){
+    public Account getNewAccount(){
         return newAccount;
     }
-    void setNewAccount(Account newAccount){
+    public void setNewAccount(Account newAccount){
         this.newAccount = newAccount;
     }
-    void setAmount(double amount){
+    public void setAmount(double amount){
         this.amount = amount;
     }
-    double getAmount(){
+    public double getAmount(){
         return amount;
     }
-    void setNote(String note){
+    public void setNote(String note){
         this.note = note;
     }
-    String getNote(){
+    public String getNote(){
         return note;
     }
     

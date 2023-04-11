@@ -1,45 +1,45 @@
-class Transaction{
-    private String type; // Income, Expense
-    private Account account; // Have account class
+public class Transaction{
+    private String type; // Income, Expense private Account account; 
+    private Account account;
     private String category;
     private double amount;
     private String note;
 
-     Transaction(String type, Account account, String category, double amount, String note){
+     public Transaction(String type, Account account, String category, double amount, String note){
         this.type = type;
         this.account = account;
         this.category = category;
         this.amount = amount;
         this.note = note;
     }
-    void setType(String type){
+    public void setType(String type){
         this.type = type;
     }
-    String getType(){
+    public String getType(){
         return type;
     }
-    void setAccount(Account account){
+    public void setAccount(Account account){
         this.account = account;
     }
-    Account getAccount(){
+    public Account getAccount(){
         return account;
     }
-    void setCategory(String category){
+    public void setCategory(String category){
         this.category = category;
     }
-    String getCategory(){
+    public String getCategory(){
         return category;
     }
-    void setAmount(double amount){
+    public void setAmount(double amount){
         this.amount = amount;
     }
-    double getAmount(){
+    public double getAmount(){
         return amount;
     }
-    void setNote(String note){
+    public void setNote(String note){
         this.note = note;
     }
-    String getNote(){
+    public String getNote(){
         return note;
     }
     

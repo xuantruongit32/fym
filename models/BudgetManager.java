@@ -3,13 +3,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
-class BudgetManager{
+import java.util.Scanner;
+import java.io.*;
+public class BudgetManager{
     private Map<String,Account> accounts;
     private List<String> categories;
     private Map<String,Transaction> transactions; //1:Income, 2:Expense
     private List<Tranfer> tranfers;
 
-    BudgetManager(){
+    public BudgetManager(){
         accounts = new HashMap<>();
         accounts.put("Bank",new Account("Bank",0));
         accounts.put("Cash",new Account("Cash",0));
@@ -18,28 +20,40 @@ class BudgetManager{
         transactions = new HashMap<>();
         tranfers = new ArrayList<>();
     }
-        void addAccount(String name, double balance){
+        public void addAccount(){
+            System.out.println("Name of Account want to add: ");
+            Scanner scanner= new Scanner(System.in);
+            String name = scanner.nextLine(); 
+            System.out.println("Number of Balance: ");
+            Scanner scanner1= new Scanner(System.in);
+            double balance = scanner1.nextDouble(); 
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
+            scanner.close();
+            scanner1.close();
         }
-        void removeAccount(String name){
+        public void removeAccount(){
+            System.out.println("Name of Account want to remove: ");
+            Scanner scanner= new Scanner(System.in);
+            String name = scanner.nextLine(); 
             accounts.remove(name);
+            scanner.close();
         }
-        Account getAccount(String name){
+        public Account getAccount(String name){
             return accounts.get(name);
         }
-        void showAllAccount(){
+        public void showAllAccount(){
             for(Map.Entry<String,Account> entry: accounts.entrySet()){
                 System.out.println(entry.getKey() + " : " + entry.getValue().getBalance());
             }
         }
-        void addCategory(String name) {
+        public void addCategory(String name) {
             categories.add(name);
         }
-        void removeCategory(String name){
+        public void removeCategory(String name){
             categories.remove(name);
         }
-        void addTransaction(String type, Account account, String category, double amount, String note){
+        public void addTransaction(String type, Account account, String category, double amount, String note){
             Transaction newTransaction = new Transaction(type,account,category,amount,note);
             transactions.put(type,newTransaction);
             if(type.equals("Income")){
@@ -53,27 +67,27 @@ class BudgetManager{
                 account.setBalance(newBalance);
             }
         }
-        void removeTransaction(String transaction){
+        public void removeTransaction(String transaction){
             transactions.remove(transaction);
         }
-        void showAllTransaction(){
+        public void showAllTransaction(){
             for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
                 System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
-        void showAllIncome(){
+        public void showAllIncome(){
             for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
                 if(entry.getKey()=="Income")
                     System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
-        void showAllExpense(){
+        public void showAllExpense(){
             for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
                 if(entry.getKey()=="Expense")
                     System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
-        void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
             tranfers.add(newTranfer);
@@ -84,10 +98,10 @@ class BudgetManager{
             previousAccount.setBalance(newPreviousAccountBalance);
             newAccount.setBalance(newNewAccountBalance);
         }
-        void removeTranfer(Tranfer tranfer){
+        public void removeTranfer(Tranfer tranfer){
             tranfers.remove(tranfer);
         }
-        void showAllTranfer(){
+        public void showAllTranfer(){
             for(int i=0; i<tranfers.size(); i++){
                 System.out.println("Tranfer: " + tranfers.get(i).getAmount());
             }
