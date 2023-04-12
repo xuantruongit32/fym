@@ -38,6 +38,8 @@ public class BudgetManager{
             writeAccount.write("Account name: "+name + "Balance: "+balance + "\n");
             scanner.close();
             scanner1.close();
+            writeAccount.close();
+
         }
         public void removeAccount(){
             System.out.println("Name of Account want to remove: ");
