@@ -55,8 +55,13 @@ public class BudgetManager{
                 System.out.println(entry.getKey() + " : " + entry.getValue().getBalance());
             }
         }
-        public void addCategory(String name) {
+        public void addCategory(String name) throws IOException {
             categories.add(name);
+            String file ="../database/category.txt";
+            IO categoryIO = new IO(file);
+            categoryIO.check();
+            categoryIO.writeFile("Category: " + name + "\n");
+
         }
         public void removeCategory(String name){
             categories.remove(name);
