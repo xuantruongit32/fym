@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 public class BudgetManager{
     private Map<String,Account> accounts;
     private List<String> categories;
@@ -29,13 +32,15 @@ public class BudgetManager{
             double balance = scanner1.nextDouble(); 
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
-            String fileName = "database/accounts.txt";
-//            File file = new File(fileName);
-//            if(!file.exists()){
-//                file.createNewFile();
-//            }
+            String fileName = "accounts.txt";
+            String filePath = "/home/v/projects/first/fym/database/" + fileName;
+            Path path = Paths.get(filePath);
+            if(!Files.exists(path)){
+                Files.createFile();
+            }
             FileWriter writeAccount = new FileWriter("../database/accounts.txt");
             writeAccount.write("Account name: "+name + "Balance: "+balance + "\n");
+            writeAccount.close();
             scanner.close();
             scanner1.close();
             writeAccount.close();
@@ -116,6 +121,7 @@ public class BudgetManager{
             }
         }
         
+
 
     }
 
