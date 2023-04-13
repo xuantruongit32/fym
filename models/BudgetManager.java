@@ -108,7 +108,7 @@ public class BudgetManager{
                     System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
-        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note) throws IOException
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
             tranfers.add(newTranfer);
@@ -118,6 +118,10 @@ public class BudgetManager{
             double newNewAccountBalance = presentNewAccountBalance + amount;
             previousAccount.setBalance(newPreviousAccountBalance);
             newAccount.setBalance(newNewAccountBalance);
+            String file = "../database/tranfer.txt";
+            IO accountIO = new IO(file);
+            accountIO.check();
+            accountIO.writeFile("Type: Tranfer" + "," + "Previous Account: " + previousAccount+ "," + "New Account: " + newAccount + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
         }
         public void removeTranfer(Tranfer tranfer){
             tranfers.remove(tranfer);
