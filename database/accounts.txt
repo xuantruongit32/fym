@@ -1,1 +1,1 @@
-Account name: trBalance: 1.0
+Account name: test, balance: 12.0

@@ -32,18 +32,12 @@ public class BudgetManager{
             double balance = scanner1.nextDouble(); 
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
-            String fileName = "accounts.txt";
-            String filePath = "/home/v/projects/first/fym/database/" + fileName;
-            Path path = Paths.get(filePath);
-            if(!Files.exists(path)){
-                Files.createFile();
-            }
-            FileWriter writeAccount = new FileWriter("../database/accounts.txt");
-            writeAccount.write("Account name: "+name + "Balance: "+balance + "\n");
-            writeAccount.close();
+            String file = "../database/accounts.txt";
+            IO accountIO = new IO(file);
+            accountIO.check();
+            accountIO.writeFile("Account name: " + name + "," + " balance: " + balance +"\n");
             scanner.close();
             scanner1.close();
-            writeAccount.close();
 
         }
         public void removeAccount(){
