@@ -1,3 +1,1 @@
-Account name: test, balance: 12.0
 Account name: test, balance: 1.0
-Account name: test, balance: 5.0
