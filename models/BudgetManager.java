@@ -66,10 +66,14 @@ public class BudgetManager{
         public void removeCategory(String name){
             categories.remove(name);
         }
-        public void addTransaction(String type, Account account, String category, double amount, String note){
+        public void addTransaction(String type, Account account, String category, double amount, String note) throws IOException{
             Transaction newTransaction = new Transaction(type,account,category,amount,note);
             transactions.put(type,newTransaction);
             if(type.equals("Income")){
+                String file = "../database/income.txt";
+                IO accountIO = new IO(file);
+                accountIO.check();
+                accountIO.writeFile("Type: " + type + "," + " Account: " + account+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance + amount;
                 account.setBalance(newBalance);
@@ -78,6 +82,10 @@ public class BudgetManager{
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance - amount;
                 account.setBalance(newBalance);
+                String file = "../database/expense.txt";
+                IO accountIO = new IO(file);
+                accountIO.check();
+                accountIO.writeFile("Type: " + type + "," + " Account: " + account+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             }
         }
         public void removeTransaction(String transaction){
