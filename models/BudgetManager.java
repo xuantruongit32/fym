@@ -73,7 +73,7 @@ public class BudgetManager{
                 String file = "../database/income.txt";
                 IO accountIO = new IO(file);
                 accountIO.check();
-                accountIO.writeFile("Type: " + type + "," + " Account: " + account+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
+                accountIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance + amount;
                 account.setBalance(newBalance);
@@ -85,7 +85,7 @@ public class BudgetManager{
                 String file = "../database/expense.txt";
                 IO accountIO = new IO(file);
                 accountIO.check();
-                accountIO.writeFile("Type: " + type + "," + " Account: " + account+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
+                accountIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             }
         }
         public void removeTransaction(String transaction){
@@ -121,7 +121,7 @@ public class BudgetManager{
             String file = "../database/tranfer.txt";
             IO accountIO = new IO(file);
             accountIO.check();
-            accountIO.writeFile("Type: Tranfer" + "," + "Previous Account: " + previousAccount+ "," + "New Account: " + newAccount + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
+            accountIO.writeFile("Type: Tranfer" + "," + "Previous Account: " + previousAccount.getName()+ "," + "New Account: " + newAccount.getName() + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
         }
         public void removeTranfer(Tranfer tranfer){
             tranfers.remove(tranfer);
