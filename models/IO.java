@@ -44,6 +44,11 @@ public class IO{
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
             }
             writer.close();
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
+            for(Map.Entry<String, Transaction> entry : b.transactions.entrySet()) {
+                writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
+            }
+            writer1.close();
         }
 }
 
