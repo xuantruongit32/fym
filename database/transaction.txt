@@ -1,0 +1,2 @@
+Type: Expense, Account: Cash, Category: Food,Amount:1.0,Note: Test
+Type: Income, Account: Cash, Category: Food,Amount:12.0,Note: Test
