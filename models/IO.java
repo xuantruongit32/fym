@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.util.Map;
+import java.util.HashMap;
 public class IO{
     public String filePath;
     IO(String filePath){
@@ -35,7 +37,13 @@ public class IO{
             b.accounts.put(name,newAccount);
     }
 
-    
+    }
+    public void updateFile(BudgetManager b) throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
+            for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
+                writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
+            }
+            writer.close();
+        }
+}
 
-}
-}

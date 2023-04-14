@@ -9,9 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 public class BudgetManager{
-    protected Map<String,Account> accounts;
+    protected HashMap<String,Account> accounts;
     protected List<String> categories;
-    protected Map<String,Transaction> transactions; //1:Income, 2:Expense
+    protected HashMap<String,Transaction> transactions; //1:Income, 2:Expense
     protected List<Tranfer> tranfers;
 
     public BudgetManager(){
@@ -23,9 +23,9 @@ public class BudgetManager{
         public void addAccount(String name, double balance) throws IOException{
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
-            String file = "../database/accounts.txt";
-            IO accountIO = new IO(file);
-            accountIO.writeFile("Account name: " + name + "," + " balance: " + balance +"\n");
+//            String file = "../database/accounts.txt";
+//            IO accountIO = new IO(file);
+//            accountIO.writeFile("Account name: " + name + "," + " balance: " + balance +"\n");
 
         }
         public void removeAccount(){
@@ -56,10 +56,13 @@ public class BudgetManager{
         public void addTransaction(String type, Account account, String category, double amount, String note) throws IOException{
             Transaction newTransaction = new Transaction(type,account,category,amount,note);
             transactions.put(type,newTransaction);
+            String file_transaction = "../database/transaction.txt";
+            IO transactionIO = new IO(file_transaction);
+            transactionIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             if(type.equals("Income")){
-                String file = "../database/income.txt";
-                IO accountIO = new IO(file);
-                accountIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
+                String file_income = "../database/income.txt";
+                IO incomeIO = new IO(file_income);
+                incomeIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance + amount;
                 account.setBalance(newBalance);
@@ -69,8 +72,8 @@ public class BudgetManager{
                 double newBalance = presentBalance - amount;
                 account.setBalance(newBalance);
                 String file = "../database/expense.txt";
-                IO accountIO = new IO(file);
-                accountIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
+                IO expenseIO = new IO(file);
+                expenseIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             }
         }
         public void removeTransaction(String transaction){

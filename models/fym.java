@@ -8,7 +8,7 @@ public class fym{
         budgetManager.addAccount("Test", 5);
         budgetManager.addAccount("Test1", 8);
         budgetManager.addAccount("Test4", 9);
-//        budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 12, "Test");
+//       budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 12, "Test");
 //        budgetManager.addTransaction("Expense", budgetManager.getAccount("Cash"), "Food", 1, "Test");
 //        budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he");
 //        budgetManager.removeAccount();
@@ -16,6 +16,7 @@ public class fym{
 //        budgetManager.showAllIncome();
 //        budgetManager.showAllExpense();
 //        budgetManager.showAllTranfer();
-        budgetManager.showAllAccount();
+        io.updateFile(budgetManager);
+//        budgetManager.showAllAccount();
     }
 }
