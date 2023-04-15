@@ -84,6 +84,7 @@ public class BudgetManager{
                 System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
+
         public void showAllIncome(){
             for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
                 if(entry.getKey()=="Income")

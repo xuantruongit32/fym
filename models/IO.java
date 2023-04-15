@@ -39,16 +39,28 @@ public class IO{
 
     }
     public void updateFile(BudgetManager b) throws IOException{
-        BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
             for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
             }
             writer.close();
-        BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
+            BufferedWriter writer2 = new BufferedWriter(new FileWriter("../database/income.txt"));
+            BufferedWriter writer3 = new BufferedWriter(new FileWriter("../database/expense.txt"));
             for(Map.Entry<String, Transaction> entry : b.transactions.entrySet()) {
-                writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
+                if(entry.getKey().equals("Income")){
+                    writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
+                    writer2.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
             }
-            writer1.close();
+                else if(entry.getKey().equals("Expense")){
+                    writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
+                    writer3.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
+            }
         }
-}
+            writer1.close();
+            writer2.close();
+            writer3.close();
+        
 
+}
+}
