@@ -16,15 +16,14 @@ public class IO{
             String [] word1 = words[1].split(":");
             String name = word[1].substring(1);
             double balance = Double.parseDouble(word1[1]);
-            Account newAccount = new Account(name, balance);
-            b.accounts.put(name,newAccount);
+            b.addAccount(name, balance);
     }
         File categoryFile = new File("../database/category.txt");
         BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
         while ((line = br1.readLine()) != null){
             String [] words = line.split(":");
             String  category = words[1];
-            b.categories.add(category);
+            b.addCategory(category);
     }
         File transactionFile = new File("../database/transaction.txt");
         BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(transactionFile)));
@@ -32,21 +31,20 @@ public class IO{
             String [] words = line.split(",");
             String [] word = words[0].split(":");
             String type = word[1].substring(1);
-//            System.out.println(type);
+            System.out.println(type);
             String [] word1 = words[1].split(":");
             String account = word1[1].substring(1);
- //           System.out.println(account);
+           System.out.println(account);
             String [] word2 = words[2].split(":");
             String category = word2[1].substring(1);
- //           System.out.println(category);
+           System.out.println(category);
             String [] word3 = words[3].split(":");
             double amount = Double.parseDouble(word3[1]);
-  //          System.out.println(amount);
+           System.out.println(amount);
             String [] word4 = words[4].split(":");
             String note = word4[1].substring(1);
-   //         System.out.println(note);
-            Transaction newTransaction = new Transaction(type,b.accounts.get(account),category,amount,note);
-            b.transactions.put(type,newTransaction);
+            System.out.println(note);
+            b.addTransaction(type,b.accounts.get(account),category,amount,note);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{
