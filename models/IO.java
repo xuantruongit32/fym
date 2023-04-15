@@ -57,9 +57,14 @@ public class IO{
                     writer3.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
             }
         }
+        BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
+        for(Tranfer tranfer :b.tranfers){
+            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+"\n");
+        }
             writer1.close();
             writer2.close();
             writer3.close();
+            writer4.close();
         
 
 }
