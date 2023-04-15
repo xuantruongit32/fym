@@ -6,23 +6,6 @@ import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
 public class IO{
-    public String filePath;
-    IO(String filePath){
-        this.filePath=filePath;
-    }
-    IO(){}
-    public void check() throws IOException{
-        File file = new File(filePath);
-        if (!file.exists()){
-            file.createNewFile();
-        }
-    }
-    public void writeFile (String content)throws IOException{
-        check();
-        FileWriter writeAccount = new FileWriter(filePath,true);
-        writeAccount.write(content);
-        writeAccount.close();
-    }
     public void importFile(BudgetManager b) throws IOException{
         File accountFile = new File("../database/accounts.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(accountFile)));
@@ -43,23 +26,43 @@ public class IO{
             String  category = words[1];
             b.categories.add(category);
     }
+        File transactionFile = new File("../database/transaction.txt");
+        BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(transactionFile)));
+        while ((line = br2.readLine()) != null){
+            String [] words = line.split(",");
+            String [] word = words[0].split(":");
+            String type = word[1].substring(1);
+//            System.out.println(type);
+            String [] word1 = words[1].split(":");
+            String account = word1[1].substring(1);
+ //           System.out.println(account);
+            String [] word2 = words[2].split(":");
+            String category = word2[1].substring(1);
+ //           System.out.println(category);
+            String [] word3 = words[3].split(":");
+            double amount = Double.parseDouble(word3[1]);
+  //          System.out.println(amount);
+            String [] word4 = words[4].split(":");
+            String note = word4[1].substring(1);
+   //         System.out.println(note);
+            Transaction newTransaction = new Transaction(type,b.accounts.get(account),category,amount,note);
+            b.transactions.put(type,newTransaction);
+    }
     }
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
             for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
             }
-            writer.close();
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
             BufferedWriter writer2 = new BufferedWriter(new FileWriter("../database/income.txt"));
             BufferedWriter writer3 = new BufferedWriter(new FileWriter("../database/expense.txt"));
             for(Map.Entry<String, Transaction> entry : b.transactions.entrySet()) {
+                writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
                 if(entry.getKey().equals("Income")){
-                    writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
                     writer2.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
             }
                 else if(entry.getKey().equals("Expense")){
-                    writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
                     writer3.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
             }
         }
@@ -71,6 +74,7 @@ public class IO{
         for (String category : b.categories){
             writer5.write("Category :"+ category +"\n");
         }
+            writer.close();
             writer1.close();
             writer2.close();
             writer3.close();

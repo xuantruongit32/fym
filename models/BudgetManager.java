@@ -20,7 +20,7 @@ public class BudgetManager{
         transactions = new HashMap<>();
         tranfers = new ArrayList<>();
     }
-        public void addAccount(String name, double balance) throws IOException{
+        public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
 
@@ -40,22 +40,15 @@ public class BudgetManager{
                 System.out.println(entry.getKey() + " : " + entry.getValue().getBalance());
             }
         }
-        public void addCategory(String name) throws IOException {
+        public void addCategory(String name){
             categories.add(name);
-            String file ="../database/category.txt";
-            IO categoryIO = new IO(file);
-            categoryIO.writeFile("Category: " + name + "\n");
-
         }
         public void removeCategory(String name){
             categories.remove(name);
         }
-        public void addTransaction(String type, Account account, String category, double amount, String note) throws IOException{
+        public void addTransaction(String type, Account account, String category, double amount, String note){
             Transaction newTransaction = new Transaction(type,account,category,amount,note);
             transactions.put(type,newTransaction);
-            String file_transaction = "../database/transaction.txt";
-            IO transactionIO = new IO(file_transaction);
-            transactionIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             if(type.equals("Income")){
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance + amount;
@@ -70,7 +63,7 @@ public class BudgetManager{
         public void removeTransaction(String transaction){
             transactions.remove(transaction);
         }
-        public void showAllTransaction() throws IOException{
+        public void showAllTransaction(){
             for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
                 System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
@@ -88,7 +81,7 @@ public class BudgetManager{
                     System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
             }
         }
-        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note) throws IOException
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
             tranfers.add(newTranfer);
@@ -112,8 +105,5 @@ public class BudgetManager{
                 System.out.println("Category: " + categories.get(i));
             }
         }
-        
-
-
     }
 
