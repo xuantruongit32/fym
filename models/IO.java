@@ -61,10 +61,15 @@ public class IO{
         for(Tranfer tranfer :b.tranfers){
             writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+"\n");
         }
+        BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
+        for (String category : b.categories){
+            writer5.write("Category "+ category +"\n");
+        }
             writer1.close();
             writer2.close();
             writer3.close();
             writer4.close();
+            writer5.close();
         
 
 }

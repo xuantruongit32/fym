@@ -23,9 +23,6 @@ public class BudgetManager{
         public void addAccount(String name, double balance) throws IOException{
             Account newAccount = new Account(name, balance);
             accounts.put(name,newAccount);
-//            String file = "../database/accounts.txt";
-//            IO accountIO = new IO(file);
-//            accountIO.writeFile("Account name: " + name + "," + " balance: " + balance +"\n");
 
         }
         public void removeAccount(){
@@ -60,9 +57,6 @@ public class BudgetManager{
             IO transactionIO = new IO(file_transaction);
             transactionIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             if(type.equals("Income")){
-//                String file_income = "../database/income.txt";
-//                IO incomeIO = new IO(file_income);
-//                incomeIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance + amount;
                 account.setBalance(newBalance);
@@ -71,9 +65,6 @@ public class BudgetManager{
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance - amount;
                 account.setBalance(newBalance);
-//                String file = "../database/expense.txt";
-//                IO expenseIO = new IO(file);
-//                expenseIO.writeFile("Type: " + type + "," + " Account: " + account.getName()+ "," + " Category: " + category + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
             }
         }
         public void removeTransaction(String transaction){
@@ -107,9 +98,6 @@ public class BudgetManager{
             double newNewAccountBalance = presentNewAccountBalance + amount;
             previousAccount.setBalance(newPreviousAccountBalance);
             newAccount.setBalance(newNewAccountBalance);
-            String file = "../database/tranfer.txt";
-//            IO accountIO = new IO(file);
-//            accountIO.writeFile("Type: Tranfer" + "," + "Previous Account: " + previousAccount.getName()+ "," + "New Account: " + newAccount.getName() + ","+ "Amount:"+amount+","+"Note: "+note+"\n");
         }
         public void removeTranfer(Tranfer tranfer){
             tranfers.remove(tranfer);
