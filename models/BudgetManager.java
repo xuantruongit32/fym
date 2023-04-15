@@ -11,12 +11,12 @@ import java.nio.file.Paths;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
-    protected HashMap<String,Transaction> transactions; //1:Income, 2:Expense
+    protected HashMap<String,Transaction> transactions; 
     protected List<Tranfer> tranfers;
 
     public BudgetManager(){
         accounts = new HashMap<>();
-        categories = new ArrayList<>(Arrays.asList("Food", "Transportation", "Entertainment"));
+        categories = new ArrayList<>();
         transactions = new HashMap<>();
         tranfers = new ArrayList<>();
     }
@@ -105,6 +105,11 @@ public class BudgetManager{
         public void showAllTranfer(){
             for(int i=0; i<tranfers.size(); i++){
                 System.out.println("Tranfer: " + tranfers.get(i).getAmount());
+            }
+        }
+        public void showAllCategory(){
+            for(int i=0; i<categories.size(); i++){
+                System.out.println("Category: " + categories.get(i));
             }
         }
         

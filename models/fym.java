@@ -4,7 +4,7 @@ public class fym{
     public static void main(String args[]) throws IOException{
         BudgetManager budgetManager = new BudgetManager();
         IO io = new IO();
-        io.writeAccount(budgetManager);
+        io.importFile(budgetManager);
 //        budgetManager.addAccount("Test", 5);
 //        budgetManager.addAccount("Test1", 8);
 //        budgetManager.addAccount("Test4", 9);
@@ -18,7 +18,8 @@ public class fym{
 //        budgetManager.showAllTranfer();
 //        budgetManager.showAllTransaction();
         budgetManager.addCategory("Food");
+        budgetManager.showAllCategory();
         io.updateFile(budgetManager);
-//        budgetManager.showAllAccount();
+        budgetManager.showAllAccount();
     }
 }

@@ -23,9 +23,9 @@ public class IO{
         writeAccount.write(content);
         writeAccount.close();
     }
-    public void writeAccount(BudgetManager b) throws IOException{
-        File file = new File("../database/accounts.txt");
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+    public void importFile(BudgetManager b) throws IOException{
+        File accountFile = new File("../database/accounts.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(accountFile)));
         String line;
         while ((line = br.readLine()) != null){
             String[] words = line.split(",");
@@ -36,7 +36,13 @@ public class IO{
             Account newAccount = new Account(name, balance);
             b.accounts.put(name,newAccount);
     }
-
+        File categoryFile = new File("../database/category.txt");
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
+        while ((line = br1.readLine()) != null){
+            String [] words = line.split(":");
+            String  category = words[1];
+            b.categories.add(category);
+    }
     }
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
@@ -63,7 +69,7 @@ public class IO{
         }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
         for (String category : b.categories){
-            writer5.write("Category "+ category +"\n");
+            writer5.write("Category :"+ category +"\n");
         }
             writer1.close();
             writer2.close();
