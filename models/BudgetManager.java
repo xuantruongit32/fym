@@ -11,13 +11,15 @@ import java.nio.file.Paths;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
-    protected HashMap<String,Transaction> transactions; 
+    protected HashMap<String,List<Transaction>> transactions; 
     protected List<Tranfer> tranfers;
 
     public BudgetManager(){
         accounts = new HashMap<>();
         categories = new ArrayList<>();
         transactions = new HashMap<>();
+        transactions.put("Income", new ArrayList<>());
+        transactions.put("Expense", new ArrayList<>());
         tranfers = new ArrayList<>();
     }
         public void addAccount(String name, double balance){
@@ -46,41 +48,53 @@ public class BudgetManager{
         public void removeCategory(String name){
             categories.remove(name);
         }
-        public void addTransaction(String type, Account account, String category, double amount, String note){
-            Transaction newTransaction = new Transaction(type,account,category,amount,note);
-            transactions.put(type,newTransaction);
-            if(type.equals("Income")){
-                double presentBalance = account.getBalance();
-                double newBalance = presentBalance + amount;
-                account.setBalance(newBalance);
-            }
-            if(type.equals("Expense")){
-                double presentBalance = account.getBalance();
-                double newBalance = presentBalance - amount;
-                account.setBalance(newBalance);
-            }
-        }
-        public void removeTransaction(String transaction){
-            transactions.remove(transaction);
-        }
-        public void showAllTransaction(){
-            for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
-                System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
-            }
-        }
+    public void addTransaction(String type, Account account, String category, double amount, String note) {
+        Transaction newTransaction = new Transaction(type, account, category, amount, note);
+        transactions.get(type).add(newTransaction);
+        double presentBalance = account.getBalance();
+        double newBalance = presentBalance + (type.equals("Income") ? amount : -amount);
+        account.setBalance(newBalance);
+    }
 
-        public void showAllIncome(){
-            for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
-                if(entry.getKey()=="Income")
-                    System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
+/*    public void removeTransaction(String type, int index) {
+        List<Transaction> transactionList = transactions.get(type);
+        if (index >= 0 && index < transactionList.size()) {
+            Transaction transaction = transactionList.remove(index);
+            Account account = transaction.getAccount();
+            double presentBalance = account.getBalance();
+            double newBalance = presentBalance - (transaction.getType().equals("Income") ? transaction.getAmount() : -transaction.getAmount());
+            account.setBalance(newBalance);
+        }
+    }
+    */
+
+    public void showAllTransactions() {
+        for (List<Transaction> transactionList : transactions.values()) {
+            for (Transaction transaction : transactionList) {
+                System.out.println(transaction.toString());
             }
         }
-        public void showAllExpense(){
-            for(Map.Entry<String, Transaction> entry: transactions.entrySet()){
-                if(entry.getKey()=="Expense")
-                    System.out.println(entry.getKey() + " : " + entry.getValue().getAmount());
-            }
+    }
+
+    public void showAllIncome() {
+        List<Transaction> incomeList = transactions.get("Income");
+        double totalIncome = 0;
+        for (Transaction transaction : incomeList) {
+            System.out.println(transaction.toString());
+            totalIncome += transaction.getAmount();
         }
+        System.out.println("Total Income: " + totalIncome);
+    }
+
+    public void showAllExpenses() {
+        List<Transaction> expenseList = transactions.get("Expense");
+        double totalExpenses = 0;
+        for (Transaction transaction : expenseList) {
+            System.out.println(transaction.toString());
+            totalExpenses += transaction.getAmount();
+        }
+        System.out.println("Total Expenses: " + totalExpenses);
+    }
         public void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);

@@ -13,10 +13,11 @@ public class fym{
     //    budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he");
 //        budgetManager.removeAccount();
 //        budgetManager.addAccount();
-        budgetManager.showAllIncome();
+//        budgetManager.showAllIncome();
 //        budgetManager.showAllExpense();
 //        budgetManager.showAllTranfer();
-//        budgetManager.showAllTransaction();
+      System.out.println(budgetManager.transactions.size());
+        budgetManager.showAllTransaction();
   //      budgetManager.addCategory("Food");
    //     budgetManager.showAllCategory();
         budgetManager.showAllAccount();
