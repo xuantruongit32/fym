@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 public class IO{
     public void importFile(BudgetManager b) throws IOException{
         File accountFile = new File("../database/accounts.txt");
@@ -51,15 +52,16 @@ public class IO{
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
             BufferedWriter writer2 = new BufferedWriter(new FileWriter("../database/income.txt"));
             BufferedWriter writer3 = new BufferedWriter(new FileWriter("../database/expense.txt"));
-            for(Map.Entry<String, Transaction> entry : b.transactions.entrySet()) {
-                writer1.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
-                if(entry.getKey().equals("Income")){
-                    writer2.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
-            }
-                else if(entry.getKey().equals("Expense")){
-                    writer3.write("Type: " + entry.getValue().getType() + "," + " Account: " + entry.getValue().getAccount().getName()+ "," + " Category: " + entry.getValue().getCategory() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+"\n");
-            }
+for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
+    for(Transaction transaction : entry.getValue()) {
+        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
+        if(entry.getKey().equals("Income")){
+            writer2.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
+        } else if(entry.getKey().equals("Expense")){
+            writer3.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
         }
+    }
+}
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
         for(Tranfer tranfer :b.tranfers){
             writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+"\n");
