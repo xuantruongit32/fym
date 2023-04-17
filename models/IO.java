@@ -26,7 +26,7 @@ public class IO{
             String  category = words[1];
             b.addCategory(category);
     }
-        File transactionFile = new File("../database/transaction.txt");
+    File transactionFile = new File("../database/transaction.txt");
         BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(transactionFile)));
         while ((line = br2.readLine()) != null){
             String [] words = line.split(",");
@@ -41,7 +41,6 @@ public class IO{
             String [] word4 = words[4].split(":");
             String note = word4[1].substring(1);
             b.addTransaction(type,b.accounts.get(account),category,amount,note);
-            System.out.println(b.transactions.size());
     }
     }
     public void updateFile(BudgetManager b) throws IOException{

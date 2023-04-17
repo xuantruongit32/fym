@@ -71,7 +71,7 @@ public class BudgetManager{
     public void showAllTransactions() {
         for (List<Transaction> transactionList : transactions.values()) {
             for (Transaction transaction : transactionList) {
-                System.out.println(transaction.toString());
+            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
             }
         }
     }
@@ -80,7 +80,7 @@ public class BudgetManager{
         List<Transaction> incomeList = transactions.get("Income");
         double totalIncome = 0;
         for (Transaction transaction : incomeList) {
-            System.out.println(transaction.toString());
+            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
             totalIncome += transaction.getAmount();
         }
         System.out.println("Total Income: " + totalIncome);
@@ -90,7 +90,7 @@ public class BudgetManager{
         List<Transaction> expenseList = transactions.get("Expense");
         double totalExpenses = 0;
         for (Transaction transaction : expenseList) {
-            System.out.println(transaction.toString());
+            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
             totalExpenses += transaction.getAmount();
         }
         System.out.println("Total Expenses: " + totalExpenses);

@@ -16,11 +16,10 @@ public class fym{
 //        budgetManager.showAllIncome();
 //        budgetManager.showAllExpense();
 //        budgetManager.showAllTranfer();
-      System.out.println(budgetManager.transactions.size());
-        budgetManager.showAllTransaction();
+        budgetManager.showAllTransactions();
   //      budgetManager.addCategory("Food");
    //     budgetManager.showAllCategory();
-        budgetManager.showAllAccount();
+//        budgetManager.showAllAccount();
         io.updateFile(budgetManager);
     }
 }
