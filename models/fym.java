@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Scanner;
 public class fym{
     public static void main(String args[]) throws IOException{
         BudgetManager budgetManager = new BudgetManager();
