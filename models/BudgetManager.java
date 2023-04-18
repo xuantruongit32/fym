@@ -7,7 +7,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
@@ -48,7 +49,7 @@ public class BudgetManager{
         public void removeCategory(String name){
             categories.remove(name);
         }
-    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, DateTimeException dateTime) {
+    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, LocalDateTime dateTime) {
         Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime);
         transactions.get(type).add(newTransaction);
         if(update  == true){
@@ -73,7 +74,7 @@ public class BudgetManager{
     public void showAllTransactions() {
         for (List<Transaction> transactionList : transactions.values()) {
             for (Transaction transaction : transactionList) {
-            System.out.println("Type: " +transaction.getType()+" ,Category: " +transaction.getCategory()+ ", Balance: " + transaction.getAmount());
+            System.out.println("Type: " +transaction.getType()+" ,Category: " +transaction.getCategory()+ ", Balance: " + transaction.getAmount()+", DateTime: " + transaction.getDateTime());
             }
         }
     }
@@ -82,7 +83,7 @@ public class BudgetManager{
         List<Transaction> incomeList = transactions.get("Income");
         double totalIncome = 0;
         for (Transaction transaction : incomeList) {
-            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
+            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount() + ", DateTime: "+ transaction.getDateTime());
             totalIncome += transaction.getAmount();
         }
         System.out.println("Total Income: " + totalIncome);
@@ -92,12 +93,12 @@ public class BudgetManager{
         List<Transaction> expenseList = transactions.get("Expense");
         double totalExpenses = 0;
         for (Transaction transaction : expenseList) {
-            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
+            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount() + ", DateTime: " + transaction.getDateTime());
             totalExpenses += transaction.getAmount();
         }
         System.out.println("Total Expenses: " + totalExpenses);
     }
-        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, DateTimeException dateTime)
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, LocalDateTime dateTime)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime);
             tranfers.add(newTranfer);
@@ -115,7 +116,7 @@ public class BudgetManager{
         }
         public void showAllTranfer(){
             for(int i=0; i<tranfers.size(); i++){
-                System.out.println("Tranfer: " + tranfers.get(i).getAmount());
+                System.out.println("Tranfer: " + tranfers.get(i).getAmount() + ", PreviousAccount: " + tranfers.get(i).getPreviousAccount() + ", newAccount: " + tranfers.get(i).getNewAccount() + ", note: " + tranfers.get(i).getNote() + ", DateTime: " + tranfers.get(i).getDateTime() );
             }
         }
         public void showAllCategory(){

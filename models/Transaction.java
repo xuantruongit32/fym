@@ -1,5 +1,6 @@
 import java.sql.Date;
-import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 public class Transaction{
     private String type; // Income, Expense private Account account; 
@@ -7,9 +8,9 @@ public class Transaction{
     private String category;
     private double amount;
     private String note;
-    private DateTimeException dateTime;
+    private LocalDateTime dateTime;
 
-     public Transaction(String type, Account account, String category, double amount, String note, DateTimeException dateTime){
+     public Transaction(String type, Account account, String category, double amount, String note, LocalDateTime dateTime){
         this.type = type;
         this.account = account;
         this.category = category;
@@ -17,10 +18,10 @@ public class Transaction{
         this.note = note;
         this.dateTime = dateTime;
     }
-    public void setDateTime(DateTimeException dateTime){
+    public void setDateTime(LocalDateTime dateTime){
         this.dateTime = dateTime;
     }
-    public DateTimeException getDateTime(DateTimeException dateTime){
+    public LocalDateTime getDateTime(LocalDateTime dateTime){
         return dateTime;
     }
     public void setType(String type){
