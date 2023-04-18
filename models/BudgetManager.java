@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.DateTimeException;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
@@ -47,8 +48,8 @@ public class BudgetManager{
         public void removeCategory(String name){
             categories.remove(name);
         }
-    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update) {
-        Transaction newTransaction = new Transaction(type, account, category, amount, note);
+    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, DateTimeException dateTime) {
+        Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime);
         transactions.get(type).add(newTransaction);
         if(update  == true){
             double presentBalance = account.getBalance();
@@ -96,9 +97,9 @@ public class BudgetManager{
         }
         System.out.println("Total Expenses: " + totalExpenses);
     }
-        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update)
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, DateTimeException dateTime)
         {
-            Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
+            Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime);
             tranfers.add(newTranfer);
             if (update == true){
                 double presentPreviousAccountBalance = previousAccount.getBalance();

@@ -1,14 +1,24 @@
+import java.time.DateTimeException;
+
 public class Tranfer{
     private Account previousAccount; // Have account class
     private Account newAccount; // Have account class
     private double amount;
     private String note;
+    private DateTimeException dateTime;
 
-     public Tranfer(Account previousAccount, Account newAccount, double amount, String note){
+     public Tranfer(Account previousAccount, Account newAccount, double amount, String note, DateTimeException dateTime){
         this.previousAccount = previousAccount;
         this.newAccount = newAccount;
         this.amount = amount;
         this.note = note;
+        this.dateTime = dateTime;
+    }
+    public DateTimeException getDateTime(DateTimeException dateTime){
+        return dateTime;
+    }
+    public void setDateTime(DateTimeException dateTime){
+        this.dateTime = dateTime;
     }
     public Account getPreviousAccount(){
         return previousAccount;
