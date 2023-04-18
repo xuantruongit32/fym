@@ -15,7 +15,7 @@ public class IO{
             String[] words = line.split(",");
             String [] word = words[0].split(":");
             String [] word1 = words[1].split(":");
-            String name = word[1].substring(1);
+            String name = word[1].trim();
             double balance = Double.parseDouble(word1[1]);
             b.addAccount(name, balance);
     }
@@ -31,16 +31,16 @@ public class IO{
         while ((line = br2.readLine()) != null){
             String [] words = line.split(",");
             String [] word = words[0].split(":");
-            String type = word[1].substring(1);
+            String type = word[1].trim();
             String [] word1 = words[1].split(":");
-            String account = word1[1].substring(1);
+            String account = word1[1].trim();
             String [] word2 = words[2].split(":");
-            String category = word2[1].substring(1);
+            String category = word2[1].trim();
             String [] word3 = words[3].split(":");
             double amount = Double.parseDouble(word3[1]);
             String [] word4 = words[4].split(":");
-            String note = word4[1].substring(1);
-            b.addTransaction(type,b.accounts.get(account),category,amount,note);
+            String note = word4[1].trim();
+            b.addTransaction(type,b.accounts.get(account),category,amount,note,false);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{

@@ -5,21 +5,19 @@ public class fym{
         BudgetManager budgetManager = new BudgetManager();
         IO io = new IO();
         io.importFile(budgetManager);
-        budgetManager.addAccount("Test", 5);
-//        budgetManager.addAccount("Test1", 8);
-//        budgetManager.addAccount("Test4", 9);
-       budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 120, "Test1");
-        budgetManager.addTransaction("Expense", budgetManager.getAccount("Cash"), "Food", 10, "Test2");
-    //    budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he");
+//        budgetManager.addAccount("Cash", 100);
+ //       budgetManager.addAccount("Bank", 100);
+ //       budgetManager.addCategory("Food");
+        budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 32, "Salary",true);
+        budgetManager.addTransaction("Expense", budgetManager.getAccount("Cash"), "Food", 10, "Fish",true);
+        budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he",true);
 //        budgetManager.removeAccount();
-//        budgetManager.addAccount();
 //        budgetManager.showAllIncome();
 //        budgetManager.showAllExpense();
-//        budgetManager.showAllTranfer();
+        budgetManager.showAllTranfer();
         budgetManager.showAllTransactions();
-  //      budgetManager.addCategory("Food");
-   //     budgetManager.showAllCategory();
-//        budgetManager.showAllAccount();
+        budgetManager.showAllCategory();
+        budgetManager.showAllAccount();
         io.updateFile(budgetManager);
     }
 }

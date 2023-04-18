@@ -48,12 +48,14 @@ public class BudgetManager{
         public void removeCategory(String name){
             categories.remove(name);
         }
-    public void addTransaction(String type, Account account, String category, double amount, String note) {
+    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update) {
         Transaction newTransaction = new Transaction(type, account, category, amount, note);
         transactions.get(type).add(newTransaction);
-        double presentBalance = account.getBalance();
-        double newBalance = presentBalance + (type.equals("Income") ? amount : -amount);
-        account.setBalance(newBalance);
+        if(update  == true){
+            double presentBalance = account.getBalance();
+            double newBalance = presentBalance + (type.equals("Income") ? amount : -amount);
+            account.setBalance(newBalance);
+    }
     }
 
 /*    public void removeTransaction(String type, int index) {
@@ -71,7 +73,7 @@ public class BudgetManager{
     public void showAllTransactions() {
         for (List<Transaction> transactionList : transactions.values()) {
             for (Transaction transaction : transactionList) {
-            System.out.println("Type: " +transaction.getType() + "Balance: " + transaction.getAmount());
+            System.out.println("Type: " +transaction.getType()+" ,Category: " +transaction.getCategory()+ ", Balance: " + transaction.getAmount());
             }
         }
     }
@@ -95,16 +97,19 @@ public class BudgetManager{
         }
         System.out.println("Total Expenses: " + totalExpenses);
     }
-        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note)
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
             tranfers.add(newTranfer);
-            double presentPreviousAccountBalance = previousAccount.getBalance();
-            double presentNewAccountBalance = newAccount.getBalance();
-            double newPreviousAccountBalance = presentPreviousAccountBalance - amount;
-            double newNewAccountBalance = presentNewAccountBalance + amount;
-            previousAccount.setBalance(newPreviousAccountBalance);
-            newAccount.setBalance(newNewAccountBalance);
+            if (update = true){
+                double presentPreviousAccountBalance = previousAccount.getBalance();
+                double presentNewAccountBalance = newAccount.getBalance();
+                double newPreviousAccountBalance = presentPreviousAccountBalance - amount;
+                double newNewAccountBalance = presentNewAccountBalance + amount;
+                previousAccount.setBalance(newPreviousAccountBalance);
+                newAccount.setBalance(newNewAccountBalance);
+            
+        }
         }
         public void removeTranfer(Tranfer tranfer){
             tranfers.remove(tranfer);
