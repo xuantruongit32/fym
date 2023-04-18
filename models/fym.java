@@ -7,8 +7,8 @@ public class fym{
 //        budgetManager.addAccount("Cash", 100);
  //       budgetManager.addAccount("Bank", 100);
  //       budgetManager.addCategory("Food");
-        budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 32, "Salary",true);
-        budgetManager.addTransaction("Expense", budgetManager.getAccount("Cash"), "Food", 10, "Fish",true);
+//        budgetManager.addTransaction("Income", budgetManager.getAccount("Cash"), "Food", 20, "Mom",true);
+//        budgetManager.addTransaction("Expense", budgetManager.getAccount("Cash"), "Food", 10, "Rice",true);
         budgetManager.addTranfer(budgetManager.getAccount("Cash"),budgetManager.getAccount("Bank"), 10, "he",true);
 //        budgetManager.removeAccount();
 //        budgetManager.showAllIncome();

@@ -42,6 +42,20 @@ public class IO{
             String note = word4[1].trim();
             b.addTransaction(type,b.accounts.get(account),category,amount,note,false);
     }
+    File tranferFile = new File("../database/tranfer.txt");
+        BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(tranferFile)));
+        while ((line = br3.readLine()) != null){
+            String [] words = line.split(",");
+            String [] word2 = words[1].split(":");
+            String previousAccount = word2[1].trim();
+            String [] word3 = words[2].split(":");
+            String newAccount = word3[1].trim();
+            String [] word4 = words[3].split(":");
+            double amount = Double.parseDouble(word4[1].trim());
+            String [] word5 = words[4].split(":");
+            String note = word5[1].trim();
+            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false);
+    }
     }
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));

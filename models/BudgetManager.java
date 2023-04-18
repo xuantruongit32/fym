@@ -26,13 +26,13 @@ public class BudgetManager{
             accounts.put(name,newAccount);
 
         }
-        public void removeAccount(){
+/*        public void removeAccount(){
             System.out.println("Name of Account want to remove: ");
-            Scanner scanner= new Scanner(System.in);
             String name = scanner.nextLine(); 
             accounts.remove(name);
             scanner.close();
         }
+        */
         public Account getAccount(String name){
             return accounts.get(name);
         }
@@ -100,14 +100,13 @@ public class BudgetManager{
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note);
             tranfers.add(newTranfer);
-            if (update = true){
+            if (update == true){
                 double presentPreviousAccountBalance = previousAccount.getBalance();
                 double presentNewAccountBalance = newAccount.getBalance();
                 double newPreviousAccountBalance = presentPreviousAccountBalance - amount;
                 double newNewAccountBalance = presentNewAccountBalance + amount;
                 previousAccount.setBalance(newPreviousAccountBalance);
                 newAccount.setBalance(newNewAccountBalance);
-            
         }
         }
         public void removeTranfer(Tranfer tranfer){
