@@ -1,16 +1,27 @@
+import java.sql.Date;
+import java.time.DateTimeException;
+
 public class Transaction{
     private String type; // Income, Expense private Account account; 
     private Account account;
     private String category;
     private double amount;
     private String note;
+    private DateTimeException dateTime;
 
-     public Transaction(String type, Account account, String category, double amount, String note){
+     public Transaction(String type, Account account, String category, double amount, String note, DateTimeException dateTime){
         this.type = type;
         this.account = account;
         this.category = category;
         this.amount = amount;
         this.note = note;
+        this.dateTime = dateTime;
+    }
+    public void setDateTime(DateTimeException dateTime){
+        this.dateTime = dateTime;
+    }
+    public DateTimeException getDateTime(DateTimeException dateTime){
+        return dateTime;
     }
     public void setType(String type){
         this.type = type;
