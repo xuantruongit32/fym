@@ -11,7 +11,7 @@ public class Transaction{
     private LocalDate dateTime;
     private UUID id;
 
-     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime, UUID id){
+     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime){
         this.type = type;
         this.account = account;
         this.category = category;
@@ -19,6 +19,15 @@ public class Transaction{
         this.note = note;
         this.dateTime = dateTime;
         id = UUID.randomUUID();
+    }
+     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime, UUID id){
+        this.type = type;
+        this.account = account;
+        this.category = category;
+        this.amount = amount;
+        this.note = note;
+        this.dateTime = dateTime;
+        this.id = id;
     }
     public void setDateTime(LocalDate dateTime){
         this.dateTime = dateTime;

@@ -17,6 +17,14 @@ public class Tranfer{
         this.dateTime = dateTime;
         id = UUID.randomUUID();
     }
+     public Tranfer(Account previousAccount, Account newAccount, double amount, String note, LocalDate dateTime, UUID id){
+        this.previousAccount = previousAccount;
+        this.newAccount = newAccount;
+        this.amount = amount;
+        this.note = note;
+        this.dateTime = dateTime;
+        this.id = id;
+    }
     public LocalDate getDateTime(){
         return dateTime;
     }

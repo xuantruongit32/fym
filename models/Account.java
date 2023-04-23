@@ -11,6 +11,11 @@ public class Account{
         this.balance = balance;
         id = UUID.randomUUID();
     }
+    public Account(String name, double balance, UUID id){
+        this.name = name;
+        this.balance = balance;
+        this.id = id;
+    }
     public void setName(String name){
         this.name = name;
     }
