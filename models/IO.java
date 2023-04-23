@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import java.util.UUID;
 public class IO{
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public void importFile(BudgetManager b) throws IOException{
@@ -18,9 +19,11 @@ public class IO{
             String[] words = line.split(",");
             String [] word = words[0].split(":");
             String [] word1 = words[1].split(":");
+            String [] word2 = words[2].split(":");
             String name = word[1].trim();
+            UUID id = UUID.fromString(word2[1].trim());
             double balance = Double.parseDouble(word1[1]);
-            b.addAccount(name, balance);
+            b.addAccount(name, balance, id);
     }
         File categoryFile = new File("../database/category.txt");
         BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
@@ -45,7 +48,9 @@ public class IO{
             String note = word4[1].trim();
             String [] word5 = words[5].split(":");
             LocalDate date = LocalDate.parse(word5[1].trim(),formatter);
-            b.addTransaction(type,b.accounts.get(account),category,amount,note,false,date);
+            String [] word6 = words[6].split(":");
+            UUID id = UUID.fromString(word6[1].trim());
+            b.addTransaction(type,b.accounts.get(account),category,amount,note,false,date,id);
     }
     File tranferFile = new File("../database/tranfer.txt");
         BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(tranferFile)));
@@ -61,7 +66,9 @@ public class IO{
             String note = word5[1].trim();
             String [] word6 = words[5].split(":");
             LocalDate date = LocalDate.parse(word6[1].trim(),formatter);
-            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false,date);
+            String [] word7 = words[6].split(":");
+            UUID id = UUID.fromString(word7[1].trim());
+            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false,date, id);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{
