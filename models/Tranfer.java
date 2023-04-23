@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Tranfer{
     private Account previousAccount; // Have account class
@@ -6,6 +7,7 @@ public class Tranfer{
     private double amount;
     private String note;
     private LocalDate dateTime;
+    private UUID id;
 
      public Tranfer(Account previousAccount, Account newAccount, double amount, String note, LocalDate dateTime){
         this.previousAccount = previousAccount;
@@ -13,6 +15,7 @@ public class Tranfer{
         this.amount = amount;
         this.note = note;
         this.dateTime = dateTime;
+        id = UUID.randomUUID();
     }
     public LocalDate getDateTime(){
         return dateTime;
@@ -43,6 +46,9 @@ public class Tranfer{
     }
     public String getNote(){
         return note;
+    }
+    public UUID getID(){
+        return id;
     }
     
 }

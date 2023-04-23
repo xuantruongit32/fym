@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Transaction{
     private String type; // Income, Expense private Account account; 
@@ -8,20 +9,25 @@ public class Transaction{
     private double amount;
     private String note;
     private LocalDate dateTime;
+    private UUID id;
 
-     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime){
+     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime, UUID id){
         this.type = type;
         this.account = account;
         this.category = category;
         this.amount = amount;
         this.note = note;
         this.dateTime = dateTime;
+        id = UUID.randomUUID();
     }
     public void setDateTime(LocalDate dateTime){
         this.dateTime = dateTime;
     }
     public LocalDate getDateTime(){
         return dateTime;
+    }
+    public UUID getID(){
+        return id;
     }
     public void setType(String type){
         this.type = type;
