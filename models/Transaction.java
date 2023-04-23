@@ -1,6 +1,5 @@
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Transaction{
     private String type; // Income, Expense private Account account; 
@@ -8,9 +7,9 @@ public class Transaction{
     private String category;
     private double amount;
     private String note;
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
 
-     public Transaction(String type, Account account, String category, double amount, String note, LocalDateTime dateTime){
+     public Transaction(String type, Account account, String category, double amount, String note, LocalDate dateTime){
         this.type = type;
         this.account = account;
         this.category = category;
@@ -18,10 +17,10 @@ public class Transaction{
         this.note = note;
         this.dateTime = dateTime;
     }
-    public void setDateTime(LocalDateTime dateTime){
+    public void setDateTime(LocalDate dateTime){
         this.dateTime = dateTime;
     }
-    public LocalDateTime getDateTime(){
+    public LocalDate getDateTime(){
         return dateTime;
     }
     public void setType(String type){

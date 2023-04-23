@@ -6,7 +6,10 @@ import java.io.BufferedReader;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 public class IO{
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public void importFile(BudgetManager b) throws IOException{
         File accountFile = new File("../database/accounts.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(accountFile)));
@@ -40,7 +43,9 @@ public class IO{
             double amount = Double.parseDouble(word3[1]);
             String [] word4 = words[4].split(":");
             String note = word4[1].trim();
-            b.addTransaction(type,b.accounts.get(account),category,amount,note,false);
+            String [] word5 = words[5].split(":");
+            LocalDate date = LocalDate.parse(word5[1].trim(),formatter);
+            b.addTransaction(type,b.accounts.get(account),category,amount,note,false,date);
     }
     File tranferFile = new File("../database/tranfer.txt");
         BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(tranferFile)));
@@ -54,7 +59,9 @@ public class IO{
             double amount = Double.parseDouble(word4[1].trim());
             String [] word5 = words[4].split(":");
             String note = word5[1].trim();
-            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false);
+            String [] word6 = words[5].split(":");
+            LocalDate date = LocalDate.parse(word6[1].trim(),formatter);
+            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false,date);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{

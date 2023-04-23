@@ -1,23 +1,23 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Tranfer{
     private Account previousAccount; // Have account class
     private Account newAccount; // Have account class
     private double amount;
     private String note;
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
 
-     public Tranfer(Account previousAccount, Account newAccount, double amount, String note, LocalDateTime dateTime){
+     public Tranfer(Account previousAccount, Account newAccount, double amount, String note, LocalDate dateTime){
         this.previousAccount = previousAccount;
         this.newAccount = newAccount;
         this.amount = amount;
         this.note = note;
         this.dateTime = dateTime;
     }
-    public LocalDateTime getDateTime(){
+    public LocalDate getDateTime(){
         return dateTime;
     }
-    public void setDateTime(LocalDateTime dateTime){
+    public void setDateTime(LocalDate dateTime){
         this.dateTime = dateTime;
     }
     public Account getPreviousAccount(){
