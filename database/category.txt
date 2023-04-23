@@ -1,4 +1,1 @@
-Category Food
-Category Transportation
-Category Entertainment
-Category Food
+Category :Food

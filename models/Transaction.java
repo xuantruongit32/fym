@@ -21,7 +21,7 @@ public class Transaction{
     public void setDateTime(LocalDateTime dateTime){
         this.dateTime = dateTime;
     }
-    public LocalDateTime getDateTime(LocalDateTime dateTime){
+    public LocalDateTime getDateTime(){
         return dateTime;
     }
     public void setType(String type){

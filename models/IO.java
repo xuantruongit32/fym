@@ -67,17 +67,17 @@ public class IO{
             BufferedWriter writer3 = new BufferedWriter(new FileWriter("../database/expense.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
-        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
+        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+"\n");
         if(entry.getKey().equals("Income")){
-            writer2.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
+            writer2.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+transaction.getDateTime()+"\n");
         } else if(entry.getKey().equals("Expense")){
-            writer3.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+"\n");
+            writer3.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+transaction.getDateTime()+"\n");
         }
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
         for(Tranfer tranfer :b.tranfers){
-            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+"\n");
+            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+", Date: "+tranfer.getDateTime()+"\n");
         }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
         for (String category : b.categories){

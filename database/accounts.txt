@@ -1,4 +1,2 @@
-Account name: Test1, balance:8.0
-Account name: Bank, balance:100020.0
-Account name: Cash, balance:100849.0
-Account name: Test4, balance:9.0
+Account name: Bank, balance:140.0
+Account name: Cash, balance:70.0
