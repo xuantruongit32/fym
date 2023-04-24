@@ -138,8 +138,12 @@ public class BudgetManager{
                 newAccount.setBalance(newNewAccountBalance);
         }
         }
-        public void removeTranfer(Tranfer tranfer){
-            tranfers.remove(tranfer);
+        public void removeTranfer(String sid){
+            UUID id = UUID.fromString(sid);
+            double newValue = tranfers.get(id).getPreviousAccount().getBalance() + tranfers.get(id).getAmount();
+            tranfers.get(id).getPreviousAccount().setBalance(newValue);newValue = newValue = tranfers.get(id).getPreviousAccount().getBalance() - tranfers.get(id).getAmount();
+            tranfers.get(id).getNewAccount().setBalance(newValue);
+            tranfers.remove(id);
         }
         public void showAllTranfer(){
             for(Map.Entry<UUID, Tranfer> entry : tranfers.entrySet()){
