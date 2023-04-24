@@ -142,8 +142,8 @@ public class BudgetManager{
             tranfers.remove(tranfer);
         }
         public void showAllTranfer(){
-            for(int i=0; i<tranfers.size(); i++){
-                System.out.println("Tranfer: " + tranfers.get(i).getAmount() + ", PreviousAccount: " + tranfers.get(i).getPreviousAccount().getName() + ", newAccount: " + tranfers.get(i).getNewAccount().getName() + ", note: " + tranfers.get(i).getNote() + ", DateTime: " + tranfers.get(i).getDateTime() );
+            for(Map.Entry<UUID, Tranfer> entry : tranfers.entrySet()){
+                System.out.println("Tranfer: " + entry.getValue().getAmount() + ", PreviousAccount: " + entry.getValue().getPreviousAccount().getName() + ", newAccount: " + entry.getValue().getNewAccount().getName() + ", note: " + entry.getValue().getNote() + ", DateTime: " + entry.getValue().getDateTime() );
             }
         }
         public void showAllCategory(){
