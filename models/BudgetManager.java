@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.UUID;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
@@ -24,6 +25,11 @@ public class BudgetManager{
     }
         public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
+            accounts.put(name,newAccount);
+
+        }
+        public void addAccount(String name, double balance, UUID id){
+            Account newAccount = new Account(name, balance, id);
             accounts.put(name,newAccount);
 
         }
@@ -50,6 +56,15 @@ public class BudgetManager{
         }
     public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, LocalDate dateTime) {
         Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime);
+        transactions.get(type).add(newTransaction);
+        if(update  == true){
+            double presentBalance = account.getBalance();
+            double newBalance = presentBalance + (type.equals("Income") ? amount : -amount);
+            account.setBalance(newBalance);
+    }
+    }
+    public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, LocalDate dateTime, UUID id) {
+        Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime, id);
         transactions.get(type).add(newTransaction);
         if(update  == true){
             double presentBalance = account.getBalance();
@@ -100,6 +115,19 @@ public class BudgetManager{
         public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, LocalDate dateTime)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime);
+            tranfers.add(newTranfer);
+            if (update == true){
+                double presentPreviousAccountBalance = previousAccount.getBalance();
+                double presentNewAccountBalance = newAccount.getBalance();
+                double newPreviousAccountBalance = presentPreviousAccountBalance - amount;
+                double newNewAccountBalance = presentNewAccountBalance + amount;
+                previousAccount.setBalance(newPreviousAccountBalance);
+                newAccount.setBalance(newNewAccountBalance);
+        }
+        }
+        public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, LocalDate dateTime, UUID id)
+        {
+            Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime, id);
             tranfers.add(newTranfer);
             if (update == true){
                 double presentPreviousAccountBalance = previousAccount.getBalance();
