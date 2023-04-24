@@ -143,7 +143,7 @@ public class BudgetManager{
         }
         public void showAllTranfer(){
             for(int i=0; i<tranfers.size(); i++){
-                System.out.println("Tranfer: " + tranfers.get(i).getAmount() + ", PreviousAccount: " + tranfers.get(i).getPreviousAccount() + ", newAccount: " + tranfers.get(i).getNewAccount() + ", note: " + tranfers.get(i).getNote() + ", DateTime: " + tranfers.get(i).getDateTime() );
+                System.out.println("Tranfer: " + tranfers.get(i).getAmount() + ", PreviousAccount: " + tranfers.get(i).getPreviousAccount().getName() + ", newAccount: " + tranfers.get(i).getNewAccount().getName() + ", note: " + tranfers.get(i).getNote() + ", DateTime: " + tranfers.get(i).getDateTime() );
             }
         }
         public void showAllCategory(){

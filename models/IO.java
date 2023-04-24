@@ -82,7 +82,7 @@ public class IO{
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
             for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
-                writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
+                writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + ", ID: "+entry.getValue().getID()+"\n");
             }
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
@@ -92,7 +92,7 @@ for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
         for(Tranfer tranfer :b.tranfers){
-            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+", Date: "+tranfer.getDateTime()+"\n");
+            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+", Date: "+tranfer.getDateTime()+", ID: "+tranfer.getID()+"\n");
         }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
         for (String category : b.categories){
