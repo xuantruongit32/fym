@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.UUID;
 public class BudgetManager{
-    protected HashMap<String,Account> accounts;
+    protected HashMap<UUID,Account> accounts;
     protected List<String> categories;
     protected HashMap<String,List<Transaction>> transactions; 
     protected HashMap<UUID,Tranfer> tranfers;
@@ -25,12 +25,12 @@ public class BudgetManager{
     }
         public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
-            accounts.put(name,newAccount);
+            accounts.put(newAccount.getID(),newAccount);
 
         }
         public void addAccount(String name, double balance, UUID id){
             Account newAccount = new Account(name, balance, id);
-            accounts.put(name,newAccount);
+            accounts.put(newAccount.getID(),newAccount);
 
         }
 /*        public void removeAccount(){
@@ -40,12 +40,13 @@ public class BudgetManager{
             scanner.close();
         }
         */
-        public Account getAccount(String name){
-            return accounts.get(name);
+        public Account getAccount(String sid){
+            UUID id = UUID.fromString(sid);
+            return accounts.get(id);
         }
         public void showAllAccount(){
-            for(Map.Entry<String,Account> entry: accounts.entrySet()){
-                System.out.println(entry.getKey() + " : " + entry.getValue().getBalance());
+            for(Map.Entry<UUID,Account> entry: accounts.entrySet()){
+                System.out.println(entry.getValue().getName() + " : " + entry.getValue().getBalance());
             }
         }
         public void addCategory(String name){

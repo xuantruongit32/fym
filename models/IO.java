@@ -81,7 +81,7 @@ public class IO{
     }
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
-            for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
+            for(Map.Entry<UUID, Account> entry : b.accounts.entrySet()) {
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + ", ID: "+entry.getValue().getID()+"\n");
             }
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
