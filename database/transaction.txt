@@ -1,22 +1,4 @@
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Fish
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice
-Type: Income, Account: Cash, Category: Food,Amount:32.0,Note: Salary
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom
+Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice, Date: 2023-04-24, ID: 0ad0e8d5-da87-47f7-8a45-9258f659d568
+Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice, Date: 2023-04-24, ID: 61d627a0-f7ba-4746-b3f1-147ce9e30998
+Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom, Date: 2023-04-24, ID: 9d6387cc-0d62-44c4-82f9-13623a66aa6a
+Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom, Date: 2023-04-24, ID: 49c58075-759d-448d-bf20-30e8283fd6c4
