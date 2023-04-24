@@ -13,7 +13,7 @@ public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected List<String> categories;
     protected HashMap<String,List<Transaction>> transactions; 
-    protected List<Tranfer> tranfers;
+    protected HashMap<UUID,Tranfer> tranfers;
 
     public BudgetManager(){
         accounts = new HashMap<>();
@@ -21,7 +21,7 @@ public class BudgetManager{
         transactions = new HashMap<>();
         transactions.put("Income", new ArrayList<>());
         transactions.put("Expense", new ArrayList<>());
-        tranfers = new ArrayList<>();
+        tranfers = new HashMap<>();
     }
         public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
@@ -115,7 +115,7 @@ public class BudgetManager{
         public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, LocalDate dateTime)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime);
-            tranfers.add(newTranfer);
+            tranfers.put(newTranfer.getID(),newTranfer);
             if (update == true){
                 double presentPreviousAccountBalance = previousAccount.getBalance();
                 double presentNewAccountBalance = newAccount.getBalance();
@@ -128,7 +128,7 @@ public class BudgetManager{
         public void addTranfer(Account previousAccount, Account newAccount, double amount, String note, boolean update, LocalDate dateTime, UUID id)
         {
             Tranfer newTranfer = new Tranfer(previousAccount, newAccount, amount, note, dateTime, id);
-            tranfers.add(newTranfer);
+            tranfers.put(newTranfer.getID(),newTranfer);
             if (update == true){
                 double presentPreviousAccountBalance = previousAccount.getBalance();
                 double presentNewAccountBalance = newAccount.getBalance();

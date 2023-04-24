@@ -91,12 +91,12 @@ for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
-        for(Tranfer tranfer :b.tranfers){
-            writer4.write("Type: Tranfer" + "," + "Previous Account: " + tranfer.getPreviousAccount().getName()+ "," + "New Account: " + tranfer.getNewAccount().getName() + ","+ "Amount:"+tranfer.getAmount()+","+"Note: "+tranfer.getNote()+", Date: "+tranfer.getDateTime()+", ID: "+tranfer.getID()+"\n");
-        }
+for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
+    writer4.write("Type: Tranfer" + "," + "Previous Account: " + entry.getValue().getPreviousAccount().getName()+ "," + "New Account: " + entry.getValue().getNewAccount().getName() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
+}
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
-        for (String category : b.categories){
-            writer5.write("Category :"+ category +"\n");
+for (String category : b.categories){
+    writer5.write("Category :"+ category +"\n");
         }
             writer.close();
             writer1.close();
