@@ -38,11 +38,11 @@ public class BudgetManager{
             removeTranfer(accounts.get(id));
             accounts.remove(id);
         }
-        
         public Account getAccount(String sid){
             UUID id = UUID.fromString(sid);
             return accounts.get(id);
         }
+        
         public void showAllAccount(){
             for(Map.Entry<UUID,Account> entry: accounts.entrySet()){
                 System.out.println(entry.getValue().getName() + " : " + entry.getValue().getBalance());
@@ -73,17 +73,21 @@ public class BudgetManager{
     }
     }
 
-/*    public void removeTransaction(String type, int index) {
+    public void removeTransaction(String type, String sid) {
+        UUID id = UUID.fromString(sid);
         List<Transaction> transactionList = transactions.get(type);
-        if (index >= 0 && index < transactionList.size()) {
-            Transaction transaction = transactionList.remove(index);
-            Account account = transaction.getAccount();
-            double presentBalance = account.getBalance();
-            double newBalance = presentBalance - (transaction.getType().equals("Income") ? transaction.getAmount() : -transaction.getAmount());
-            account.setBalance(newBalance);
+        for(int i=0;i<transactionList.size(); i++) {
+            if(transactionList.get(i).getID() == id){
+                Account account = transactionList.get(i).getAccount();
+                double presentBalance = account.getBalance();
+                double newBalance = presentBalance - (transactionList.get(i).getType().equals("Income") ? transactionList.get(i).getAmount() : + transactionList.get(i).getAmount());
+                account.setBalance(newBalance);
+                transactions.get(type).remove(i);
+                break;
+            }
         }
     }
-    */
+    
 
     public void showAllTransactions() {
         for (List<Transaction> transactionList : transactions.values()) {
