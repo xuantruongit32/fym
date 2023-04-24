@@ -13,6 +13,8 @@ public class IO{
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public void importFile(BudgetManager b) throws IOException{
         File accountFile = new File("../database/accounts.txt");
+        if(!accountFile.exists())
+            accountFile.createNewFile();
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(accountFile)));
         String line;
         while ((line = br.readLine()) != null){
@@ -26,6 +28,8 @@ public class IO{
             b.addAccount(name, balance, id);
     }
         File categoryFile = new File("../database/category.txt");
+        if(!categoryFile.exists())
+            categoryFile.createNewFile();
         BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
         while ((line = br1.readLine()) != null){
             String [] words = line.split(":");
@@ -33,6 +37,8 @@ public class IO{
             b.addCategory(category);
     }
     File transactionFile = new File("../database/transaction.txt");
+        if(!transactionFile.exists())
+            transactionFile.createNewFile();
         BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(transactionFile)));
         while ((line = br2.readLine()) != null){
             String [] words = line.split(",");
@@ -53,6 +59,8 @@ public class IO{
             b.addTransaction(type,b.accounts.get(account),category,amount,note,false,date,id);
     }
     File tranferFile = new File("../database/tranfer.txt");
+        if(!tranferFile.exists())
+            tranferFile.createNewFile();
         BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(tranferFile)));
         while ((line = br3.readLine()) != null){
             String [] words = line.split(",");
@@ -77,16 +85,9 @@ public class IO{
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + "\n");
             }
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
-            BufferedWriter writer2 = new BufferedWriter(new FileWriter("../database/income.txt"));
-            BufferedWriter writer3 = new BufferedWriter(new FileWriter("../database/expense.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
         writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
-        if(entry.getKey().equals("Income")){
-            writer2.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+transaction.getDateTime()+", ID:"+transaction.getID()+"\n");
-        } else if(entry.getKey().equals("Expense")){
-            writer3.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+transaction.getDateTime()+", ID:"+transaction.getID()+"\n");
-        }
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
@@ -99,8 +100,6 @@ for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
         }
             writer.close();
             writer1.close();
-            writer2.close();
-            writer3.close();
             writer4.close();
             writer5.close();
         
