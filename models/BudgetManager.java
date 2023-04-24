@@ -33,13 +33,12 @@ public class BudgetManager{
             accounts.put(newAccount.getID(),newAccount);
 
         }
-/*        public void removeAccount(){
-            System.out.println("Name of Account want to remove: ");
-            String name = scanner.nextLine(); 
-            accounts.remove(name);
-            scanner.close();
+        public void removeAccount(String sid){
+            UUID id = UUID.fromString(sid);
+            removeTranfer(accounts.get(id));
+            accounts.remove(id);
         }
-        */
+        
         public Account getAccount(String sid){
             UUID id = UUID.fromString(sid);
             return accounts.get(id);
@@ -145,6 +144,18 @@ public class BudgetManager{
             tranfers.get(id).getPreviousAccount().setBalance(newValue);newValue = newValue = tranfers.get(id).getPreviousAccount().getBalance() - tranfers.get(id).getAmount();
             tranfers.get(id).getNewAccount().setBalance(newValue);
             tranfers.remove(id);
+        }
+        public void removeTranfer(Account account){
+            for(Map.Entry<UUID, Tranfer> entry : tranfers.entrySet()){
+                if(entry.getValue().getPreviousAccount() == account){
+                    double newValue = entry.getValue().getNewAccount().getBalance() - entry.getValue().getAmount();
+                    entry.getValue().getNewAccount().setBalance(newValue);
+                }
+                if(entry.getValue().getNewAccount() == account){
+                    double newValue = entry.getValue().getPreviousAccount().getBalance() + entry.getValue().getAmount();
+                    entry.getValue().getPreviousAccount().setBalance(newValue);
+                }
+            }
         }
         public void showAllTranfer(){
             for(Map.Entry<UUID, Tranfer> entry : tranfers.entrySet()){
