@@ -1,6 +1,4 @@
-    package com.fym.models;
-
-import java.io.*;
+package com.fym.models;
 import java.util.UUID;
 
 public class Account{

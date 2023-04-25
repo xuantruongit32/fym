@@ -90,19 +90,19 @@ public class BudgetManager{
             }
         }
     }
-    public void removeTransaction(Account account) {
-        List<Transaction> transactionList = transactions.get(type);
-        for(int i=0;i<transactionList.size(); i++) {
-            if(transactionList.get(i).getID() == id){
-                Account account = transactionList.get(i).getAccount();
-                double presentBalance = account.getBalance();
-                double newBalance = presentBalance - (transactionList.get(i).getType().equals("Income") ? transactionList.get(i).getAmount() : + transactionList.get(i).getAmount());
-                account.setBalance(newBalance);
-                transactions.get(type).remove(i);
-                break;
-            }
-        }
-    }
+//    public void removeTransaction(Account account) {
+//        List<Transaction> transactionList = transactions.get(type);
+//        for(int i=0;i<transactionList.size(); i++) {
+//            if(transactionList.get(i).getID() == id){
+//                Account account = transactionList.get(i).getAccount();
+//                double presentBalance = account.getBalance();
+//                double newBalance = presentBalance - (transactionList.get(i).getType().equals("Income") ? transactionList.get(i).getAmount() : + transactionList.get(i).getAmount());
+//                account.setBalance(newBalance);
+//                transactions.get(type).remove(i);
+//                break;
+//            }
+//        }
+//    }
     
 
     public void showAllTransactions() {
