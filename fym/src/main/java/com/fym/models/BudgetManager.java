@@ -1,3 +1,4 @@
+ package com.fym.models;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.UUID;
+
+
 public class BudgetManager{
     protected HashMap<UUID,Account> accounts;
     protected List<String> categories;

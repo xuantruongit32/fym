@@ -1,3 +1,5 @@
+    package com.fym.models;
+
 import java.io.*;
 import java.util.UUID;
 
