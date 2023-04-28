@@ -89,12 +89,12 @@ public class IO{
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
-        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," + " Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
+        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," +  ", AccountID: "+ transaction.getAccount().getID()+" Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
 for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
-    writer4.write("Type: Tranfer" + "," + "Previous Account: " + entry.getValue().getPreviousAccount().getName()+ "," + "New Account: " + entry.getValue().getNewAccount().getName() + ","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
+    writer4.write("Type: Tranfer" + "," + "Previous Account: " + entry.getValue().getPreviousAccount().getName()+  ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + "New Account: " + entry.getValue().getNewAccount().getName() + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
 for (String category : b.categories){
