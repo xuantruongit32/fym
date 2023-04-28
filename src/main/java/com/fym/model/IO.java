@@ -47,7 +47,7 @@ public class IO{
             String [] word = words[0].split(":");
             String type = word[1].trim();
             String [] word1 = words[1].split(":");
-            String account = word1[1].trim();
+            UUID accountID = UUID.fromString(word1[1].trim());
             String [] word2 = words[2].split(":");
             String category = word2[1].trim();
             String [] word3 = words[3].split(":");
@@ -58,7 +58,7 @@ public class IO{
             LocalDate date = LocalDate.parse(word5[1].trim(),formatter);
             String [] word6 = words[6].split(":");
             UUID id = UUID.fromString(word6[1].trim());
-            b.addTransaction(type,b.accounts.get(id),category,amount,note,false,date,id);
+            b.addTransaction(type,b.accounts.get(accountID),category,amount,note,false,date,id);
     }
     File tranferFile = new File("../database/tranfer.txt");
         if(!tranferFile.exists())
@@ -67,9 +67,9 @@ public class IO{
         while ((line = br3.readLine()) != null){
             String [] words = line.split(",");
             String [] word2 = words[1].split(":");
-            String previousAccount = word2[1].trim();
+            UUID previousAccountID = UUID.fromString(word2[1].trim());
             String [] word3 = words[2].split(":");
-            String newAccount = word3[1].trim();
+            UUID newAccountID = UUID.fromString(word3[1].trim());
             String [] word4 = words[3].split(":");
             double amount = Double.parseDouble(word4[1].trim());
             String [] word5 = words[4].split(":");
@@ -78,7 +78,7 @@ public class IO{
             LocalDate date = LocalDate.parse(word6[1].trim(),formatter);
             String [] word7 = words[6].split(":");
             UUID id = UUID.fromString(word7[1].trim());
-            b.addTranfer(b.accounts.get(previousAccount),b.accounts.get(newAccount),amount,note,false,date, id);
+            b.addTranfer(b.accounts.get(previousAccountID),b.accounts.get(newAccountID),amount,note,false,date, id);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{
@@ -89,12 +89,12 @@ public class IO{
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
-        writer1.write("Type: " + transaction.getType() + "," + " Account: " + transaction.getAccount().getName()+ "," +  ", AccountID: "+ transaction.getAccount().getID()+" Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
+        writer1.write("Type: " + transaction.getType() + ", AccountID: "+ transaction.getAccount().getID()+" Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
 for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
-    writer4.write("Type: Tranfer" + "," + "Previous Account: " + entry.getValue().getPreviousAccount().getName()+  ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + "New Account: " + entry.getValue().getNewAccount().getName() + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
+    writer4.write("Type: Tranfer" + "," + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
 for (String category : b.categories){
