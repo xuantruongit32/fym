@@ -41,6 +41,7 @@ public class BudgetManager{
         public void removeAccount(String sid){
             UUID id = UUID.fromString(sid);
             removeTranfer(accounts.get(id));
+            removeTransaction(accounts.get(id));
             accounts.remove(id);
         }
         public Account getAccount(String sid){
@@ -81,10 +82,11 @@ public class BudgetManager{
     }
 
     public void removeTransaction(String type, String sid) {
-        UUID id = UUID.fromString(sid);
         List<Transaction> transactionList = transactions.get(type);
         for(int i=0;i<transactionList.size(); i++) {
-            if(transactionList.get(i).getID() == id){
+            boolean equal = transactionList.get(i).getID().toString().equals(sid);
+            if(equal){
+                System.out.println("test");
                 Account account = transactionList.get(i).getAccount();
                 double presentBalance = account.getBalance();
                 double newBalance = presentBalance - (transactionList.get(i).getType().equals("Income") ? transactionList.get(i).getAmount() : + transactionList.get(i).getAmount());
