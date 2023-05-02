@@ -322,6 +322,30 @@ public class BudgetManager{
     }
             return totalIncome;
 }
+         public float totalIncomeYearly(LocalDate date, Account account){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=364 && account.equals(transaction.getAccount())){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
+         public float totalIncomeYearly(LocalDate date, String category){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=364 && category.equals(transaction.getCategory())){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
          public float totalIncomeAll(){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome=0;
