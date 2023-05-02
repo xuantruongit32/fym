@@ -4,6 +4,8 @@
  */
 package com.fym.gui;
 import com.fym.model.*;
+import java.io.IOException;
+
 
 /**
  *
@@ -34,6 +36,7 @@ public class Home extends javax.swing.JFrame {
         accountPage = new javax.swing.JPanel();
         statPage = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        exit = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,15 +80,26 @@ public class Home extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("      Stat      ", statPage);
 
+        exit.setText("X");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 384, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(exit)
+                .addGap(0, 254, Short.MAX_VALUE))
         );
 
         addButton.setText("+");
@@ -133,6 +147,17 @@ public class Home extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        IO io = new IO();
+        try {
+        io.updateFile(budgetManager);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    setVisible(false);
+    }//GEN-LAST:event_exitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -141,6 +166,7 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel accountPage;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton exit;
     private javax.swing.JPanel homePage;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
