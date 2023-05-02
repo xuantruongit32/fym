@@ -353,7 +353,26 @@ public class BudgetManager{
                     totalIncome+=transaction.getAmount();
                 }
             return totalIncome;
-
+    }
+         public float totalIncomeAll(Account account){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome=0;
+            for (Transaction transaction : incomeList) {
+                if(account.equals(transaction.getAccount())){
+                    totalIncome+=transaction.getAmount();
+                }
+                }
+            return totalIncome;
+    }
+         public float totalIncomeAll(String category){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome=0;
+            for (Transaction transaction : incomeList) {
+                if(category.equals(transaction.getCategory())){
+                    totalIncome+=transaction.getAmount();
+                }
+                }
+            return totalIncome;
     }
 
         public float totalExpenseDaily(LocalDate date){  
