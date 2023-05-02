@@ -545,7 +545,16 @@ public class BudgetManager{
                 if(result==0){
                     totalTranfer+=tranfer.getAmount();
                 }
-
+    }
+            return totalTranfer;
+}
+        public float totalTranferDaily(LocalDate date, Account account){  
+            float totalTranfer = 0;
+            for (Tranfer tranfer: tranfers.values()) {
+                int result = date.compareTo(tranfer.getDateTime());
+                if(result==0 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                    totalTranfer+=tranfer.getAmount();
+                }
     }
             return totalTranfer;
 }
@@ -556,11 +565,30 @@ public class BudgetManager{
                 if(daysBetween >= 0 && daysBetween <=6){
                     totalTranfer+=tranfer.getAmount();
                 }
-
+    }
+            return totalTranfer;
+}
+         public float totalTranferWeekly(LocalDate date, Account account){  
+            float totalTranfer = 0;
+            for (Tranfer tranfer : tranfers.values()) {
+                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=6 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                    totalTranfer+=tranfer.getAmount();
+                }
     }
             return totalTranfer;
 }
         
+         public float totalTranferMonthly(LocalDate date, Account account){  
+            float totalTranfer = 0;
+            for (Tranfer tranfer : tranfers.values()) {
+                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=29 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                    totalTranfer+=tranfer.getAmount();
+                }
+    }
+            return totalTranfer;
+}
          public float totalTranferMonthly(LocalDate date){  
             float totalTranfer = 0;
             for (Tranfer tranfer : tranfers.values()) {
@@ -568,7 +596,6 @@ public class BudgetManager{
                 if(daysBetween >= 0 && daysBetween <=29){
                     totalTranfer+=tranfer.getAmount();
                 }
-
     }
             return totalTranfer;
 }
@@ -579,13 +606,30 @@ public class BudgetManager{
                 if(daysBetween >= 0 && daysBetween <=364){
                     totalTranfer+=tranfer.getAmount();
                 }
-
+    }
+            return totalTranfer;
+}
+         public float totalTranferYearly(LocalDate date, Account account){  
+            float totalTranfer = 0;
+            for (Tranfer tranfer : tranfers.values()) {
+                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=364 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                    totalTranfer+=tranfer.getAmount();
+                }
     }
             return totalTranfer;
 }
          public float totalTranferAll(){  
             float totalTranfer=0;
             for (Tranfer tranfer : tranfers.values()) {
+                    totalTranfer+=tranfer.getAmount();
+                }
+            return totalTranfer;
+    }
+         public float totalTranferAll(Account account){  
+            float totalTranfer=0;
+            for (Tranfer tranfer : tranfers.values()) {
+                if(account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))
                     totalTranfer+=tranfer.getAmount();
                 }
             return totalTranfer;
