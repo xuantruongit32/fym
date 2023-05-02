@@ -422,6 +422,28 @@ public class BudgetManager{
     }
             return totalExpense;
 }
+         public float totalExpenseWeekly(LocalDate date, Account account){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=6 && account.equals(transaction.getAccount())){
+                    totalExpense+=transaction.getAmount();
+                }
+    }
+            return totalExpense;
+}
+         public float totalExpenseWeekly(LocalDate date, String category){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=6 && category.equals(transaction.getCategory())){
+                    totalExpense+=transaction.getAmount();
+                }
+    }
+            return totalExpense;
+}
         
          public float totalExpenseMonthly(LocalDate date){  
             List<Transaction> expenseList = transactions.get("Expense");
