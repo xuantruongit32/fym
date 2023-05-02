@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.UUID;
 import com.fym.model.*;
+import java.time.ZoneId;
+
 
 
 
@@ -12,14 +14,16 @@ import com.fym.model.*;
  * @author v
  */
 public class addTransaction extends javax.swing.JFrame {
+    private BudgetManager budgetManager;
 
     /**
      * Creates new form addTransaction
      */
     public addTransaction(BudgetManager budgetManager) {
+        this.budgetManager = budgetManager;
         initComponents();
-        showComboCategory(budgetManager);
-        showComboAccount(budgetManager);
+        showComboCategory();
+        showComboAccount();
     }
     
 
@@ -176,6 +180,10 @@ public class addTransaction extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+//        if (((String) type.getSelectedItem()).equals("Transfer")) { 
+//}
+          budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get(UUID.fromString((String)account.getSelectedItem())), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+          setVisible(false);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -191,17 +199,17 @@ public class addTransaction extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    private void showComboCategory(BudgetManager budgetManager){
+    private void showComboCategory(){
         HashSet<String> data = budgetManager.getCategories();
         for(String c: data){
             category.addItem(c);
         }
         
     }
-    private void showComboAccount(BudgetManager budgetManager){
+    private void showComboAccount(){
         HashMap<UUID,Account> data = budgetManager.getAccounts();
         for(Account c: data.values()){
-            account.addItem(c.getName());
+            account.addItem(c.getID().toString());
         }
         
     }
