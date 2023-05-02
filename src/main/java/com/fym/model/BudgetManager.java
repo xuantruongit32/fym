@@ -49,6 +49,9 @@ public class BudgetManager{
             UUID id = UUID.fromString(sid);
             return accounts.get(id);
         }
+        public HashMap<UUID,Account> getAccounts(){
+            return accounts;
+        }
         
         public String showAllAccount(){
             String t="";
