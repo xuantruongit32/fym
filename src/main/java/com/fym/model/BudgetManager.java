@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 public class BudgetManager{
     protected HashMap<UUID,Account> accounts;
-    protected List<String> categories;
+    protected HashSet<String> categories;
     protected HashMap<String,List<Transaction>> transactions; 
     protected HashMap<UUID,Tranfer> tranfers;
     public static void test(){
@@ -22,7 +23,7 @@ public class BudgetManager{
     public BudgetManager(){ 
         
         accounts = new HashMap<>();
-        categories = new ArrayList<>();
+        categories = new HashSet<>();
         transactions = new HashMap<>();
         transactions.put("Income", new ArrayList<>());
         transactions.put("Expense", new ArrayList<>());
@@ -58,6 +59,9 @@ public class BudgetManager{
         }
         public void addCategory(String name){
             categories.add(name);
+        }
+        public HashSet<String> getCategories(){
+            return categories;
         }
         public void removeCategory(String name){
             categories.remove(name);
@@ -186,10 +190,10 @@ public class BudgetManager{
                 System.out.println("Tranfer: " + entry.getValue().getAmount() + ", PreviousAccount: " + entry.getValue().getPreviousAccount().getName() + ", newAccount: " + entry.getValue().getNewAccount().getName() + ", note: " + entry.getValue().getNote() + ", DateTime: " + entry.getValue().getDateTime() );
             }
         }
-        public void showAllCategory(){
-            for(int i=0; i<categories.size(); i++){
-                System.out.println("Category: " + categories.get(i));
-            }
-        }
+//        public void showAllCategory(){
+//            for(int i=0; i<categories.size(); i++){
+//                System.out.println("Category: " + categories.get(i));
+//            }
+//        }
     }
 
