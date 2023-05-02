@@ -258,6 +258,64 @@ public class BudgetManager{
 
     }
 
+        public float totalExpenseDaily(LocalDate date){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                int result = date.compareTo(transaction.getDateTime());
+                if(result==0){
+                    totalExpense+=transaction.getAmount();
+                }
+
+    }
+            return totalExpense;
+}
+         public float totalExpenseWeekly(LocalDate date){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=6){
+                    totalExpense+=transaction.getAmount();
+                }
+
+    }
+            return totalExpense;
+}
+        
+         public float totalExpenseMonthly(LocalDate date){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=29){
+                    totalExpense+=transaction.getAmount();
+                }
+
+    }
+            return totalExpense;
+}
+         public float totalExpenseYearly(LocalDate date){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=364){
+                    totalExpense+=transaction.getAmount();
+                }
+
+    }
+            return totalExpense;
+}
+         public float totalExpenseAll(){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense=0;
+            for (Transaction transaction : expenseList) {
+                    totalExpense+=transaction.getAmount();
+                }
+            return totalExpense;
+    }
+
         
 }
 
