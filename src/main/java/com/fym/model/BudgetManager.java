@@ -387,6 +387,29 @@ public class BudgetManager{
     }
             return totalExpense;
 }
+        public float totalExpenseDaily(LocalDate date, Account account){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                int result = date.compareTo(transaction.getDateTime());
+                if(result==0 && account.equals(transaction.getAccount())){
+                    totalExpense+=transaction.getAmount();
+                }
+
+    }
+            return totalExpense;
+}
+        public float totalExpenseDaily(LocalDate date, String category){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            for (Transaction transaction : expenseList) {
+                int result = date.compareTo(transaction.getDateTime());
+                if(result==0 && category.equals(transaction.getCategory())){
+                    totalExpense+=transaction.getAmount();
+                }
+    }
+            return totalExpense;
+}
          public float totalExpenseWeekly(LocalDate date){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
