@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.time.temporal.ChronoUnit;
 public class BudgetManager{
     protected HashMap<UUID,Account> accounts;
     protected HashSet<String> categories;
@@ -198,5 +199,65 @@ public class BudgetManager{
 //                System.out.println("Category: " + categories.get(i));
 //            }
 //        }
+        public float totalIncomeDaily(LocalDate date){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                int result = date.compareTo(transaction.getDateTime());
+                if(result==0){
+                    totalIncome+=transaction.getAmount();
+                }
+
     }
+            return totalIncome;
+}
+         public float totalIncomeWeekly(LocalDate date){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=6){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
+        
+         public float totalIncomeMonthly(LocalDate date){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=29){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
+         public float totalIncomeYearly(LocalDate date){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            for (Transaction transaction : incomeList) {
+                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
+                if(daysBetween >= 0 && daysBetween <=364){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
+         public float totalIncomeAll(){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome=0;
+            for (Transaction transaction : incomeList) {
+                    totalIncome+=transaction.getAmount();
+                }
+            return totalIncome;
+
+    }
+
+        
+}
 
