@@ -66,7 +66,8 @@ public class BudgetManager{
         public void addCategory(String name, String type){
             if(type.equals("Income"))
                 categoriesIncome.add(name);
-            categoriesExpense.add(name);
+            else
+                categoriesExpense.add(name);
         }
         public HashSet<String> getCategoriesIncome(){
             return categoriesIncome;

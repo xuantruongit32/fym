@@ -1,5 +1,4 @@
-Category :Water
-Category :Water1
-Category :Food1
-Category :Girl
-Category :Food
+Category :Salary, Type: Income
+Category :Mom, Type: Income
+Category :Salary, Type: Expense
+Category :Mom, Type: Expense

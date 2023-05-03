@@ -1,4 +1,4 @@
-Account name: Bank, balance:235.0, ID: 497e103d-203b-4989-9efa-45d4173276ef
+Account name: Bank, balance:358.0, ID: 497e103d-203b-4989-9efa-45d4173276ef
 Account name: Cash, balance:126.0, ID: e43e3c81-4b1d-4fa8-8940-ac1c08d8824d
 Account name: Hehehe, balance:300.0, ID: a63e4189-9df9-4f95-b17e-fe41dad2a43e
 Account name: Test, balance:0.0, ID: 69b7787d-95fc-42a7-8e1d-09fc03d5d13b

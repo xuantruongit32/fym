@@ -22,9 +22,13 @@ public class addTransaction extends javax.swing.JFrame {
     public addTransaction(BudgetManager budgetManager) {
         this.budgetManager = budgetManager;
         initComponents();
-        showComboCategory();
         showComboAccount();
         addTab();
+        HashSet<String> data = budgetManager.getCategoriesIncome();
+        for(String c: data){
+            category.addItem(c);
+        }
+        
     }
     
 
@@ -80,6 +84,11 @@ public class addTransaction extends javax.swing.JFrame {
         noteText.setText("Note:");
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -275,27 +284,45 @@ public class addTransaction extends javax.swing.JFrame {
 
     private void resetCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetCategoryActionPerformed
         // TODO add your handling code here:
-        showComboCategory();
+        category.removeAllItems();
+        HashSet<String> data;
+        if(((String) type.getSelectedItem()).equals("Income"))
+            data = budgetManager.getCategoriesIncome();
+        else
+            data = budgetManager.getCategoriesExpense();
+        for(String c: data){
+            category.addItem(c);
+        }
+                                
+
     }//GEN-LAST:event_resetCategoryActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+        category.removeAllItems();
+        HashSet<String> data;
+        if(((String) type.getSelectedItem()).equals("Income")){
+            data = budgetManager.getCategoriesIncome();
+      }
+        else
+            data = budgetManager.getCategoriesExpense();
+        for(String c: data){
+            category.addItem(c);
+        }
+    }//GEN-LAST:event_typeActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-    private void showComboCategory(){
-        category.removeAllItems();
-        HashSet<String> data = budgetManager.getCategories();
-        for(String c: data){
-            category.addItem(c);
-        }
-        
-    }
+    
     private void showComboAccount(){
         account.removeAllItems();
         HashMap<UUID,Account> data = budgetManager.getAccounts();
         for(Account c: data.values()){
             account.addItem(c.getID().toString());
         }
+    //    type.setSelectedIndex(-1);
         
     }
     private void addTab(){

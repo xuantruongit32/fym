@@ -102,7 +102,7 @@ public class addCategory extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        b.addCategory(name.getText());
+        b.addCategory(name.getText(),(String) type.getSelectedItem());
         setVisible(false);
        
     }//GEN-LAST:event_addButtonActionPerformed
