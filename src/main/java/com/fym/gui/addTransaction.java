@@ -117,6 +117,11 @@ public class addTransaction extends javax.swing.JFrame {
         });
 
         resetCategory.setText("O");
+        resetCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addTransactionLayout = new javax.swing.GroupLayout(addTransaction);
         addTransaction.setLayout(addTransactionLayout);
@@ -257,8 +262,8 @@ public class addTransaction extends javax.swing.JFrame {
 
     private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
         // TODO add your handling code here:
-        addAccount addAccount = new addAccount(budgetManager);
-        addAccount.setVisible(true);
+        addCategory addCategory = new addCategory(budgetManager);
+        addCategory.setVisible(true);
 
         
     }//GEN-LAST:event_addCategoryActionPerformed
@@ -267,6 +272,11 @@ public class addTransaction extends javax.swing.JFrame {
         // TODO add your handling code here:
         showComboAccount();
     }//GEN-LAST:event_resetAccountActionPerformed
+
+    private void resetCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetCategoryActionPerformed
+        // TODO add your handling code here:
+        showComboCategory();
+    }//GEN-LAST:event_resetCategoryActionPerformed
 
     /**
      * @param args the command line arguments
