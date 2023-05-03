@@ -36,56 +36,38 @@ public class addTransaction extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        type = new javax.swing.JComboBox<>();
-        textType = new javax.swing.JLabel();
+        tab = new javax.swing.JTabbedPane();
+        addTransaction = new javax.swing.JPanel();
+        typeText = new javax.swing.JLabel();
         accountText = new javax.swing.JLabel();
-        account = new javax.swing.JComboBox<>();
         amountText = new javax.swing.JLabel();
-        amount = new javax.swing.JTextField();
+        categoryText = new javax.swing.JLabel();
         dateTimeText = new javax.swing.JLabel();
         noteText = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        note = new javax.swing.JTextArea();
-        addButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        categoryText = new javax.swing.JLabel();
+        type = new javax.swing.JComboBox<>();
+        account = new javax.swing.JComboBox<>();
+        amount = new javax.swing.JTextField();
         category = new javax.swing.JComboBox<>();
         dateTime = new com.toedter.calendar.JDateChooser();
+        note = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense", "Tranfer" }));
-        type.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typeActionPerformed(evt);
-            }
-        });
+        typeText.setText("Type     :");
 
-        textType.setText("   Type:");
+        accountText.setText("Account:");
 
-        accountText.setText(" Account:");
+        amountText.setText("Amount:");
 
-        account.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accountActionPerformed(evt);
-            }
-        });
+        categoryText.setText("Category:");
 
-        amountText.setText(" Amount:");
+        dateTimeText.setText("Date Time:");
 
-        amount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountActionPerformed(evt);
-            }
-        });
+        noteText.setText("Note:");
 
-        dateTimeText.setText("  Date:");
-
-        noteText.setText(" Note:");
-
-        note.setColumns(20);
-        note.setRows(5);
-        jScrollPane1.setViewportView(note);
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,99 +83,97 @@ public class addTransaction extends javax.swing.JFrame {
             }
         });
 
-        categoryText.setText("Category:");
+        javax.swing.GroupLayout addTransactionLayout = new javax.swing.GroupLayout(addTransaction);
+        addTransaction.setLayout(addTransactionLayout);
+        addTransactionLayout.setHorizontalGroup(
+            addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTransactionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeText)
+                    .addComponent(accountText)
+                    .addComponent(amountText)
+                    .addComponent(categoryText)
+                    .addComponent(dateTimeText)
+                    .addComponent(noteText))
+                .addGap(30, 30, 30)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(account, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, 0, 112, Short.MAX_VALUE)
+                        .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(category, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(note))
+                .addGap(271, 271, 271))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTransactionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addButton)
+                .addGap(27, 27, 27)
+                .addComponent(cancelButton)
+                .addGap(14, 14, 14))
+        );
+        addTransactionLayout.setVerticalGroup(
+            addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTransactionLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeText)
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountText)
+                    .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(amountText)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(categoryText)
+                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateTimeText)
+                    .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(noteText)
+                    .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton)
+                    .addComponent(cancelButton))
+                .addGap(25, 25, 25))
+        );
+
+        tab.addTab("Transaction", addTransaction);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(dateTimeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(amountText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(accountText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(noteText, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(categoryText))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(account, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(amount))
-                    .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cancelButton)
-                .addGap(13, 13, 13))
+            .addComponent(tab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textType))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accountText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dateTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryText, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(noteText, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(cancelButton))
-                .addGap(42, 42, 42))
+            .addComponent(tab)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typeActionPerformed
-
-    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountActionPerformed
-
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-//        if (((String) type.getSelectedItem()).equals("Transfer")) { 
-//}
-          budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get(UUID.fromString((String)account.getSelectedItem())), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-          setVisible(false);
+        budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get(UUID.fromString((String)account.getSelectedItem())), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        setVisible(false);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-    }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_accountActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +198,7 @@ public class addTransaction extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> account;
     private javax.swing.JLabel accountText;
     private javax.swing.JButton addButton;
+    private javax.swing.JPanel addTransaction;
     private javax.swing.JTextField amount;
     private javax.swing.JLabel amountText;
     private javax.swing.JButton cancelButton;
@@ -225,10 +206,10 @@ public class addTransaction extends javax.swing.JFrame {
     private javax.swing.JLabel categoryText;
     private com.toedter.calendar.JDateChooser dateTime;
     private javax.swing.JLabel dateTimeText;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea note;
+    private javax.swing.JTextField note;
     private javax.swing.JLabel noteText;
-    private javax.swing.JLabel textType;
+    private javax.swing.JTabbedPane tab;
     private javax.swing.JComboBox<String> type;
+    private javax.swing.JLabel typeText;
     // End of variables declaration//GEN-END:variables
 }
