@@ -32,9 +32,12 @@ public class IO{
             categoryFile.createNewFile();
         BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
         while ((line = br1.readLine()) != null){
-            String [] words = line.split(":");
-            String  category = words[1];
-            b.addCategory(category);
+            String [] words = line.split(",");
+            String  [] word = words[0].split(":");
+            String category = word[1].trim();
+            String [] word1 = words[1].split(":");
+            String type = word1[1].trim();
+            b.addCategory(category, type);
     }
     File transactionFile = new File("/home/v/projects/first/fym/src/main/java/database/transaction.txt");
         if(!transactionFile.exists())
@@ -95,8 +98,11 @@ for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
     writer4.write("Type: Tranfer" + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+ ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/category.txt"));
-for (String category : b.categories){
-    writer5.write("Category :"+ category +"\n");
+for (String category : b.categoriesIncome){
+    writer5.write("Category :"+ category +", Type: Income"+"\n");
+        }
+for (String category : b.categoriesIncome){
+    writer5.write("Category :"+ category +", Type: Expense"+"\n");
         }
             writer.close();
             writer1.close();
