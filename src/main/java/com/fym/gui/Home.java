@@ -34,6 +34,7 @@ public class Home extends javax.swing.JFrame {
         Tab = new javax.swing.JTabbedPane();
         Home = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,19 +45,29 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        exitButton.setText("X");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createSequentialGroup()
+            .addGroup(HomeLayout.createSequentialGroup()
                 .addContainerGap(345, Short.MAX_VALUE)
-                .addComponent(addButton)
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createSequentialGroup()
-                .addContainerGap(239, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -83,6 +94,17 @@ public class Home extends javax.swing.JFrame {
         addTransaction.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+          IO io = new IO();
+          try {
+              io.updateFile(budgetManager);
+        } catch (IOException e) {
+              e.printStackTrace();
+    }
+    setVisible(false);
+    }//GEN-LAST:event_exitButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -92,5 +114,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JTabbedPane Tab;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton exitButton;
     // End of variables declaration//GEN-END:variables
 }

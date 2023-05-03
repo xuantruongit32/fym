@@ -33,4 +33,8 @@ public class Account{
     public UUID getID(){
         return id;
     }
+    @Override
+    public String toString(){
+        return name;
+    }
 }

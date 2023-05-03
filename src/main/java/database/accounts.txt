@@ -1,2 +1,2 @@
-Account name: Cash, balance:110.0, ID: 58561004-ce4d-484f-a3ae-da6e31bc6fbe
-Account name: Bank, balance:100.0, ID: f0f62e8c-fe56-41ca-a177-e81a2cd6ea27
+Account name: Bank, balance:261.0, ID: 497e103d-203b-4989-9efa-45d4173276ef
+Account name: Cash, balance:0.0, ID: e43e3c81-4b1d-4fa8-8940-ac1c08d8824d

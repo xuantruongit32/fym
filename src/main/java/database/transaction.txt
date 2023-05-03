@@ -1,2 +1,4 @@
-Type: Expense, Account: Cash, Category: Food,Amount:10.0,Note: Rice, Date: 2023-04-24, ID: 91fdaaf6-a569-4dba-9509-8d58b9d21eb9
-Type: Income, Account: Cash, Category: Food,Amount:20.0,Note: Mom, Date: 2023-04-24, ID: bee4a649-6a15-4bcb-940b-98c9f237eb38
+Type: Expense, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Water,Amount:10.0,Note: gfdgfdgd, Date: 2023-05-03, ID: fe67303b-9fcf-4ae9-ad09-2248bcc4fdb4
+Type: Expense, AccountID: e43e3c81-4b1d-4fa8-8940-ac1c08d8824d, Category: Water,Amount:100.0,Note: gfgfdgfd, Date: 2023-05-03, ID: 005b6ac8-6908-4e2c-82e7-6869a476038a
+Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Food,Amount:37.0,Note: test, Date: 2023-05-02, ID: 3821df16-1340-4995-a103-ce27b8e2bc7f
+Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Water,Amount:134.0,Note: vffdv fg, Date: 2023-05-02, ID: 6c87563d-a8f6-42b0-a8c9-586e0109957d

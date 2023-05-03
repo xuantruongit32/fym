@@ -1,6 +1,4 @@
 package com.fym.model;
-import com.fym.model.BudgetManager;
-import com.fym.model.Account;
 import java.io.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,7 +12,7 @@ import java.util.UUID;
 public class IO{
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public void importFile(BudgetManager b) throws IOException{
-        File accountFile = new File("../database/accounts.txt");
+        File accountFile = new File("/home/v/projects/first/fym/src/main/java/database/accounts.txt");
         if(!accountFile.exists())
             accountFile.createNewFile();
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(accountFile)));
@@ -29,7 +27,7 @@ public class IO{
             double balance = Double.parseDouble(word1[1]);
             b.addAccount(name, balance, id);
     }
-        File categoryFile = new File("../database/category.txt");
+        File categoryFile = new File("/home/v/projects/first/fym/src/main/java/database/category.txt");
         if(!categoryFile.exists())
             categoryFile.createNewFile();
         BufferedReader br1 = new BufferedReader(new InputStreamReader(new FileInputStream(categoryFile)));
@@ -38,7 +36,7 @@ public class IO{
             String  category = words[1];
             b.addCategory(category);
     }
-    File transactionFile = new File("../database/transaction.txt");
+    File transactionFile = new File("/home/v/projects/first/fym/src/main/java/database/transaction.txt");
         if(!transactionFile.exists())
             transactionFile.createNewFile();
         BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(transactionFile)));
@@ -60,7 +58,7 @@ public class IO{
             UUID id = UUID.fromString(word6[1].trim());
             b.addTransaction(type,b.accounts.get(accountID),category,amount,note,false,date,id);
     }
-    File tranferFile = new File("../database/tranfer.txt");
+    File tranferFile = new File("/home/v/projects/first/fym/src/main/java/database/tranfer.txt");
         if(!tranferFile.exists())
             tranferFile.createNewFile();
         BufferedReader br3 = new BufferedReader(new InputStreamReader(new FileInputStream(tranferFile)));
@@ -82,21 +80,21 @@ public class IO{
     }
     }
     public void updateFile(BudgetManager b) throws IOException{
-            BufferedWriter writer = new BufferedWriter(new FileWriter("../database/accounts.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/accounts.txt"));
             for(Map.Entry<UUID, Account> entry : b.accounts.entrySet()) {
                 writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + ", ID: "+entry.getValue().getID()+"\n");
             }
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter("../database/transaction.txt"));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/transaction.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
-        writer1.write("Type: " + transaction.getType() + ", AccountID: "+ transaction.getAccount().getID()+" Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
+        writer1.write("Type: " + transaction.getType() + ", AccountID: "+ transaction.getAccount().getID()+", Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
     }
 }
-        BufferedWriter writer4 = new BufferedWriter(new FileWriter("../database/tranfer.txt"));
+        BufferedWriter writer4 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/tranfer.txt"));
 for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
     writer4.write("Type: Tranfer" + "," + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
-        BufferedWriter writer5 = new BufferedWriter(new FileWriter("../database/category.txt"));
+        BufferedWriter writer5 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/category.txt"));
 for (String category : b.categories){
     writer5.write("Category :"+ category +"\n");
         }
