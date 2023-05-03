@@ -15,7 +15,8 @@ import java.util.UUID;
 import java.time.temporal.ChronoUnit;
 public class BudgetManager{
     protected HashMap<UUID,Account> accounts;
-    protected HashSet<String> categories;
+    protected HashSet<String> categoriesIncome;
+    protected HashSet<String> categoriesExpense;
     protected HashMap<String,List<Transaction>> transactions; 
     protected HashMap<UUID,Tranfer> tranfers;
     public static void test(){
@@ -24,7 +25,8 @@ public class BudgetManager{
     public BudgetManager(){ 
         
         accounts = new HashMap<>();
-        categories = new HashSet<>();
+        categoriesIncome = new HashSet<>();
+        categoriesExpense = new HashSet<>();
         transactions = new HashMap<>();
         transactions.put("Income", new ArrayList<>());
         transactions.put("Expense", new ArrayList<>());
@@ -61,14 +63,19 @@ public class BudgetManager{
             }
             return t;
         }
-        public void addCategory(String name){
-            categories.add(name);
+        public void addCategory(String name, String type){
+            if(type.equals("Income"))
+                categoriesIncome.add(name);
+            categoriesExpense.add(name);
         }
-        public HashSet<String> getCategories(){
-            return categories;
+        public HashSet<String> getCategoriesIncome(){
+            return categoriesIncome;
         }
-        public void removeCategory(String name){
-            categories.remove(name);
+        public HashSet<String> getCategoriesExpense(){
+            return categoriesExpense;
+        }
+        public void removeCategoryIncome(String name){
+            categoriesIncome.remove(name);
         }
     public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, LocalDate dateTime) {
         Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime);
