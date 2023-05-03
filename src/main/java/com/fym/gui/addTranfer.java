@@ -6,9 +6,10 @@ package com.fym.gui;
 
 import com.fym.model.Account;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.UUID;
 import com.fym.model.*;
+import java.time.ZoneId;
+
 
 /**
  *
@@ -71,6 +72,11 @@ public class addTranfer extends javax.swing.JPanel {
         });
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +149,8 @@ public class addTranfer extends javax.swing.JPanel {
     }//GEN-LAST:event_noteActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
+        clearText();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void fromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromActionPerformed
@@ -152,6 +159,12 @@ public class addTranfer extends javax.swing.JPanel {
         showComboTo(p);
         
     }//GEN-LAST:event_fromActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        b.addTranfer(b.getAccounts().get(UUID.fromString((String)from.getSelectedItem())),b.getAccounts().get(UUID.fromString((String)to.getSelectedItem())), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        clearText();
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void showComboFrom(){
         HashMap<UUID,Account> data = b.getAccounts();
@@ -169,6 +182,11 @@ public class addTranfer extends javax.swing.JPanel {
             to.addItem(c.getID().toString());
         }
         
+    }
+    private void clearText(){
+        amount.setText(null);
+        dateTime.setDate(null);
+        note.setText(null);
     }
     
 

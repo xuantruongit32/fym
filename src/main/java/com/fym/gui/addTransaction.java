@@ -24,6 +24,7 @@ public class addTransaction extends javax.swing.JFrame {
         initComponents();
         showComboCategory();
         showComboAccount();
+        addTab();
     }
     
 
@@ -166,12 +167,12 @@ public class addTransaction extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get(UUID.fromString((String)account.getSelectedItem())), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        setVisible(false);
+        clearText();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        clearText();
 
     }//GEN-LAST:event_cancelButtonActionPerformed
 
@@ -192,6 +193,15 @@ public class addTransaction extends javax.swing.JFrame {
             account.addItem(c.getID().toString());
         }
         
+    }
+    private void addTab(){
+        addTranfer addTranfer = new addTranfer(budgetManager);
+        tab.addTab("Tranfer",addTranfer);
+    }
+    private void clearText(){
+        amount.setText(null);
+        dateTime.setDate(null);
+        note.setText(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
