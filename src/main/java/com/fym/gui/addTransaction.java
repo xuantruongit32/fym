@@ -53,6 +53,10 @@ public class addTransaction extends javax.swing.JFrame {
         note = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        addAccountButton = new javax.swing.JButton();
+        addCategory = new javax.swing.JButton();
+        resetAccount = new javax.swing.JButton();
+        resetCategory = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,6 +95,29 @@ public class addTransaction extends javax.swing.JFrame {
             }
         });
 
+        addAccountButton.setText("New");
+        addAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAccountButtonActionPerformed(evt);
+            }
+        });
+
+        addCategory.setText("New");
+        addCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCategoryActionPerformed(evt);
+            }
+        });
+
+        resetAccount.setText("O");
+        resetAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetAccountActionPerformed(evt);
+            }
+        });
+
+        resetCategory.setText("O");
+
         javax.swing.GroupLayout addTransactionLayout = new javax.swing.GroupLayout(addTransaction);
         addTransaction.setLayout(addTransactionLayout);
         addTransactionLayout.setHorizontalGroup(
@@ -105,15 +132,24 @@ public class addTransaction extends javax.swing.JFrame {
                     .addComponent(dateTimeText)
                     .addComponent(noteText))
                 .addGap(30, 30, 30)
-                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(account, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, 0, 112, Short.MAX_VALUE)
-                        .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(category, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(dateTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(category, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(account, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(note))
-                .addGap(271, 271, 271))
+                .addGap(15, 15, 15)
+                .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addTransactionLayout.createSequentialGroup()
+                        .addComponent(resetAccount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addAccountButton))
+                    .addGroup(addTransactionLayout.createSequentialGroup()
+                        .addComponent(resetCategory)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addCategory)))
+                .addContainerGap(306, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTransactionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton)
@@ -131,7 +167,10 @@ public class addTransaction extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(accountText)
-                    .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addAccountButton)
+                        .addComponent(resetAccount)))
                 .addGap(20, 20, 20)
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(amountText)
@@ -139,7 +178,10 @@ public class addTransaction extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(categoryText)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addCategory)
+                        .addComponent(resetCategory)))
                 .addGap(20, 20, 20)
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateTimeText)
@@ -148,7 +190,7 @@ public class addTransaction extends javax.swing.JFrame {
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(noteText)
                     .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(cancelButton))
@@ -168,9 +210,9 @@ public class addTransaction extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(tab)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(exitButton)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -206,11 +248,32 @@ public class addTransaction extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabMouseClicked
 
+    private void addAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAccountButtonActionPerformed
+        // TODO add your handling code here:
+        addAccount addAccount = new addAccount(budgetManager);
+        addAccount.setVisible(true);
+        
+    }//GEN-LAST:event_addAccountButtonActionPerformed
+
+    private void addCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCategoryActionPerformed
+        // TODO add your handling code here:
+        addAccount addAccount = new addAccount(budgetManager);
+        addAccount.setVisible(true);
+
+        
+    }//GEN-LAST:event_addCategoryActionPerformed
+
+    private void resetAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetAccountActionPerformed
+        // TODO add your handling code here:
+        showComboAccount();
+    }//GEN-LAST:event_resetAccountActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     private void showComboCategory(){
+        category.removeAllItems();
         HashSet<String> data = budgetManager.getCategories();
         for(String c: data){
             category.addItem(c);
@@ -218,6 +281,7 @@ public class addTransaction extends javax.swing.JFrame {
         
     }
     private void showComboAccount(){
+        account.removeAllItems();
         HashMap<UUID,Account> data = budgetManager.getAccounts();
         for(Account c: data.values()){
             account.addItem(c.getID().toString());
@@ -237,7 +301,9 @@ public class addTransaction extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> account;
     private javax.swing.JLabel accountText;
+    private javax.swing.JButton addAccountButton;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addCategory;
     private javax.swing.JPanel addTransaction;
     private javax.swing.JTextField amount;
     private javax.swing.JLabel amountText;
@@ -249,6 +315,8 @@ public class addTransaction extends javax.swing.JFrame {
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField note;
     private javax.swing.JLabel noteText;
+    private javax.swing.JButton resetAccount;
+    private javax.swing.JButton resetCategory;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JLabel typeText;
