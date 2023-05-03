@@ -4,17 +4,26 @@
  */
 package com.fym.gui;
 
+import com.fym.model.Account;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.UUID;
+import com.fym.model.*;
+
 /**
  *
  * @author v
  */
 public class addTranfer extends javax.swing.JPanel {
+    private BudgetManager b;
 
     /**
      * Creates new form addTranfer
      */
-    public addTranfer() {
+    public addTranfer(BudgetManager b) {
+        this.b =b;
         initComponents();
+        showComboFrom();
     }
 
     /**
@@ -48,6 +57,12 @@ public class addTranfer extends javax.swing.JPanel {
         dateTimeText.setText("Date Time:");
 
         noteText.setText("Note:");
+
+        from.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fromActionPerformed(evt);
+            }
+        });
 
         note.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +146,31 @@ public class addTranfer extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void fromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromActionPerformed
+        // TODO add your handling code here:
+        Account p = b.getAccounts().get(UUID.fromString((String)from.getSelectedItem()));
+        showComboTo(p);
+        
+    }//GEN-LAST:event_fromActionPerformed
+
+    private void showComboFrom(){
+        HashMap<UUID,Account> data = b.getAccounts();
+        for(Account c: data.values()){
+            from.addItem(c.getID().toString());
+        }
+        
+    }
+    private void showComboTo(Account p){
+        to.removeAllItems();
+        HashMap<UUID,Account> data = b.getAccounts();
+        for(Account c: data.values()){
+            if(c.equals(p))
+                continue;
+            to.addItem(c.getID().toString());
+        }
+        
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -147,3 +187,4 @@ public class addTranfer extends javax.swing.JPanel {
     private javax.swing.JLabel toText;
     // End of variables declaration//GEN-END:variables
 }
+
