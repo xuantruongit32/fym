@@ -37,12 +37,20 @@ public class AccountPage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         accountTree = new javax.swing.JTree();
         account = new javax.swing.JComboBox<>();
+        deleteButton = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(accountTree);
 
         account.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -53,7 +61,9 @@ public class AccountPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(175, 175, 175)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteButton)
+                .addContainerGap(230, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -64,24 +74,44 @@ public class AccountPage extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
         // TODO add your handling code here:
-        createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())));
+        if(account.getSelectedIndex() != -1)
+            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())));
+
+
     }//GEN-LAST:event_accountActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        int i = account.getSelectedIndex();
+        String s = (String)account.getSelectedItem();
+        account.setSelectedIndex(-1);
+        b.removeAccount(s);
+        showComboAccount();
+
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
 private void createTree(Account a){
     DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+a.getName());
-    DefaultMutableTreeNode balance = new DefaultMutableTreeNode("Balance: " + String.valueOf(a.getBalance()));
+    DefaultMutableTreeNode balance = new DefaultMutableTreeNode("Balance:       " + String.valueOf(a.getBalance()));
     DefaultMutableTreeNode UUID = new DefaultMutableTreeNode ("ID: " + String.valueOf(a.getID()));
     name.add(balance);
     name.add(UUID);
     JTree tree = new JTree(name);
     accountTree.setModel(new DefaultTreeModel(name));   
+}
+private void clearTree(){
+    DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+    accountTree.setModel(new DefaultTreeModel(root));
+
 }
 private void showComboAccount(){
         account.removeAllItems();
@@ -89,11 +119,13 @@ private void showComboAccount(){
         for(Account c: data.values()){
             account.addItem(c.getID().toString());
         }
+
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> account;
     private javax.swing.JTree accountTree;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
