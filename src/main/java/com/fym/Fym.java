@@ -22,6 +22,8 @@ public class Fym {
        Home t = new Home(b);
         t.setVisible(true);
 
+            
+
         
     }
 }

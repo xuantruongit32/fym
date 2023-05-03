@@ -20,6 +20,7 @@ public class Home extends javax.swing.JFrame {
     public Home(BudgetManager budgetManager) {
         this.budgetManager = budgetManager;
         initComponents();
+        addTab();
     }
 
     /**
@@ -104,7 +105,10 @@ public class Home extends javax.swing.JFrame {
     }
     setVisible(false);
     }//GEN-LAST:event_exitButtonActionPerformed
-
+private void addTab(){
+        AccountPage accountPage = new AccountPage(budgetManager);
+        Tab.addTab("Account",accountPage);
+    }
     /**
      * @param args the command line arguments
      */
