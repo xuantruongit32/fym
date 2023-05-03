@@ -48,6 +48,8 @@ public class addTranfer extends javax.swing.JPanel {
         note = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        addNewFrom = new javax.swing.JButton();
+        resetFrom = new javax.swing.JButton();
 
         fromText.setText("From:");
 
@@ -85,6 +87,20 @@ public class addTranfer extends javax.swing.JPanel {
             }
         });
 
+        addNewFrom.setText("New");
+        addNewFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewFromActionPerformed(evt);
+            }
+        });
+
+        resetFrom.setText("O");
+        resetFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetFromActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,12 +116,17 @@ public class addTranfer extends javax.swing.JPanel {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(from, javax.swing.GroupLayout.Alignment.LEADING, 0, 93, Short.MAX_VALUE)
-                        .addComponent(to, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dateTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(from, javax.swing.GroupLayout.Alignment.LEADING, 0, 93, Short.MAX_VALUE)
+                            .addComponent(to, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(resetFrom)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addNewFrom)))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton)
@@ -119,7 +140,10 @@ public class addTranfer extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fromText)
-                    .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addNewFrom)
+                        .addComponent(resetFrom)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(toText)
@@ -166,7 +190,19 @@ public class addTranfer extends javax.swing.JPanel {
         clearText();
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void resetFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetFromActionPerformed
+        // TODO add your handling code here:
+        showComboFrom();
+    }//GEN-LAST:event_resetFromActionPerformed
+
+    private void addNewFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewFromActionPerformed
+        // TODO add your handling code here:
+        addAccount addAccount = new addAccount(b);
+        addAccount.setVisible(true);
+    }//GEN-LAST:event_addNewFromActionPerformed
+
     private void showComboFrom(){
+        from.removeAllItems();
         HashMap<UUID,Account> data = b.getAccounts();
         for(Account c: data.values()){
             from.addItem(c.getID().toString());
@@ -192,6 +228,7 @@ public class addTranfer extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addNewFrom;
     private javax.swing.JTextField amount;
     private javax.swing.JLabel amountText;
     private javax.swing.JButton cancelButton;
@@ -201,6 +238,7 @@ public class addTranfer extends javax.swing.JPanel {
     private javax.swing.JLabel fromText;
     private javax.swing.JTextField note;
     private javax.swing.JLabel noteText;
+    private javax.swing.JButton resetFrom;
     private javax.swing.JComboBox<String> to;
     private javax.swing.JLabel toText;
     // End of variables declaration//GEN-END:variables
