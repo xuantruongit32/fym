@@ -92,7 +92,7 @@ for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/tranfer.txt"));
 for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
-    writer4.write("Type: Tranfer" + "," + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
+    writer4.write("Type: Tranfer" + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+"," + ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/category.txt"));
 for (String category : b.categories){

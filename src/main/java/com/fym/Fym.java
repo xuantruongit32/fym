@@ -21,6 +21,7 @@ public class Fym {
         // Create and display the GUI
        Home t = new Home(b);
         t.setVisible(true);
-        b.showAllTransactions();      
+
+        
     }
 }
