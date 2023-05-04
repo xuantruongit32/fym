@@ -478,9 +478,11 @@ public class BudgetManager{
          public float totalExpenseMonthly(LocalDate date){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check){
                     totalExpense+=transaction.getAmount();
                 }
     }
@@ -489,9 +491,11 @@ public class BudgetManager{
          public float totalExpenseMonthly(LocalDate date, Account account){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29 && account.equals(transaction.getAccount())){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && account.equals(transaction.getAccount())){
                     totalExpense+=transaction.getAmount();
                 }
     }
@@ -500,9 +504,11 @@ public class BudgetManager{
          public float totalExpenseMonthly(LocalDate date, String category){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29 && category.equals(transaction.getCategory())){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && category.equals(transaction.getCategory())){
                     totalExpense+=transaction.getAmount();
                 }
     }
