@@ -74,6 +74,11 @@ public class AccountPage extends javax.swing.JPanel {
         });
 
         time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly", "All" }));
+        time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,7 +124,6 @@ public class AccountPage extends javax.swing.JPanel {
 
     private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
         // TODO add your handling code here:
-        System.out.println((String) time.getSelectedItem());
         if(account.getSelectedIndex() != -1)
             createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())),(String) time.getSelectedItem());
 
@@ -147,6 +151,13 @@ public class AccountPage extends javax.swing.JPanel {
         // TODO add your handling code here:
         showComboAccount();
     }//GEN-LAST:event_resetAccountActionPerformed
+
+    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
+        // TODO add your handling code here:
+        if(account.getSelectedIndex() != -1)
+            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())),(String) time.getSelectedItem());
+
+    }//GEN-LAST:event_timeActionPerformed
 
 private void createTree(Account a, String time){
     DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+a.getName());
