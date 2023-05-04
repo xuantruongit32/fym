@@ -294,9 +294,11 @@ public class BudgetManager{
          public float totalIncomeMonthly(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -306,9 +308,11 @@ public class BudgetManager{
          public float totalIncomeMonthly(LocalDate date, Account account){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29 && account.equals(transaction.getAccount())){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && account.equals(transaction.getAccount())){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -318,9 +322,11 @@ public class BudgetManager{
          public float totalIncomeMonthly(LocalDate date, String category){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int monthNow = date.getMonth().getValue();
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29 && category.equals(transaction.getCategory())){
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && category.equals(transaction.getCategory())){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -331,7 +337,6 @@ public class BudgetManager{
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
                 if(daysBetween >= 0 && daysBetween <=364){
                     totalIncome+=transaction.getAmount();
                 }
@@ -355,7 +360,6 @@ public class BudgetManager{
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
                 if(daysBetween >= 0 && daysBetween <=364 && category.equals(transaction.getCategory())){
                     totalIncome+=transaction.getAmount();
                 }
