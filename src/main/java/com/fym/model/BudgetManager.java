@@ -586,9 +586,12 @@ public class BudgetManager{
 }
          public float totalTranferWeekly(LocalDate date){  
             float totalTranfer = 0;
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = date.get(weekFields.weekOfYear());
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=6){
+                int weekTest = tranfer.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
@@ -596,9 +599,12 @@ public class BudgetManager{
 }
          public float totalTranferWeekly(LocalDate date, Account account){  
             float totalTranfer = 0;
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = date.get(weekFields.weekOfYear());
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=6 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                int weekTest = tranfer.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
