@@ -623,9 +623,11 @@ public class BudgetManager{
         
          public float totalTranferMonthly(LocalDate date, Account account){  
             float totalTranfer = 0;
+            int monthNow = date.getMonth().getValue();
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                int monthTest = tranfer.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
@@ -633,9 +635,11 @@ public class BudgetManager{
 }
          public float totalTranferMonthly(LocalDate date){  
             float totalTranfer = 0;
+            int monthNow = date.getMonth().getValue();
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=29){
+                int monthTest = tranfer.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
