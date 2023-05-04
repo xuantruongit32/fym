@@ -13,7 +13,6 @@ import java.io.IOException;
  */
 public class Home extends javax.swing.JFrame {
     private BudgetManager budgetManager;
-
     /**
      * Creates new form Home
      */
@@ -38,6 +37,21 @@ public class Home extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Tab.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                TabAncestorMoved(evt);
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        Tab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabMouseClicked(evt);
+            }
+        });
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +119,14 @@ public class Home extends javax.swing.JFrame {
     }
     setVisible(false);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void TabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TabMouseClicked
+
+    private void TabAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TabAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TabAncestorMoved
 private void addTab(){
         AccountPage accountPage = new AccountPage(budgetManager);
         Tab.addTab("Account",accountPage);

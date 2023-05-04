@@ -192,7 +192,7 @@ private void createTree(Account a, String time){
     JTree tree = new JTree(name);
     accountTree.setModel(new DefaultTreeModel(name));   
 }
-private void showComboAccount(){
+public void showComboAccount(){
         account.removeAllItems();
         HashMap<UUID,Account> data = b.getAccounts();
         for(Account c: data.values()){
