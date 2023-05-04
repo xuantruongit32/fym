@@ -524,9 +524,11 @@ public class BudgetManager{
          public float totalExpenseYearly(LocalDate date){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check){
                     totalExpense+=transaction.getAmount();
                 }
     }
@@ -535,9 +537,11 @@ public class BudgetManager{
          public float totalExpenseYearly(LocalDate date, Account account){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364 && account.equals(transaction.getAccount())){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check && account.equals(transaction.getAccount())){
                     totalExpense+=transaction.getAmount();
                 }
     }
@@ -546,9 +550,11 @@ public class BudgetManager{
          public float totalExpenseYearly(LocalDate date, String category){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : expenseList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364 && category.equals(transaction.getCategory())){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check && category.equals(transaction.getCategory())){
                     totalExpense+=transaction.getAmount();
                 }
     }
