@@ -208,12 +208,11 @@ public class BudgetManager{
 //                System.out.println("Category: " + categories.get(i));
 //            }
 //        }
-        public float totalIncomeDaily(LocalDate date){  
+        public float totalIncomeWeekly(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
-            LocalDate currentDate = LocalDate.now();
             WeekFields weekFields = WeekFields.of(Locale.getDefault());
-            int weekNow = currentDate.get(weekFields.weekOfYear());
+            int weekNow = date.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
                 int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
                 boolean check = (weekNow == weekTest);
@@ -224,12 +223,11 @@ public class BudgetManager{
     }
             return totalIncome;
 }
-        public float totalIncomeDaily(LocalDate date, Account account){  
+        public float totalIncomeWeekly(LocalDate date, Account account){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
-            LocalDate currentDate = LocalDate.now();
             WeekFields weekFields = WeekFields.of(Locale.getDefault());
-            int weekNow = currentDate.get(weekFields.weekOfYear());
+            int weekNow = date.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
                 int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
                 boolean check = (weekNow == weekTest);
@@ -240,12 +238,11 @@ public class BudgetManager{
     }
             return totalIncome;
 }
-        public float totalIncomeDaily(LocalDate date, String category){  
+        public float totalIncomeWeekly(LocalDate date, String category){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
-            LocalDate currentDate = LocalDate.now();
             WeekFields weekFields = WeekFields.of(Locale.getDefault());
-            int weekNow = currentDate.get(weekFields.weekOfYear());
+            int weekNow = date.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
                 int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
                 boolean check = (weekNow == weekTest);
@@ -256,12 +253,12 @@ public class BudgetManager{
                 return totalIncome;
 }
 
-         public float totalIncomeWeekly(LocalDate date){  
+         public float totalIncomeDaily(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=6){
+                int result = date.compareTo(transaction.getDateTime());
+                if(result == 0){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -269,12 +266,12 @@ public class BudgetManager{
             return totalIncome;
 }
         
-         public float totalIncomeWeekly(LocalDate date, Account account){  
+         public float totalIncomeDaily(LocalDate date, Account account){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=6 && account.equals(transaction.getAccount())){
+                int result = date.compareTo(transaction.getDateTime());
+                if(result ==0 && account.equals(transaction.getAccount())){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -282,12 +279,12 @@ public class BudgetManager{
             return totalIncome;
 }
         
-         public float totalIncomeWeekly(LocalDate date, String category){  
+         public float totalIncomeDaily(LocalDate date, String category){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=6 && category.equals(transaction.getCategory())){
+                int result = date.compareTo(transaction.getDateTime());
+                if(result ==0 && category.equals(transaction.getCategory())){
                     totalIncome+=transaction.getAmount();
                 }
 
