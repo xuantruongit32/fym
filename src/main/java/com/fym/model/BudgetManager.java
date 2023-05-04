@@ -660,9 +660,11 @@ public class BudgetManager{
 }
          public float totalTranferYearly(LocalDate date){  
             float totalTranfer = 0;
+            int yearNow = date.getYear();
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364){
+                int yearTest = tranfer.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
@@ -670,9 +672,11 @@ public class BudgetManager{
 }
          public float totalTranferYearly(LocalDate date, Account account){  
             float totalTranfer = 0;
+            int yearNow = date.getYear();
             for (Tranfer tranfer : tranfers.values()) {
-                long daysBetween = ChronoUnit.DAYS.between(date,tranfer.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364 && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
+                int yearTest = tranfer.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check && (account.equals(tranfer.getNewAccount()) || account.equals(tranfer.getPreviousAccount()))){
                     totalTranfer+=tranfer.getAmount();
                 }
     }
