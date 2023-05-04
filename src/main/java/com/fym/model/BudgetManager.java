@@ -336,8 +336,11 @@ public class BudgetManager{
          public float totalIncomeYearly(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : incomeList) {
-                if(daysBetween >= 0 && daysBetween <=364){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -347,9 +350,11 @@ public class BudgetManager{
          public float totalIncomeYearly(LocalDate date, Account account){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : incomeList) {
-                long daysBetween = ChronoUnit.DAYS.between(date,transaction.getDateTime());
-                if(daysBetween >= 0 && daysBetween <=364 && account.equals(transaction.getAccount())){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -359,14 +364,16 @@ public class BudgetManager{
          public float totalIncomeYearly(LocalDate date, String category){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            int yearNow = date.getYear();
             for (Transaction transaction : incomeList) {
-                if(daysBetween >= 0 && daysBetween <=364 && category.equals(transaction.getCategory())){
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check)
                     totalIncome+=transaction.getAmount();
                 }
 
-    }
             return totalIncome;
-}
+    }
          public float totalIncomeAll(){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome=0;
