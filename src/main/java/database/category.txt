@@ -1,4 +1,0 @@
-Category :Salary, Type: Income
-Category :Mom, Type: Income
-Category :Salary, Type: Expense
-Category :Mom, Type: Expense

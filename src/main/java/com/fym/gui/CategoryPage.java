@@ -19,6 +19,7 @@ public class CategoryPage extends javax.swing.JPanel {
     public CategoryPage(BudgetManager b) {
         this.b = b;
         initComponents();
+        beginComboBox();
     }
 
     /**
@@ -39,6 +40,11 @@ public class CategoryPage extends javax.swing.JPanel {
         resetCategory = new javax.swing.JButton();
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(categoryTree);
 
@@ -52,6 +58,11 @@ public class CategoryPage extends javax.swing.JPanel {
         });
 
         resetCategory.setText("O");
+        resetCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,8 +112,21 @@ public class CategoryPage extends javax.swing.JPanel {
         addCategory addCategory = new addCategory(b);
         addCategory.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+       showComboCategory((String)type.getSelectedItem());
+        
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void resetCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetCategoryActionPerformed
+        // TODO add your handling code here:
+         showComboCategory((String)type.getSelectedItem());
+
+    }//GEN-LAST:event_resetCategoryActionPerformed
     private void showComboCategory(String type){
         HashSet<String> data;
+        category.removeAllItems();
         if (type.equals("Income"))
             data = b.getCategoriesIncome();
         else
@@ -110,6 +134,11 @@ public class CategoryPage extends javax.swing.JPanel {
         for(String c:data)
             category.addItem(c);
             
+    }
+    private void beginComboBox(){
+        HashSet<String> dataCategory = b.getCategoriesIncome();
+        for (String c:dataCategory)
+            category.addItem(c);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
