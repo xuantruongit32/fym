@@ -108,6 +108,8 @@ public class Home extends javax.swing.JFrame {
 private void addTab(){
         AccountPage accountPage = new AccountPage(budgetManager);
         Tab.addTab("Account",accountPage);
+        CategoryPage categoryPage = new CategoryPage(budgetManager);
+        Tab.addTab("Category", categoryPage);
     }
     /**
      * @param args the command line arguments
