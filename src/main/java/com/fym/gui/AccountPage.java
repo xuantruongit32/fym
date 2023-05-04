@@ -9,6 +9,8 @@ import javax.swing.JTree;
 import com.fym.model.*;
 import java.util.HashMap;
 import java.util.UUID;
+import java.time.LocalDate;
+
 
 /**
  *
@@ -40,6 +42,7 @@ public class AccountPage extends javax.swing.JPanel {
         deleteButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         resetAccount = new javax.swing.JButton();
+        time = new javax.swing.JComboBox<>();
 
         jScrollPane1.setViewportView(accountTree);
 
@@ -70,34 +73,39 @@ public class AccountPage extends javax.swing.JPanel {
             }
         });
 
+        time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly", "All" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(175, 175, 175)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton))
+                        .addComponent(resetAccount)
+                        .addGap(18, 18, 18)
+                        .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(addButton)))
-                .addContainerGap(214, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(resetAccount)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(addButton)))))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetAccount))
+                    .addComponent(resetAccount)
+                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,19 +147,38 @@ public class AccountPage extends javax.swing.JPanel {
         showComboAccount();
     }//GEN-LAST:event_resetAccountActionPerformed
 
-private void createTree(Account a){
+private void createTree(Account a, String time){
     DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+a.getName());
     DefaultMutableTreeNode balance = new DefaultMutableTreeNode("Balance:       " + String.valueOf(a.getBalance()));
     DefaultMutableTreeNode UUID = new DefaultMutableTreeNode ("ID: " + String.valueOf(a.getID()));
+    String totalIncome;
+    String totalExpense;
+    if(time.equals("Daily")){
+        totalIncome = String.valueOf(b.totalIncomeDaily(LocalDate.now(),a));
+        totalExpense = String.valueOf(b.totalExpenseDaily(LocalDate.now(),a));
+
+    }
+    else if (time.equals("Weekly")){
+        totalIncome = String.valueOf(b.totalIncomeWeekly(LocalDate.now(),a));  
+        totalExpense = String.valueOf(b.totalExpenseWeekly(LocalDate.now(),a));
+    }
+    else if (time.equals("Yearly")){
+        totalIncome = String.valueOf(b.totalIncomeYearly(LocalDate.now(),a));
+        totalExpense = String.valueOf(b.totalExpenseYearly(LocalDate.now(),a));
+    }
+    else {
+        totalIncome = String.valueOf(b.totalIncomeAll(a));
+        totalExpense = String.valueOf(b.totalExpenseAll(a));
+    }
+    DefaultMutableTreeNode totalIncomeNode = new DefaultMutableTreeNode("Total Income:  "+ totalIncome);
+    DefaultMutableTreeNode totalExpenseNode = new DefaultMutableTreeNode("Total Expense:  "+ totalExpense);
+
     name.add(balance);
     name.add(UUID);
+    name.add(totalIncomeNode);
+    name.add(totalExpenseNode);
     JTree tree = new JTree(name);
     accountTree.setModel(new DefaultTreeModel(name));   
-}
-private void clearTree(){
-    DefaultMutableTreeNode root = new DefaultMutableTreeNode();
-    accountTree.setModel(new DefaultTreeModel(root));
-
 }
 private void showComboAccount(){
         account.removeAllItems();
@@ -169,5 +196,6 @@ private void showComboAccount(){
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton resetAccount;
+    private javax.swing.JComboBox<String> time;
     // End of variables declaration//GEN-END:variables
 }
