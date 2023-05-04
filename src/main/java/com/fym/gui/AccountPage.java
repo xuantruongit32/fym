@@ -154,30 +154,41 @@ private void createTree(Account a, String time){
     DefaultMutableTreeNode UUID = new DefaultMutableTreeNode ("ID: " + String.valueOf(a.getID()));
     String totalIncome;
     String totalExpense;
+    String totalTranfer;
     if(time.equals("Daily")){
         totalIncome = String.valueOf(b.totalIncomeDaily(LocalDate.now(),a));
         totalExpense = String.valueOf(b.totalExpenseDaily(LocalDate.now(),a));
-
+        totalTranfer = String.valueOf(b.totalTranferDaily(LocalDate.now(),a));
     }
     else if (time.equals("Weekly")){
         totalIncome = String.valueOf(b.totalIncomeWeekly(LocalDate.now(),a));  
         totalExpense = String.valueOf(b.totalExpenseWeekly(LocalDate.now(),a));
+        totalTranfer = String.valueOf(b.totalTranferWeekly(LocalDate.now(), a));
+    }
+     else if (time.equals("Monthly")){
+        totalIncome = String.valueOf(b.totalIncomeMonthly(LocalDate.now(),a));  
+        totalExpense = String.valueOf(b.totalExpenseMonthly(LocalDate.now(),a));
+        totalTranfer = String.valueOf(b.totalTranferMonthly(LocalDate.now(), a));
     }
     else if (time.equals("Yearly")){
         totalIncome = String.valueOf(b.totalIncomeYearly(LocalDate.now(),a));
         totalExpense = String.valueOf(b.totalExpenseYearly(LocalDate.now(),a));
+        totalTranfer = String.valueOf(b.totalTranferYearly(LocalDate.now(), a));
     }
     else {
         totalIncome = String.valueOf(b.totalIncomeAll(a));
         totalExpense = String.valueOf(b.totalExpenseAll(a));
+        totalTranfer = String.valueOf(b.totalTranferAll(a));
     }
     DefaultMutableTreeNode totalIncomeNode = new DefaultMutableTreeNode("Total Income:  "+ totalIncome);
     DefaultMutableTreeNode totalExpenseNode = new DefaultMutableTreeNode("Total Expense:  "+ totalExpense);
+    DefaultMutableTreeNode totalTranferNode = new DefaultMutableTreeNode("Total Tranfer: "+ totalTranfer);
 
     name.add(balance);
     name.add(UUID);
     name.add(totalIncomeNode);
     name.add(totalExpenseNode);
+    name.add(totalTranferNode);
     JTree tree = new JTree(name);
     accountTree.setModel(new DefaultTreeModel(name));   
 }
