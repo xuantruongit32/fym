@@ -1,0 +1,3 @@
+Category :Salary, Type: Income
+Category :Mom, Type: Income
+Category :Food, Type: Expense

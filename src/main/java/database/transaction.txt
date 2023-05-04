@@ -1,7 +1,1 @@
-Type: Expense, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Water,Amount:10.0,Note: gfdgfdgd, Date: 2023-05-03, ID: fe67303b-9fcf-4ae9-ad09-2248bcc4fdb4
-Type: Expense, AccountID: e43e3c81-4b1d-4fa8-8940-ac1c08d8824d, Category: Water,Amount:100.0,Note: gfgfdgfd, Date: 2023-05-03, ID: 005b6ac8-6908-4e2c-82e7-6869a476038a
-Type: Expense, AccountID: 69b7787d-95fc-42a7-8e1d-09fc03d5d13b, Category: Water,Amount:123.0,Note: fdgfdg, Date: 2023-05-03, ID: 6ae6589e-2072-4450-9861-40cddb3b1aaf
-Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Food,Amount:37.0,Note: test, Date: 2023-05-02, ID: 3821df16-1340-4995-a103-ce27b8e2bc7f
-Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Water,Amount:134.0,Note: vffdv fg, Date: 2023-05-02, ID: 6c87563d-a8f6-42b0-a8c9-586e0109957d
-Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Girl,Amount:100.0,Note: gfdgd, Date: 2023-05-03, ID: 45e3d884-9728-4099-949e-ec3600461442
-Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Salary,Amount:123.0,Note: gfdg, Date: 2023-05-03, ID: 2f55b626-a48a-4fb5-8076-c11b08fe8384
+Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Salary,Amount:100.0,Note: Test, Date: 2023-05-04, ID: de4194b2-d815-465f-bff4-1e9777e9c030

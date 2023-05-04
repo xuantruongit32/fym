@@ -36,6 +36,11 @@
             <artifactId>jfreechart</artifactId>
             <version>1.5.2</version>
         </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>jfreechart-1.0.19</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
     </dependencies>
  
     <properties>

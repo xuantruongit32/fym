@@ -119,8 +119,9 @@ public class AccountPage extends javax.swing.JPanel {
 
     private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
         // TODO add your handling code here:
+        System.out.println((String) time.getSelectedItem());
         if(account.getSelectedIndex() != -1)
-            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())));
+            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())),(String) time.getSelectedItem());
 
 
     }//GEN-LAST:event_accountActionPerformed

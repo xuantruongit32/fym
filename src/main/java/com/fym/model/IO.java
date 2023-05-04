@@ -101,7 +101,7 @@ for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
 for (String category : b.categoriesIncome){
     writer5.write("Category :"+ category +", Type: Income"+"\n");
         }
-for (String category : b.categoriesIncome){
+for (String category : b.categoriesExpense){
     writer5.write("Category :"+ category +", Type: Expense"+"\n");
         }
             writer.close();

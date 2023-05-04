@@ -38,6 +38,7 @@ public class CategoryPage extends javax.swing.JPanel {
         delete = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         resetCategory = new javax.swing.JButton();
+        time = new javax.swing.JComboBox<>();
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
         type.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +65,8 @@ public class CategoryPage extends javax.swing.JPanel {
             }
         });
 
+        time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly", "All" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,12 +75,6 @@ public class CategoryPage extends javax.swing.JPanel {
                 .addGap(231, 231, 231)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(resetCategory))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -85,8 +82,16 @@ public class CategoryPage extends javax.swing.JPanel {
                                 .addComponent(delete))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(47, 47, 47)
-                                .addComponent(addButton)))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                                .addComponent(addButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(resetCategory)))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +100,8 @@ public class CategoryPage extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetCategory))
+                    .addComponent(resetCategory)
+                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -103,7 +109,7 @@ public class CategoryPage extends javax.swing.JPanel {
                         .addGap(336, 336, 336)
                         .addComponent(addButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,6 +154,7 @@ public class CategoryPage extends javax.swing.JPanel {
     private javax.swing.JButton delete;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton resetCategory;
+    private javax.swing.JComboBox<String> time;
     private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }

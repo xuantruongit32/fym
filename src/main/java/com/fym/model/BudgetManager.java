@@ -226,6 +226,7 @@ public class BudgetManager{
                 int result = date.compareTo(transaction.getDateTime());
                 if(result==0 && account.equals(transaction.getAccount())){
                     totalIncome+=transaction.getAmount();
+                    System.out.println("hehehe");
                 }
 
     }
