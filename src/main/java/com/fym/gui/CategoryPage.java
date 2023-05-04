@@ -3,17 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.fym.gui;
+import com.fym.model.*;
+import java.util.HashSet;
+
 
 /**
  *
  * @author v
  */
 public class CategoryPage extends javax.swing.JPanel {
-
+    private BudgetManager b;
     /**
      * Creates new form CategoryPage
      */
-    public CategoryPage() {
+    public CategoryPage(BudgetManager b) {
+        this.b = b;
         initComponents();
     }
 
@@ -41,6 +45,11 @@ public class CategoryPage extends javax.swing.JPanel {
         delete.setText("Delete");
 
         addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         resetCategory.setText("O");
 
@@ -87,6 +96,21 @@ public class CategoryPage extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        addCategory addCategory = new addCategory(b);
+        addCategory.setVisible(true);
+    }//GEN-LAST:event_addButtonActionPerformed
+    private void showComboCategory(String type){
+        HashSet<String> data;
+        if (type.equals("Income"))
+            data = b.getCategoriesIncome();
+        else
+            data = b.getCategoriesExpense();
+        for(String c:data)
+            category.addItem(c);
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
