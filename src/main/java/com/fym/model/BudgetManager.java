@@ -12,7 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.UUID;
-import java.time.temporal.ChronoUnit;
+import java.util.Locale;
+import java.time.temporal.WeekFields;
 public class BudgetManager{
     protected HashMap<UUID,Account> accounts;
     protected HashSet<String> categoriesIncome;
@@ -210,9 +211,13 @@ public class BudgetManager{
         public float totalIncomeDaily(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            LocalDate currentDate = LocalDate.now();
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = currentDate.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
-                int result = date.compareTo(transaction.getDateTime());
-                if(result==0){
+                int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -222,11 +227,14 @@ public class BudgetManager{
         public float totalIncomeDaily(LocalDate date, Account account){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            LocalDate currentDate = LocalDate.now();
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = currentDate.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
-                int result = date.compareTo(transaction.getDateTime());
-                if(result==0 && account.equals(transaction.getAccount())){
+                int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check && account.equals(transaction.getAccount())){
                     totalIncome+=transaction.getAmount();
-                    System.out.println("hehehe");
                 }
 
     }
@@ -235,12 +243,15 @@ public class BudgetManager{
         public float totalIncomeDaily(LocalDate date, String category){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
+            LocalDate currentDate = LocalDate.now();
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = currentDate.get(weekFields.weekOfYear());
             for (Transaction transaction : incomeList) {
-                int result = date.compareTo(transaction.getDateTime());
-                if(result==0 && category.equals(transaction.getCategory())){
+                int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check && category.equals(transaction.getCategory())){
                     totalIncome+=transaction.getAmount();
                 }
-    
         }
                 return totalIncome;
 }
