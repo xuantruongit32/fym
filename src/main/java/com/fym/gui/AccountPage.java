@@ -125,7 +125,7 @@ public class AccountPage extends javax.swing.JPanel {
     private void accountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountActionPerformed
         // TODO add your handling code here:
         if(account.getSelectedIndex() != -1)
-            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())),(String) time.getSelectedItem());
+            createTree(b.getAccounts().get((String)account.getSelectedItem()),(String) time.getSelectedItem());
 
 
     }//GEN-LAST:event_accountActionPerformed
@@ -155,14 +155,13 @@ public class AccountPage extends javax.swing.JPanel {
     private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
         // TODO add your handling code here:
         if(account.getSelectedIndex() != -1)
-            createTree(b.getAccounts().get(UUID.fromString((String)account.getSelectedItem())),(String) time.getSelectedItem());
+            createTree(b.getAccounts().get((String)account.getSelectedItem()),(String) time.getSelectedItem());
 
     }//GEN-LAST:event_timeActionPerformed
 
 private void createTree(Account a, String time){
     DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+a.getName());
     DefaultMutableTreeNode balance = new DefaultMutableTreeNode("Balance:       " + String.valueOf(a.getBalance()));
-    DefaultMutableTreeNode UUID = new DefaultMutableTreeNode ("ID: " + String.valueOf(a.getID()));
     String totalIncome;
     String totalExpense;
     String totalTranfer;
@@ -196,7 +195,6 @@ private void createTree(Account a, String time){
     DefaultMutableTreeNode totalTranferNode = new DefaultMutableTreeNode("Total Tranfer: "+ totalTranfer);
 
     name.add(balance);
-    name.add(UUID);
     name.add(totalIncomeNode);
     name.add(totalExpenseNode);
     name.add(totalTranferNode);
@@ -205,9 +203,9 @@ private void createTree(Account a, String time){
 }
 public void showComboAccount(){
         account.removeAllItems();
-        HashMap<UUID,Account> data = b.getAccounts();
+        HashMap<String,Account> data = b.getAccounts();
         for(Account c: data.values()){
-            account.addItem(c.getID().toString());
+            account.addItem(c.getName());
         }
 
         
