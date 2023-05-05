@@ -4,6 +4,7 @@
  */
 package com.fym.gui;
 import com.fym.model.*;
+import java.awt.Color;
 
 /**
  *
@@ -18,6 +19,7 @@ public class addCategory extends javax.swing.JFrame {
     public addCategory(BudgetManager b) {
         this.b = b;
         initComponents();
+        hideLabel();
     }
 
     /**
@@ -35,6 +37,7 @@ public class addCategory extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        checkName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +46,12 @@ public class addCategory extends javax.swing.JFrame {
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
 
         typeText1.setText("Name:");
+
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +67,8 @@ public class addCategory extends javax.swing.JFrame {
             }
         });
 
+        checkName.setText("Name Exist");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,7 +82,9 @@ public class addCategory extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(name))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(checkName)
+                .addContainerGap(133, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton)
@@ -89,7 +102,8 @@ public class addCategory extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeText1)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
@@ -112,6 +126,25 @@ public class addCategory extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+        if(!b.checkNameCategory(name.getText())){
+            checkName.setVisible(true);
+            addButton.setEnabled(false);
+            addButton.setFocusable(false);
+
+        }
+        else{
+            checkName.setVisible(false);
+            addButton.setEnabled(true);
+            addButton.setFocusable(true);
+        }
+    }//GEN-LAST:event_nameActionPerformed
+    private void hideLabel(){
+        
+        checkName.setVisible(false);
+        checkName.setForeground(Color.RED);
+    }
     /**
      * @param args the command line arguments
      */
@@ -120,6 +153,7 @@ public class addCategory extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel checkName;
     private javax.swing.JTextField name;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JLabel typeText;
