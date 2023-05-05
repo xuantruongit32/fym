@@ -4,6 +4,9 @@
  */
 package com.fym.gui;
 import com.fym.model.*;
+import java.awt.Color;
+
+
 
 /**
  *
@@ -18,6 +21,7 @@ public class addAccount extends javax.swing.JFrame {
     public addAccount(BudgetManager b) {
         this.b =b;
         initComponents();
+        hideLabel();
     }
 
     /**
@@ -35,12 +39,19 @@ public class addAccount extends javax.swing.JFrame {
         balance = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        checkName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         nameText.setText("Name:");
 
         balanceText.setText("Balance:");
+
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +67,8 @@ public class addAccount extends javax.swing.JFrame {
             }
         });
 
+        checkName.setText("Name exist");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,6 +82,8 @@ public class addAccount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(balance))
+                .addGap(26, 26, 26)
+                .addComponent(checkName)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(221, Short.MAX_VALUE)
@@ -83,7 +98,9 @@ public class addAccount extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameText)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkName)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balanceText)
@@ -110,6 +127,30 @@ public class addAccount extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+        if(!b.checkNameAccount(name.getText())){
+            checkName.setVisible(true);
+            addButton.setEnabled(false);
+            addButton.setFocusable(false);
+
+        }
+        else{
+            checkName.setVisible(false);
+            addButton.setEnabled(true);
+            addButton.setFocusable(true);
+        }
+            
+        
+            
+    }//GEN-LAST:event_nameActionPerformed
+    private void hideLabel(){
+        
+        checkName.setVisible(false);
+        checkName.setForeground(Color.RED);
+    }
+
+
     /**
      * @param args the command line arguments
      */
@@ -118,6 +159,7 @@ public class addAccount extends javax.swing.JFrame {
     private javax.swing.JTextField balance;
     private javax.swing.JLabel balanceText;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel checkName;
     private javax.swing.JTextField name;
     private javax.swing.JLabel nameText;
     // End of variables declaration//GEN-END:variables
