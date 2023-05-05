@@ -27,6 +27,7 @@ public class addTransaction extends javax.swing.JFrame {
         for(String c: data){
             category.addItem(c);
         }
+        hideLabel();
         
     }
     
@@ -86,6 +87,22 @@ public class addTransaction extends javax.swing.JFrame {
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
+            }
+        });
+
+        amount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountActionPerformed(evt);
+            }
+        });
+
+        dateTime.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                dateTimeAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
@@ -310,6 +327,22 @@ public class addTransaction extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_typeActionPerformed
 
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
+        // TODO add your handling code here:
+        if(checkNull()){
+            addButton.setEnabled(true);
+            addButton.setFocusable(true);
+        }
+        else{
+            addButton.setEnabled(false);
+            addButton.setFocusable(false);
+        }
+    }//GEN-LAST:event_amountActionPerformed
+
+    private void dateTimeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_dateTimeAncestorAdded
+      
+    }//GEN-LAST:event_dateTimeAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -332,6 +365,15 @@ public class addTransaction extends javax.swing.JFrame {
         amount.setText(null);
         dateTime.setDate(null);
         note.setText(null);
+    }
+    private void hideLabel(){
+        addButton.setEnabled(false);
+        addButton.setFocusable(false);
+    }
+   private boolean checkNull(){
+        if(amount.getText().equals(""))
+            return false;
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
