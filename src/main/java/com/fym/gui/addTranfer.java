@@ -25,6 +25,7 @@ public class addTranfer extends javax.swing.JPanel {
         this.b =b;
         initComponents();
         showComboFrom();
+        hideLabel();
     }
 
     /**
@@ -64,6 +65,12 @@ public class addTranfer extends javax.swing.JPanel {
         from.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fromActionPerformed(evt);
+            }
+        });
+
+        amount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountActionPerformed(evt);
             }
         });
 
@@ -201,6 +208,18 @@ public class addTranfer extends javax.swing.JPanel {
         addAccount.setVisible(true);
     }//GEN-LAST:event_addNewFromActionPerformed
 
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
+        // TODO add your handling code here:
+        if(checkNull()){
+            addButton.setEnabled(true);
+            addButton.setFocusable(true);
+        }
+        else{
+            addButton.setEnabled(false);
+            addButton.setFocusable(false);
+        }
+    }//GEN-LAST:event_amountActionPerformed
+
     private void showComboFrom(){
         from.removeAllItems();
         HashMap<String,Account> data = b.getAccounts();
@@ -223,6 +242,15 @@ public class addTranfer extends javax.swing.JPanel {
         amount.setText(null);
         dateTime.setDate(null);
         note.setText(null);
+    }
+    private void hideLabel(){
+        addButton.setEnabled(false);
+        addButton.setFocusable(false);
+    }
+    private boolean checkNull(){
+        if(amount.getText().equals(""))
+            return false;
+        return true;
     }
     
 
