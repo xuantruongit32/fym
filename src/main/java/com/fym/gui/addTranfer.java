@@ -179,14 +179,14 @@ public class addTranfer extends javax.swing.JPanel {
 
     private void fromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fromActionPerformed
         // TODO add your handling code here:
-        Account p = b.getAccounts().get(UUID.fromString((String)from.getSelectedItem()));
+        Account p = b.getAccounts().get((String)from.getSelectedItem());
         showComboTo(p);
         
     }//GEN-LAST:event_fromActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        b.addTranfer(b.getAccounts().get(UUID.fromString((String)from.getSelectedItem())),b.getAccounts().get(UUID.fromString((String)to.getSelectedItem())), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        b.addTranfer(b.getAccounts().get((String)from.getSelectedItem()),b.getAccounts().get((String)to.getSelectedItem()), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         clearText();
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -203,19 +203,19 @@ public class addTranfer extends javax.swing.JPanel {
 
     private void showComboFrom(){
         from.removeAllItems();
-        HashMap<UUID,Account> data = b.getAccounts();
+        HashMap<String,Account> data = b.getAccounts();
         for(Account c: data.values()){
-            from.addItem(c.getID().toString());
+            from.addItem(c.getName());
         }
         
     }
     private void showComboTo(Account p){
         to.removeAllItems();
-        HashMap<UUID,Account> data = b.getAccounts();
+        HashMap<String,Account> data = b.getAccounts();
         for(Account c: data.values()){
             if(c.equals(p))
                 continue;
-            to.addItem(c.getID().toString());
+            to.addItem(c.getName());
         }
         
     }
