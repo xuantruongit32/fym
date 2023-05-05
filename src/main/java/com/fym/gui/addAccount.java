@@ -40,6 +40,8 @@ public class addAccount extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         checkName = new javax.swing.JLabel();
+        checkError = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +77,10 @@ public class addAccount extends javax.swing.JFrame {
 
         checkName.setText("Name exist");
 
+        checkError.setText("Error type");
+
+        error.setText("Error");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,10 +95,14 @@ public class addAccount extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                     .addComponent(balance))
                 .addGap(26, 26, 26)
-                .addComponent(checkName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkName)
+                    .addComponent(checkError))
+                .addContainerGap(72, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(error)
+                .addGap(18, 18, 18)
                 .addComponent(addButton)
                 .addGap(18, 18, 18)
                 .addComponent(cancelButton)
@@ -110,11 +120,13 @@ public class addAccount extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balanceText)
-                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkError))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(cancelButton))
+                    .addComponent(cancelButton)
+                    .addComponent(error))
                 .addGap(16, 16, 16))
         );
 
@@ -123,8 +135,16 @@ public class addAccount extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        b.addAccount(name.getText(), Float.parseFloat(balance.getText()));
-        setVisible(false);
+        if(b.checkNameAccount(name.getText()) && checkNull() && checkError()){
+            error.setVisible(false);
+            b.addAccount(name.getText(), Float.parseFloat(balance.getText()));
+            setVisible(false);
+    }
+        else{
+            error.setVisible(true);
+            clearText();
+        }
+        
         
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -158,11 +178,16 @@ public class addAccount extends javax.swing.JFrame {
 
     private void balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceActionPerformed
         // TODO add your handling code here:
-        if(checkNull()){
+        if(checkNull() && checkError()){
             addButton.setEnabled(true);
             addButton.setFocusable(true);
+            checkError.setVisible(false);
             }
         else{
+            if(!checkError())
+                checkError.setVisible(true);
+            else
+                checkError.setVisible(false);
             addButton.setEnabled(false);
             addButton.setFocusable(false);
         }
@@ -172,6 +197,10 @@ public class addAccount extends javax.swing.JFrame {
         addButton.setFocusable(false);
         checkName.setVisible(false);
         checkName.setForeground(Color.RED);
+        checkError.setVisible(false);
+        checkError.setForeground(Color.RED);
+        error.setVisible(false);
+        error.setForeground(Color.RED);
     }
     private boolean checkNull(){
         if(name.getText().equals(""))
@@ -179,6 +208,13 @@ public class addAccount extends javax.swing.JFrame {
         if(balance.getText().equals(""))
             return false;
         return true;
+    }
+    private boolean checkError(){
+        return b.isFloat(balance.getText());
+    }
+    private void clearText(){
+        name.setText("");
+        balance.setText("");
     }
 
 
@@ -190,7 +226,9 @@ public class addAccount extends javax.swing.JFrame {
     private javax.swing.JTextField balance;
     private javax.swing.JLabel balanceText;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel checkError;
     private javax.swing.JLabel checkName;
+    private javax.swing.JLabel error;
     private javax.swing.JTextField name;
     private javax.swing.JLabel nameText;
     // End of variables declaration//GEN-END:variables
