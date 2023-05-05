@@ -14,9 +14,6 @@ public class BudgetManager{
     protected HashSet<String> categoriesExpense;
     protected HashMap<String,List<Transaction>> transactions; 
     protected HashMap<UUID,Tranfer> tranfers;
-    public static void test(){
-        System.out.println("fd");
-    }
     public BudgetManager(){ 
         
         accounts = new HashMap<>();
@@ -76,7 +73,7 @@ public class BudgetManager{
         public void removeCategoryExpense(String name){
             categoriesExpense.remove(name);
         }
-        public boolean checkCategoryName(String name){
+        public boolean checkNameCategory(String name){
             for(String c : categoriesIncome)
                 if(c.equals(name))
                     return false;
