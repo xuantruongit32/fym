@@ -136,14 +136,27 @@ public class addCategory extends javax.swing.JFrame {
         }
         else{
             checkName.setVisible(false);
+            if(checkNull()){
             addButton.setEnabled(true);
             addButton.setFocusable(true);
+            }
+            else{
+                addButton.setEnabled(false);
+                addButton.setFocusable(false);   
+            }
         }
     }//GEN-LAST:event_nameActionPerformed
     private void hideLabel(){
         
         checkName.setVisible(false);
         checkName.setForeground(Color.RED);
+        addButton.setEnabled(false);
+        addButton.setFocusable(false);
+    }
+    private boolean checkNull(){
+        if(name.getText().equals(""))
+            return false;
+        return true;
     }
     /**
      * @param args the command line arguments
