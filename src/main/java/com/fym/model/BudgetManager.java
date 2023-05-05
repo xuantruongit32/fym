@@ -700,6 +700,18 @@ public class BudgetManager{
                 }
             return totalTranfer;
     }
+public boolean isFloat(String s){
+    if(s.equals(""))
+        return false;
+    try{
+        Float.parseFloat(s);
+        return true;
+    }
+    catch(NumberFormatException e){
+        return false;
+    }
+
+}
 
 
         
