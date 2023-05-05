@@ -15,7 +15,7 @@ import java.util.UUID;
 import java.util.Locale;
 import java.time.temporal.WeekFields;
 public class BudgetManager{
-    protected HashMap<UUID,Account> accounts;
+    protected HashMap<String,Account> accounts;
     protected HashSet<String> categoriesIncome;
     protected HashSet<String> categoriesExpense;
     protected HashMap<String,List<Transaction>> transactions; 
@@ -35,35 +35,33 @@ public class BudgetManager{
     }
         public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
-            accounts.put(newAccount.getID(),newAccount);
+            accounts.put(newAccount.getName(),newAccount);
 
         }
-        public void addAccount(String name, double balance, UUID id){
-            Account newAccount = new Account(name, balance, id);
-            accounts.put(newAccount.getID(),newAccount);
+        public void addAccount(String name, double balance){
+            Account newAccount = new Account(name, balance);
+            accounts.put(newAccount.getName(),newAccount);
 
         }
-        public void removeAccount(String sid){
-            UUID id = UUID.fromString(sid);
-            removeTranfer(accounts.get(id));
-            removeTransaction(accounts.get(id));
-            accounts.remove(id);
+        public void removeAccount(String name){
+            removeTranfer(accounts.get(name));
+            removeTransaction(accounts.get(name));
+            accounts.remove(name);
         }
-        public Account getAccount(String sid){
-            UUID id = UUID.fromString(sid);
-            return accounts.get(id);
+        public Account getAccount(String name){
+            return accounts.get(name);
         }
-        public HashMap<UUID,Account> getAccounts(){
+        public HashMap<String,Account> getAccounts(){
             return accounts;
         }
         
-        public String showAllAccount(){
-            String t="";
-            for(Map.Entry<UUID,Account> entry: accounts.entrySet()){
-                t+=entry.getValue().getName() + " : " + entry.getValue().getBalance();
-            }
-            return t;
-        }
+//        public String showAllAccount(){
+//            String t="";
+//            for(Map.Entry<UUID,Account> entry: accounts.entrySet()){
+//                t+=entry.getValue().getName() + " : " + entry.getValue().getBalance();
+//            }
+//            return t;
+//        }
         public void addCategory(String name, String type){
             if(type.equals("Income"))
                 categoriesIncome.add(name);
