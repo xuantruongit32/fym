@@ -243,7 +243,7 @@ public class addTransaction extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get(UUID.fromString((String)account.getSelectedItem())), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get((String)account.getSelectedItem()), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         setVisible(false);
         clearText();
     }//GEN-LAST:event_addButtonActionPerformed
@@ -319,9 +319,9 @@ public class addTransaction extends javax.swing.JFrame {
     
     private void showComboAccount(){
         account.removeAllItems();
-        HashMap<UUID,Account> data = budgetManager.getAccounts();
+        HashMap<String,Account> data = budgetManager.getAccounts();
         for(Account c: data.values()){
-            account.addItem(c.getID().toString());
+            account.addItem(c.getName());
         }
     //    type.setSelectedIndex(-1);
         
