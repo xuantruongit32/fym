@@ -23,9 +23,8 @@ public class IO{
             String [] word1 = words[1].split(":");
             String [] word2 = words[2].split(":");
             String name = word[1].trim();
-            UUID id = UUID.fromString(word2[1].trim());
             double balance = Double.parseDouble(word1[1]);
-            b.addAccount(name, balance, id);
+            b.addAccount(name, balance);
     }
         File categoryFile = new File("/home/v/projects/first/fym/src/main/java/database/category.txt");
         if(!categoryFile.exists())
@@ -48,7 +47,7 @@ public class IO{
             String [] word = words[0].split(":");
             String type = word[1].trim();
             String [] word1 = words[1].split(":");
-            UUID accountID = UUID.fromString(word1[1].trim());
+            String  accountName = word1[1].trim();
             String [] word2 = words[2].split(":");
             String category = word2[1].trim();
             String [] word3 = words[3].split(":");
@@ -59,7 +58,7 @@ public class IO{
             LocalDate date = LocalDate.parse(word5[1].trim(),formatter);
             String [] word6 = words[6].split(":");
             UUID id = UUID.fromString(word6[1].trim());
-            b.addTransaction(type,b.accounts.get(accountID),category,amount,note,false,date,id);
+            b.addTransaction(type,b.accounts.get(accountName),category,amount,note,false,date,id);
     }
     File tranferFile = new File("/home/v/projects/first/fym/src/main/java/database/tranfer.txt");
         if(!tranferFile.exists())
@@ -68,9 +67,9 @@ public class IO{
         while ((line = br3.readLine()) != null){
             String [] words = line.split(",");
             String [] word2 = words[1].split(":");
-            UUID previousAccountID = UUID.fromString(word2[1].trim());
+            String previousAccountName = word2[1].trim();
             String [] word3 = words[2].split(":");
-            UUID newAccountID = UUID.fromString(word3[1].trim());
+            String newAccountName = word3[1].trim();
             String [] word4 = words[3].split(":");
             double amount = Double.parseDouble(word4[1].trim());
             String [] word5 = words[4].split(":");
@@ -79,7 +78,7 @@ public class IO{
             LocalDate date = LocalDate.parse(word6[1].trim(),formatter);
             String [] word7 = words[6].split(":");
             UUID id = UUID.fromString(word7[1].trim());
-            b.addTranfer(b.accounts.get(previousAccountID),b.accounts.get(newAccountID),amount,note,false,date, id);
+            b.addTranfer(b.accounts.get(previousAccountName),b.accounts.get(newAccountName),amount,note,false,date, id);
     }
     }
     public void updateFile(BudgetManager b) throws IOException{
