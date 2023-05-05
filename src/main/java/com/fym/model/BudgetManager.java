@@ -1,15 +1,9 @@
 package com.fym.model;
-import com.fym.model.Account;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.Locale;
@@ -33,11 +27,6 @@ public class BudgetManager{
         transactions.put("Expense", new ArrayList<>());
         tranfers = new HashMap<>();
     }
-        public void addAccount(String name, double balance){
-            Account newAccount = new Account(name, balance);
-            accounts.put(newAccount.getName(),newAccount);
-
-        }
         public void addAccount(String name, double balance){
             Account newAccount = new Account(name, balance);
             accounts.put(newAccount.getName(),newAccount);

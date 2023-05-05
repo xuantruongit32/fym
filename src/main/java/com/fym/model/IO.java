@@ -21,7 +21,6 @@ public class IO{
             String[] words = line.split(",");
             String [] word = words[0].split(":");
             String [] word1 = words[1].split(":");
-            String [] word2 = words[2].split(":");
             String name = word[1].trim();
             double balance = Double.parseDouble(word1[1]);
             b.addAccount(name, balance);

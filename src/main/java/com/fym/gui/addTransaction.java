@@ -2,7 +2,6 @@
 package com.fym.gui;
 import java.util.HashSet;
 import java.util.HashMap;
-import java.util.UUID;
 import com.fym.model.*;
 import java.time.ZoneId;
 
@@ -244,7 +243,6 @@ public class addTransaction extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get((String)account.getSelectedItem()), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        setVisible(false);
         clearText();
     }//GEN-LAST:event_addButtonActionPerformed
 

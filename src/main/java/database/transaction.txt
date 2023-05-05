@@ -1,1 +1,2 @@
-Type: Income, AccountID: 497e103d-203b-4989-9efa-45d4173276ef, Category: Salary,Amount:100.0,Note: Test, Date: 2023-05-04, ID: de4194b2-d815-465f-bff4-1e9777e9c030
+Type: Expense, Account name: Cash, Category: Food,Amount:200.0,Note: Test, Date: 2023-05-05, ID: 8b876e24-1f8e-4e1e-b079-241975e2d632
+Type: Income, Account name: Bank, Category: Mom,Amount:10.0,Note: Test1, Date: 2023-05-01, ID: 6c6fb44e-5f12-40a3-91e2-c09fe7651c7e

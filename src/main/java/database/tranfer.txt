@@ -1,1 +1,1 @@
-Type: Tranfer, PreviousAccountID:497e103d-203b-4989-9efa-45d4173276ef, NewAccountID: e43e3c81-4b1d-4fa8-8940-ac1c08d8824d,Amount:12.0,Note: Test, Date: 2023-05-04, ID: d5567fc0-0199-482e-89b1-b8651ea763bc
+Type: Tranfer, Previous Account name:Cash, New Account name: Test,Amount:400.0,Note: yt, Date: 2023-05-06, ID: 71a3facb-9d78-49b4-8e86-dde99f7ae753
