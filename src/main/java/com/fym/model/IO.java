@@ -84,18 +84,18 @@ public class IO{
     }
     public void updateFile(BudgetManager b) throws IOException{
             BufferedWriter writer = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/accounts.txt"));
-            for(Map.Entry<UUID, Account> entry : b.accounts.entrySet()) {
-                writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() + ", ID: "+entry.getValue().getID()+"\n");
+            for(Map.Entry<String, Account> entry : b.accounts.entrySet()) {
+                writer.write("Account name: " + entry.getValue().getName() + "," + " balance:" + entry.getValue().getBalance() +"\n");
             }
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/transaction.txt"));
 for(Map.Entry<String, List<Transaction>> entry : b.transactions.entrySet()) {
     for(Transaction transaction : entry.getValue()) {
-        writer1.write("Type: " + transaction.getType() + ", AccountID: "+ transaction.getAccount().getID()+", Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
+        writer1.write("Type: " + transaction.getType() + ", Account name: "+ transaction.getAccount().getName()+", Category: " + transaction.getCategory() + ","+ "Amount:"+transaction.getAmount()+","+"Note: "+transaction.getNote()+", Date: "+ transaction.getDateTime()+", ID: "+transaction.getID()+"\n");
     }
 }
         BufferedWriter writer4 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/tranfer.txt"));
 for(Map.Entry<UUID, Tranfer> entry : b.tranfers.entrySet()) {
-    writer4.write("Type: Tranfer" + ", PreviousAccountID:"+ entry.getValue().getPreviousAccount().getID()+ ", NewAccountID: "+ entry.getValue().getNewAccount().getID()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
+    writer4.write("Type: Tranfer" + ", Previous Account name:"+ entry.getValue().getPreviousAccount().getName()+ ", New Account name: "+ entry.getValue().getNewAccount().getName()+","+ "Amount:"+entry.getValue().getAmount()+","+"Note: "+entry.getValue().getNote()+", Date: "+entry.getValue().getDateTime()+", ID: "+entry.getValue().getID()+"\n");
 }
         BufferedWriter writer5 = new BufferedWriter(new FileWriter("/home/v/projects/first/fym/src/main/java/database/category.txt"));
 for (String category : b.categoriesIncome){
