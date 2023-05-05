@@ -43,6 +43,13 @@ public class BudgetManager{
         public HashMap<String,Account> getAccounts(){
             return accounts;
         }
+        public boolean checkNameAccount(String name){
+            for(Map.Entry<String, Account> entry : accounts.entrySet()){
+               if(entry.getKey().equals(name))
+                   return false;
+        }
+            return true;
+        }
         
 //        public String showAllAccount(){
 //            String t="";
@@ -65,6 +72,18 @@ public class BudgetManager{
         }
         public void removeCategoryIncome(String name){
             categoriesIncome.remove(name);
+        }
+        public void removeCategoryExpense(String name){
+            categoriesExpense.remove(name);
+        }
+        public boolean checkCategoryName(String name){
+            for(String c : categoriesIncome)
+                if(c.equals(name))
+                    return false;
+            for(String c : categoriesExpense)
+                if(c.equals(name))
+                    return false;
+            return true;
         }
     public void addTransaction(String type, Account account, String category, double amount, String note, boolean update, LocalDate dateTime) {
         Transaction newTransaction = new Transaction(type, account, category, amount, note, dateTime);
