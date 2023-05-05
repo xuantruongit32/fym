@@ -53,6 +53,12 @@ public class addAccount extends javax.swing.JFrame {
             }
         });
 
+        balance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balanceActionPerformed(evt);
+            }
+        });
+
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,21 +139,46 @@ public class addAccount extends javax.swing.JFrame {
             checkName.setVisible(true);
             addButton.setEnabled(false);
             addButton.setFocusable(false);
-
         }
         else{
             checkName.setVisible(false);
+            if(checkNull()){
             addButton.setEnabled(true);
             addButton.setFocusable(true);
+            }
+            else{
+                addButton.setEnabled(false);
+                addButton.setFocusable(false);
+            }
         }
             
         
             
     }//GEN-LAST:event_nameActionPerformed
+
+    private void balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceActionPerformed
+        // TODO add your handling code here:
+        if(checkNull()){
+            addButton.setEnabled(true);
+            addButton.setFocusable(true);
+            }
+        else{
+            addButton.setEnabled(false);
+            addButton.setFocusable(false);
+        }
+    }//GEN-LAST:event_balanceActionPerformed
     private void hideLabel(){
-        
+        addButton.setEnabled(false);
+        addButton.setFocusable(false);
         checkName.setVisible(false);
         checkName.setForeground(Color.RED);
+    }
+    private boolean checkNull(){
+        if(name.getText().equals(""))
+            return false;
+        if(balance.getText().equals(""))
+            return false;
+        return true;
     }
 
 
