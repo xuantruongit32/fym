@@ -8,6 +8,7 @@ import com.fym.model.Account;
 import java.util.HashMap;
 import java.util.UUID;
 import com.fym.model.*;
+import java.awt.Color;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -52,6 +53,8 @@ public class addTranfer extends javax.swing.JPanel {
         cancelButton = new javax.swing.JButton();
         addNewFrom = new javax.swing.JButton();
         resetFrom = new javax.swing.JButton();
+        checkError = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
 
         fromText.setText("From:");
 
@@ -109,6 +112,10 @@ public class addTranfer extends javax.swing.JPanel {
             }
         });
 
+        checkError.setText("Error Type");
+
+        error.setText("Error");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,9 +144,14 @@ public class addTranfer extends javax.swing.JPanel {
                 .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addButton)
+                .addComponent(error)
                 .addGap(18, 18, 18)
-                .addComponent(cancelButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkError)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton)))
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -159,7 +171,9 @@ public class addTranfer extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(amountText)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkError)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateTimeText)
@@ -171,7 +185,8 @@ public class addTranfer extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(cancelButton))
+                    .addComponent(cancelButton)
+                    .addComponent(error))
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,7 +209,14 @@ public class addTranfer extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+        if(checkNull() && checkError() && checkDateTime()){
         b.addTranfer(b.getAccounts().get((String)from.getSelectedItem()),b.getAccounts().get((String)to.getSelectedItem()), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        checkError.setVisible(false);
+    }
+        else {
+                error.setVisible(true);
+                }
+        
         clearText();
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -211,11 +233,16 @@ public class addTranfer extends javax.swing.JPanel {
 
     private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
         // TODO add your handling code here:
-        if(checkNull()){
+            if(checkNull() && checkError()){
+            checkError.setVisible(false);
             addButton.setEnabled(true);
             addButton.setFocusable(true);
         }
         else{
+            if(!checkError())
+                checkError.setVisible(true);
+            else 
+                checkError.setVisible(false);
             addButton.setEnabled(false);
             addButton.setFocusable(false);
         }
@@ -248,13 +275,22 @@ public class addTranfer extends javax.swing.JPanel {
         dateTime.setDate(new Date());
         addButton.setEnabled(false);
         addButton.setFocusable(false);
+        checkError.setVisible(false);
+        checkError.setForeground(Color.RED);
+        error.setVisible(false);
+        error.setForeground(Color.RED);
     }
     private boolean checkNull(){
         if(amount.getText().equals(""))
             return false;
         return true;
     }
-    
+    private boolean checkError(){
+        return b.isFloat(amount.getText());
+    }
+    private boolean checkDateTime(){
+        return b.isDateTime(dateTime.getDate());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -262,8 +298,10 @@ public class addTranfer extends javax.swing.JPanel {
     private javax.swing.JTextField amount;
     private javax.swing.JLabel amountText;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel checkError;
     private com.toedter.calendar.JDateChooser dateTime;
     private javax.swing.JLabel dateTimeText;
+    private javax.swing.JLabel error;
     private javax.swing.JComboBox<String> from;
     private javax.swing.JLabel fromText;
     private javax.swing.JTextField note;
