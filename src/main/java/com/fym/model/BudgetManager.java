@@ -399,7 +399,7 @@ public class BudgetManager{
             for (Transaction transaction : incomeList) {
                 int yearTest = transaction.getDateTime().getYear();
                 boolean check = (yearNow == yearTest);
-                if(check){
+                if(check && account.equals(transaction.getAccount()) ){
                     totalIncome+=transaction.getAmount();
                 }
 
@@ -413,12 +413,26 @@ public class BudgetManager{
             for (Transaction transaction : incomeList) {
                 int yearTest = transaction.getDateTime().getYear();
                 boolean check = (yearNow == yearTest);
-                if(check)
+                if(check && category.equals(transaction.getCategory()))
                     totalIncome+=transaction.getAmount();
                 }
 
             return totalIncome;
     }
+         public float totalIncomeYearly(LocalDate date, Account account, String category){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            int yearNow = date.getYear();
+            for (Transaction transaction : incomeList) {
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check && account.equals(transaction.getAccount()) && category.equals(transaction.getCategory())){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
          public float totalIncomeAll(){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome=0;
