@@ -706,6 +706,15 @@ public class BudgetManager{
                 }
             return totalExpense;
     }
+         public float totalExpenseAll(Account account, String category){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense=0;
+            for (Transaction transaction : expenseList) {
+                if(account.equals(transaction.getAccount()) && category.equals(transaction.getCategory()))
+                    totalExpense+=transaction.getAmount();
+                }
+            return totalExpense;
+    }
     
         public float totalTranferDaily(LocalDate date){  
             float totalTranfer = 0;
