@@ -35,11 +35,16 @@
                   <Component id="balance" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="checkName" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="checkName" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkError" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="221" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="error" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="addButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
@@ -62,11 +67,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="balanceText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="balance" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkError" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="180" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="error" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -90,6 +97,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="balance">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balanceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addButton">
       <Properties>
@@ -110,6 +120,16 @@
     <Component class="javax.swing.JLabel" name="checkName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Name exist"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="checkError">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Error type"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="error">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Error"/>
       </Properties>
     </Component>
   </SubComponents>
