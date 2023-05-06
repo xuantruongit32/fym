@@ -667,6 +667,19 @@ public class BudgetManager{
     }
             return totalExpense;
 }
+         public float totalExpenseYearly(LocalDate date, Account account, String category){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            int yearNow = date.getYear();
+            for (Transaction transaction : expenseList) {
+                int yearTest = transaction.getDateTime().getYear();
+                boolean check = (yearNow == yearTest);
+                if(check && account.equals(transaction.getAccount())&& category.equals(transaction.getCategory())){
+                    totalExpense+=transaction.getAmount();
+                }
+    }
+            return totalExpense;
+}
          public float totalExpenseAll(){  
             List<Transaction> expenseList = transactions.get("Expense");
             float totalExpense=0;
