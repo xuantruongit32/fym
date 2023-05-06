@@ -188,15 +188,14 @@ public class addTransaction extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkError)
-                            .addComponent(addCategory)))
-                    .addComponent(error))
-                .addContainerGap(306, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTransactionLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addButton)
-                .addGap(92, 92, 92)
+                            .addComponent(addCategory)
+                            .addGroup(addTransactionLayout.createSequentialGroup()
+                                .addComponent(error)
+                                .addGap(26, 26, 26)
+                                .addComponent(addButton)))))
+                .addGap(18, 18, 18)
                 .addComponent(cancelButton)
-                .addGap(40, 40, 40))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         addTransactionLayout.setVerticalGroup(
             addTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +262,7 @@ public class addTransaction extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -273,7 +272,7 @@ public class addTransaction extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        if(checkNull() && checkError() && dateTime.getDate() != null){
+        if(checkNull() && checkError() && checkDateTime()){
             error.setVisible(false);
             budgetManager.addTransaction((String)type.getSelectedItem(),budgetManager.getAccounts().get((String)account.getSelectedItem()), (String)category.getSelectedItem(), Float.parseFloat(amount.getText()), note.getText(), true, dateTime.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         }
@@ -407,6 +406,9 @@ public class addTransaction extends javax.swing.JFrame {
     }
     private boolean checkError(){
         return budgetManager.isFloat(amount.getText());
+    }
+    private boolean checkDateTime(){
+        return budgetManager.isDateTime(dateTime.getDate());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
