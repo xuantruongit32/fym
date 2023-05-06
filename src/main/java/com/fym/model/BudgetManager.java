@@ -257,6 +257,20 @@ public class BudgetManager{
         }
                 return totalIncome;
 }
+        public float totalIncomeWeekly(LocalDate date, Account account, String category){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = date.get(weekFields.weekOfYear());
+            for (Transaction transaction : incomeList) {
+                int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check && account.equals(transaction.getAccount()) && category.equals(transaction.getCategory())){
+                    totalIncome+=transaction.getAmount();
+                }
+    }
+            return totalIncome;
+}
 
          public float totalIncomeDaily(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
