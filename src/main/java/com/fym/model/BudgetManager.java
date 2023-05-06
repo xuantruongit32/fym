@@ -364,6 +364,20 @@ public class BudgetManager{
     }
             return totalIncome;
 }
+         public float totalIncomeMonthly(LocalDate date, Account account, String category){  
+            List<Transaction> incomeList = transactions.get("Income");
+            float totalIncome = 0;
+            int monthNow = date.getMonth().getValue();
+            for (Transaction transaction : incomeList) {
+                int monthTest = transaction.getDateTime().getMonth().getValue();
+                boolean check = (monthNow == monthTest);
+                if(check && account.equals(transaction.getAccount()) && category.equals(transaction.getCategory())){
+                    totalIncome+=transaction.getAmount();
+                }
+
+    }
+            return totalIncome;
+}
          public float totalIncomeYearly(LocalDate date){  
             List<Transaction> incomeList = transactions.get("Income");
             float totalIncome = 0;
