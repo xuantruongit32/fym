@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.Locale;
 import java.time.temporal.WeekFields;
+import java.time.ZoneId;
+import java.util.Date;
 public class BudgetManager{
     protected HashMap<String,Account> accounts;
     protected HashSet<String> categoriesIncome;
@@ -712,6 +714,15 @@ public boolean isFloat(String s){
     }
 
 }
+        public boolean isDateTime(Date date){
+            try{
+                date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                return true;
+            }
+            catch (Exception e){
+                return false;
+            }
+        }
 
 
         
