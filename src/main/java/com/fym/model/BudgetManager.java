@@ -561,6 +561,20 @@ public class BudgetManager{
     }
             return totalExpense;
 }
+         public float totalExpenseWeekly(LocalDate date, Account account, String category){  
+            List<Transaction> expenseList = transactions.get("Expense");
+            float totalExpense = 0;
+            WeekFields weekFields = WeekFields.of(Locale.getDefault());
+            int weekNow = date.get(weekFields.weekOfYear());
+            for (Transaction transaction : expenseList) {
+                int weekTest = transaction.getDateTime().get(weekFields.weekOfYear());
+                boolean check = (weekNow == weekTest);
+                if(check && account.equals(transaction.getAccount()) && category.equals(transaction.getCategory())){
+                    totalExpense+=transaction.getAmount();
+                }
+    }
+            return totalExpense;
+}
         
          public float totalExpenseMonthly(LocalDate date){  
             List<Transaction> expenseList = transactions.get("Expense");
