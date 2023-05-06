@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 import com.fym.model.*;
 import java.time.ZoneId;
+import java.util.Date;
 
 
 
@@ -367,6 +368,7 @@ public class addTransaction extends javax.swing.JFrame {
         note.setText(null);
     }
     private void hideLabel(){
+        dateTime.setDate(new Date());
         addButton.setEnabled(false);
         addButton.setFocusable(false);
     }

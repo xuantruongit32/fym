@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import com.fym.model.*;
 import java.time.ZoneId;
+import java.util.Date;
 
 
 /**
@@ -244,6 +245,7 @@ public class addTranfer extends javax.swing.JPanel {
         note.setText(null);
     }
     private void hideLabel(){
+        dateTime.setDate(new Date());
         addButton.setEnabled(false);
         addButton.setFocusable(false);
     }
