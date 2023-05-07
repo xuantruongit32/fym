@@ -5,6 +5,7 @@
 package com.fym.gui;
 import com.fym.model.*;
 import java.util.HashSet;
+import java.util.Date;
 
 
 /**
@@ -19,6 +20,7 @@ public class CategoryPage extends javax.swing.JPanel {
     public CategoryPage(BudgetManager b) {
         this.b = b;
         initComponents();
+        selectDate.setDate(new Date());
         beginComboBox();
     }
 
@@ -39,6 +41,7 @@ public class CategoryPage extends javax.swing.JPanel {
         addButton = new javax.swing.JButton();
         resetCategory = new javax.swing.JButton();
         time = new javax.swing.JComboBox<>();
+        selectDate = new com.toedter.calendar.JDateChooser();
 
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
         type.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +75,9 @@ public class CategoryPage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(231, 231, 231)
+                .addGap(196, 196, 196)
+                .addComponent(resetCategory)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,18 +95,20 @@ public class CategoryPage extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(resetCategory)))
-                .addContainerGap(396, Short.MAX_VALUE))
+                        .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetCategory)
-                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(resetCategory)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -154,6 +161,7 @@ public class CategoryPage extends javax.swing.JPanel {
     private javax.swing.JButton delete;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton resetCategory;
+    private com.toedter.calendar.JDateChooser selectDate;
     private javax.swing.JComboBox<String> time;
     private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
