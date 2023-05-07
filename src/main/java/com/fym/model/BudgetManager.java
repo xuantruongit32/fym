@@ -102,6 +102,11 @@ public class BudgetManager{
             account.setBalance(newBalance);
     }
     }
+    public void edittransaction(String type, String sid, String newType, Account newAccount, String newCategory, double newAmount, String newNote, LocalDate newDateTime){
+        removeTransaction(type, sid);
+        addTransaction(newType, newAccount, newCategory, newAmount, newNote, true, newDateTime, UUID.fromString(sid));
+    }
+    
 
     public void removeTransaction(String type, String sid) {
         List<Transaction> transactionList = transactions.get(type);
