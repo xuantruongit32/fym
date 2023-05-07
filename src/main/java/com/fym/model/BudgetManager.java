@@ -187,6 +187,10 @@ public class BudgetManager{
                 newAccount.setBalance(newNewAccountBalance);
         }
         }
+        public void editTranfer(String sid, Account newPreviousAccount, Account newNewAccount, double newAmount, String newNote, LocalDate newDateTime){
+            removeTranfer(sid);
+            addTranfer(newPreviousAccount, newNewAccount, newAmount, newNote, true, newDateTime, UUID.fromString(sid));
+        }
         public void removeTranfer(String sid){
             UUID id = UUID.fromString(sid);
             double newValue = tranfers.get(id).getPreviousAccount().getBalance() + tranfers.get(id).getAmount();
