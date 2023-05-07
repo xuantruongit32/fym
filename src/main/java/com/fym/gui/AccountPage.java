@@ -10,6 +10,8 @@ import com.fym.model.*;
 import java.util.HashMap;
 import java.util.UUID;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 
 /**
@@ -24,6 +26,7 @@ public class AccountPage extends javax.swing.JPanel {
     public AccountPage(BudgetManager b) {
         this.b =b;
         initComponents();
+        selectDate.setDate(new Date());
         showComboAccount();
     }
 
@@ -43,6 +46,7 @@ public class AccountPage extends javax.swing.JPanel {
         addButton = new javax.swing.JButton();
         resetAccount = new javax.swing.JButton();
         time = new javax.swing.JComboBox<>();
+        selectDate = new com.toedter.calendar.JDateChooser();
 
         jScrollPane1.setViewportView(accountTree);
 
@@ -92,7 +96,9 @@ public class AccountPage extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,15 +108,17 @@ public class AccountPage extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(addButton)))))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resetAccount)
-                    .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(resetAccount)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,24 +174,24 @@ private void createTree(Account a, String time){
     String totalExpense;
     String totalTranfer;
     if(time.equals("Daily")){
-        totalIncome = String.valueOf(b.totalIncomeDaily(LocalDate.now(),a));
-        totalExpense = String.valueOf(b.totalExpenseDaily(LocalDate.now(),a));
-        totalTranfer = String.valueOf(b.totalTranferDaily(LocalDate.now(),a));
+        totalIncome = String.valueOf(b.totalIncomeDaily(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalExpense = String.valueOf(b.totalExpenseDaily(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalTranfer = String.valueOf(b.totalTranferDaily(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
     }
     else if (time.equals("Weekly")){
-        totalIncome = String.valueOf(b.totalIncomeWeekly(LocalDate.now(),a));  
-        totalExpense = String.valueOf(b.totalExpenseWeekly(LocalDate.now(),a));
-        totalTranfer = String.valueOf(b.totalTranferWeekly(LocalDate.now(), a));
+        totalIncome = String.valueOf(b.totalIncomeWeekly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));  
+        totalExpense = String.valueOf(b.totalExpenseWeekly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalTranfer = String.valueOf(b.totalTranferWeekly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a));
     }
      else if (time.equals("Monthly")){
-        totalIncome = String.valueOf(b.totalIncomeMonthly(LocalDate.now(),a));  
-        totalExpense = String.valueOf(b.totalExpenseMonthly(LocalDate.now(),a));
-        totalTranfer = String.valueOf(b.totalTranferMonthly(LocalDate.now(), a));
+        totalIncome = String.valueOf(b.totalIncomeMonthly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));  
+        totalExpense = String.valueOf(b.totalExpenseMonthly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalTranfer = String.valueOf(b.totalTranferMonthly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a));
     }
     else if (time.equals("Yearly")){
-        totalIncome = String.valueOf(b.totalIncomeYearly(LocalDate.now(),a));
-        totalExpense = String.valueOf(b.totalExpenseYearly(LocalDate.now(),a));
-        totalTranfer = String.valueOf(b.totalTranferYearly(LocalDate.now(), a));
+        totalIncome = String.valueOf(b.totalIncomeYearly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalExpense = String.valueOf(b.totalExpenseYearly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),a));
+        totalTranfer = String.valueOf(b.totalTranferYearly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a));
     }
     else {
         totalIncome = String.valueOf(b.totalIncomeAll(a));
@@ -206,9 +214,7 @@ public void showComboAccount(){
         HashMap<String,Account> data = b.getAccounts();
         for(Account c: data.values()){
             account.addItem(c.getName());
-        }
-
-        
+        } 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> account;
@@ -217,6 +223,7 @@ public void showComboAccount(){
     private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton resetAccount;
+    private com.toedter.calendar.JDateChooser selectDate;
     private javax.swing.JComboBox<String> time;
     // End of variables declaration//GEN-END:variables
 }
