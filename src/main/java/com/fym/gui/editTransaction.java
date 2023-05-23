@@ -410,6 +410,12 @@ public class editTransaction extends javax.swing.JFrame {
     private boolean checkDateTime(){
         return budgetManager.isDateTime(dateTime.getDate());
     }
+      public javax.swing.JTextField getTextAmount(){
+        return amount;
+    }
+    public javax.swing.JTextField getTextNote(){
+        return note;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> account;
@@ -437,3 +443,4 @@ public class editTransaction extends javax.swing.JFrame {
     private javax.swing.JLabel typeText;
     // End of variables declaration//GEN-END:variables
 }
+
