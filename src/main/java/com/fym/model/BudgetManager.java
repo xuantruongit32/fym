@@ -19,7 +19,7 @@ public class BudgetManager{
     public BudgetManager(){ 
         
         accounts = new HashMap<>();
-        categoriesIncome = new HashSet<>();
+        categoriesIncome = new HashSet<noName>();
         categoriesExpense = new HashSet<>();
         transactions = new HashMap<>();
         transactions.put("Income", new ArrayList<>());
@@ -57,6 +57,22 @@ public class BudgetManager{
 //            }
 //            return t;
 //        }
+        public void editAccount(String name, String newName, double newBalance){
+            accounts.get(name).setName(newName);
+            if(accounts.get(name).getBalance()< newBalance){
+                addCategory("noName","Income");
+                addTransaction("Income",accounts.get(name),"noName",newBalance - accounts.get(name).getBalance(),"edit",true,LocalDate.now());
+
+            }
+            if(accounts.get(name).getBalance()> newBalance){
+                addCategory("noName","Expense");
+                addTransaction("Expense",accounts.get(name),"noName",accounts.get(name).getBalance() - newBalance,"edit",true,LocalDate.now());
+
+            }
+                
+            accounts.get(name).setBalance(newBalance);
+
+        }
         public void addCategory(String name, String type){
             if(type.equals("Income"))
                 categoriesIncome.add(name);
