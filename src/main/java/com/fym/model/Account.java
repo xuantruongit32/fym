@@ -28,8 +28,4 @@ public class Account{
     public double getBalance(){
         return balance;
     }
-    public String show(){      
-        return "Name: " + name +", Balance: "+String.valueOf(balance);
-    }
-   
 }

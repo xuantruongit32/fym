@@ -47,6 +47,7 @@ public class AccountPage extends javax.swing.JPanel {
         resetAccount = new javax.swing.JButton();
         time = new javax.swing.JComboBox<>();
         selectDate = new com.toedter.calendar.JDateChooser();
+        editButton = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(accountTree);
 
@@ -84,14 +85,21 @@ public class AccountPage extends javax.swing.JPanel {
             }
         });
 
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(resetAccount)
                         .addGap(18, 18, 18)
                         .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,16 +107,15 @@ public class AccountPage extends javax.swing.JPanel {
                         .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deleteButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(addButton)))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editButton)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +126,14 @@ public class AccountPage extends javax.swing.JPanel {
                         .addComponent(resetAccount)
                         .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(selectDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(deleteButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(addButton)
+                        .addComponent(editButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,6 +173,16 @@ public class AccountPage extends javax.swing.JPanel {
             createTree(b.getAccounts().get((String)account.getSelectedItem()),(String) time.getSelectedItem());
 
     }//GEN-LAST:event_timeActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+        String previousName = b.getAccounts().get((String)account.getSelectedItem()).getName();
+        double previousBalance = b.getAccounts().get((String)account.getSelectedItem()).getBalance();
+        editAccount editAccount = new editAccount(b,previousName);
+        editAccount.getTextName().setText(previousName);
+        editAccount.getTextBalance().setText(Double.toString(previousBalance));
+        editAccount.setVisible(true);
+    }//GEN-LAST:event_editButtonActionPerformed
 
 private void createTree(Account a, String time){
     DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+a.getName());
@@ -221,6 +238,7 @@ public void showComboAccount(){
     private javax.swing.JTree accountTree;
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton resetAccount;
     private com.toedter.calendar.JDateChooser selectDate;

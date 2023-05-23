@@ -45,9 +45,16 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="addButton" min="-2" max="-2" attributes="0"/>
+              <Component id="error" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="checkError" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="addButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -72,7 +79,10 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="amountText" min="-2" max="-2" attributes="0"/>
-                  <Component id="amount" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="amount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkError" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -88,6 +98,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="error" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -186,6 +197,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetFromActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="checkError">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Error Type"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="error">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Error"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -1,2 +1,1 @@
-Account name: Bank, balance:1010.0
-Account name: Cash, balance:1800.0
+Account name: Bank, balance:10001.0

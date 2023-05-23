@@ -17,32 +17,28 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="116" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="delete" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                              <Component id="addButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="resetCategory" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="type" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="category" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="time" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="resetCategory" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectDate" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="166" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="delete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="addButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="396" max="32767" attributes="0"/>
+              <EmptySpace pref="307" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,22 +46,24 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="category" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="type" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="resetCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="time" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="category" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="type" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="resetCategory" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="time" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="selectDate" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="delete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
-                      <Component id="addButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="delete" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="159" max="32767" attributes="0"/>
+              <EmptySpace pref="488" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,6 +75,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -141,9 +142,14 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timeActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="selectDate">
     </Component>
   </SubComponents>
 </Form>

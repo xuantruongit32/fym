@@ -1,1 +1,0 @@
-Type: Tranfer, Previous Account name:Cash, New Account name: Test,Amount:400.0,Note: yt, Date: 2023-05-06, ID: 71a3facb-9d78-49b4-8e86-dde99f7ae753

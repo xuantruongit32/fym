@@ -1,2 +1,3 @@
 Category :Mom, Type: Income
+Category :noName, Type: Income
 Category :Food, Type: Expense

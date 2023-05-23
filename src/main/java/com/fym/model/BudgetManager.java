@@ -42,6 +42,9 @@ public class BudgetManager{
         public HashMap<String,Account> getAccounts(){
             return accounts;
         }
+         public HashMap<String,List<Transaction>> getTransactions(){
+            return transactions;
+        }
         public boolean checkNameAccount(String name){
             for(Map.Entry<String, Account> entry : accounts.entrySet()){
                if(entry.getKey().equals(name))
