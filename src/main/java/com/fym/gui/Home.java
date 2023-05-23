@@ -5,6 +5,9 @@
 package com.fym.gui;
 import com.fym.model.*;
 import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+ 
 
 
 /**
@@ -12,7 +15,8 @@ import java.io.IOException;
  * @author v
  */
 public class Home extends javax.swing.JFrame {
-    private BudgetManager budgetManager;
+    private BudgetManager budgetManager;   
+    DefaultTableModel model;
     /**
      * Creates new form Home
      */
@@ -20,6 +24,8 @@ public class Home extends javax.swing.JFrame {
         this.budgetManager = budgetManager;
         initComponents();
         addTab();
+        model = (DefaultTableModel) showTransaction.getModel();
+        showTransaction();
     }
 
     /**
@@ -35,6 +41,8 @@ public class Home extends javax.swing.JFrame {
         Home = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        showTransaction = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,24 +75,38 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        showTransaction.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Type", "Account", "Category", "Amount", "Note"
+            }
+        ));
+        jScrollPane1.setViewportView(showTransaction);
+
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
-                .addContainerGap(345, Short.MAX_VALUE)
-                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(exitButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createSequentialGroup()
-                .addComponent(exitButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+            .addGroup(HomeLayout.createSequentialGroup()
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         Tab.addTab("Home", Home);
@@ -136,6 +158,22 @@ private void addTab(){
     /**
      * @param args the command line arguments
      */
+private void showTransaction(){
+     for (List<Transaction> transactions : budgetManager.getTransactions().values()) {
+        for (Transaction transaction : transactions) {
+            String[] rowData = new String[6];
+            rowData[0] = transaction.getDateTime().toString();
+            rowData[1] = transaction.getType();
+            rowData[2] = transaction.getAccount().getName();
+            rowData[3] = transaction.getCategory();
+            rowData[4] = String.valueOf(transaction.getAmount());
+            rowData[5] = transaction.getNote();
+
+            model.addRow(rowData);
+        }
+    }
+
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,5 +181,7 @@ private void addTab(){
     private javax.swing.JTabbedPane Tab;
     private javax.swing.JButton addButton;
     private javax.swing.JButton exitButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable showTransaction;
     // End of variables declaration//GEN-END:variables
 }
