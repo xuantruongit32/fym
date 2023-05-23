@@ -19,7 +19,7 @@ public class BudgetManager{
     public BudgetManager(){ 
         
         accounts = new HashMap<>();
-        categoriesIncome = new HashSet<noName>();
+        categoriesIncome = new HashSet<>();
         categoriesExpense = new HashSet<>();
         transactions = new HashMap<>();
         transactions.put("Income", new ArrayList<>());
@@ -49,6 +49,16 @@ public class BudgetManager{
         }
             return true;
         }
+        public boolean checkNameAccount(String name,String except){
+            if(!name.equals(except)){
+                for(Map.Entry<String, Account> entry : accounts.entrySet()){
+                    if(entry.getKey().equals(name))
+                        return false;
+        }
+            }
+            return true;
+
+        }
         
 //        public String showAllAccount(){
 //            String t="";
@@ -67,7 +77,6 @@ public class BudgetManager{
             if(accounts.get(name).getBalance()> newBalance){
                 addCategory("noName","Expense");
                 addTransaction("Expense",accounts.get(name),"noName",accounts.get(name).getBalance() - newBalance,"edit",true,LocalDate.now());
-
             }
                 
             accounts.get(name).setBalance(newBalance);
