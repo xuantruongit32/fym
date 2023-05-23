@@ -80,30 +80,44 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Type", "Account", "Category", "Amount", "Note"
+                "Date", "Type", "Account", "Category", "Amount", "Note", "ID", "Edit", "Delete"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        showTransaction.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showTransactionMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(showTransaction);
 
         javax.swing.GroupLayout HomeLayout = new javax.swing.GroupLayout(Home);
         Home.setLayout(HomeLayout);
         HomeLayout.setHorizontalGroup(
-            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(HomeLayout.createSequentialGroup()
-                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HomeLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HomeLayout.createSequentialGroup()
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 964, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
                 .addGroup(HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(exitButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
@@ -149,6 +163,28 @@ public class Home extends javax.swing.JFrame {
     private void TabAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TabAncestorMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_TabAncestorMoved
+
+    private void showTransactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showTransactionMouseClicked
+        // TODO add your handling code here:
+          int row = showTransaction.rowAtPoint(evt.getPoint());
+          int column = showTransaction.columnAtPoint(evt.getPoint());
+          String type = (String) model.getValueAt(row, 1);
+          String sid = (String) model.getValueAt(row, 6);
+    
+    // Check if the clicked cell is an edit button
+    if (column == 8) {
+        // Perform edit operation for the selected transaction
+        
+        budgetManager.removeTransaction(type,sid);
+        
+        model.removeRow(1);
+    }
+    // Check if the clicked cell is a delete button
+    else if (column == 7) {
+        // Perform delete operation for the selected transaction
+        //deleteTransaction(row);
+    }
+    }//GEN-LAST:event_showTransactionMouseClicked
 private void addTab(){
         AccountPage accountPage = new AccountPage(budgetManager);
         Tab.addTab("Account",accountPage);
@@ -158,16 +194,20 @@ private void addTab(){
     /**
      * @param args the command line arguments
      */
+
 private void showTransaction(){
      for (List<Transaction> transactions : budgetManager.getTransactions().values()) {
         for (Transaction transaction : transactions) {
-            String[] rowData = new String[6];
+            String[] rowData = new String[9];
             rowData[0] = transaction.getDateTime().toString();
             rowData[1] = transaction.getType();
             rowData[2] = transaction.getAccount().getName();
             rowData[3] = transaction.getCategory();
             rowData[4] = String.valueOf(transaction.getAmount());
             rowData[5] = transaction.getNote();
+            rowData[6] = transaction.getID().toString();
+            rowData[7] = "Edit";
+            rowData[8] = "Delete";
 
             model.addRow(rowData);
         }
