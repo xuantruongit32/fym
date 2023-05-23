@@ -216,6 +216,13 @@ public class addAccount extends javax.swing.JFrame {
         name.setText("");
         balance.setText("");
     }
+    public javax.swing.JTextField getTextName(){
+        return name;
+    }
+    public javax.swing.JTextField getTextBalance(){
+        return balance;
+    }
+    
 
 
     /**
