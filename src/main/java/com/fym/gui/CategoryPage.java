@@ -4,8 +4,12 @@
  */
 package com.fym.gui;
 import com.fym.model.*;
+import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Date;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 
 /**
@@ -43,6 +47,12 @@ public class CategoryPage extends javax.swing.JPanel {
         time = new javax.swing.JComboBox<>();
         selectDate = new com.toedter.calendar.JDateChooser();
 
+        category.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryActionPerformed(evt);
+            }
+        });
+
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expense" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +79,11 @@ public class CategoryPage extends javax.swing.JPanel {
         });
 
         time.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly", "All" }));
+        time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,6 +152,19 @@ public class CategoryPage extends javax.swing.JPanel {
          showComboCategory((String)type.getSelectedItem());
 
     }//GEN-LAST:event_resetCategoryActionPerformed
+
+    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
+        // TODO add your handling code here:
+             if(category.getSelectedIndex() != -1)
+                createTree((String)category.getSelectedItem(),(String) time.getSelectedItem(), (String) type.getSelectedItem());
+
+    }//GEN-LAST:event_timeActionPerformed
+
+    private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
+        // TODO add your handling code here:
+         if(category.getSelectedIndex() != -1)
+                createTree((String)category.getSelectedItem(),(String) time.getSelectedItem(), (String) type.getSelectedItem());                     
+    }//GEN-LAST:event_categoryActionPerformed
     private void showComboCategory(String type){
         HashSet<String> data;
         category.removeAllItems();
@@ -153,6 +181,47 @@ public class CategoryPage extends javax.swing.JPanel {
         for (String c:dataCategory)
             category.addItem(c);
     }
+    private void createTree(String category, String time, String type){
+    DefaultMutableTreeNode name = new DefaultMutableTreeNode("Name: "+category);
+    String totalIncome;
+    String totalExpense;
+   if (type.equals("Income")){
+       System.out.println("hHHHHHHHHHHHHHHHH");
+       if (time.equals("Daily")) {
+           totalIncome = String.valueOf(b.totalIncomeDaily(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Weekly")) {
+           totalIncome = String.valueOf(b.totalIncomeWeekly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Monthly")) {
+           totalIncome = String.valueOf(b.totalIncomeMonthly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Yearly")) {
+           totalIncome = String.valueOf(b.totalIncomeYearly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else {
+           totalIncome = String.valueOf(b.totalIncomeAll(category));
+       }
+       DefaultMutableTreeNode totalIncomeNode = new DefaultMutableTreeNode("Total Income:  " + totalIncome);
+       name.add(totalIncomeNode);
+       categoryTree.setModel(new DefaultTreeModel(name));   
+   }
+    if (type.equals("Expense")){
+       if (time.equals("Daily")) {
+           totalExpense = String.valueOf(b.totalExpenseDaily(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Weekly")) {
+           totalExpense = String.valueOf(b.totalExpenseWeekly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Monthly")) {
+           totalExpense = String.valueOf(b.totalExpenseMonthly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+       } else if (time.equals("Yearly")) {
+           totalExpense = String.valueOf(b.totalExpenseYearly(selectDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), category));
+
+       } else {
+           totalExpense = String.valueOf(b.totalExpenseAll(category));
+       }
+       DefaultMutableTreeNode totalExpenseNode = new DefaultMutableTreeNode("Total Expense:  " + totalExpense);
+       name.add(totalExpenseNode);
+       categoryTree.setModel(new DefaultTreeModel(name));   
+   }
+
+   
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
