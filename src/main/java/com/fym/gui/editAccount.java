@@ -15,12 +15,11 @@ import java.awt.Color;
 public class editAccount extends javax.swing.JFrame {
     private BudgetManager b;
     private String previousName;
-    private double previousBalance;
-
     /**
      * Creates new form addAccount
      */
-    public editAccount(BudgetManager b) {
+    public editAccount(BudgetManager b, String previousName) {
+        this.previousName = previousName;
         this.b =b;
         initComponents();
         hideLabel();
@@ -137,9 +136,9 @@ public class editAccount extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        if(b.checkNameAccount(name.getText()) && checkNull() && checkError()){
+        if(b.checkNameAccount(name.getText(),previousName) && checkNull() && checkError()){
             error.setVisible(false);
-            b.editAccount(name.getText(), Float.parseFloat(balance.getText()),);
+            b.editAccount(previousName, name.getText(), Float.parseFloat(balance.getText()));
             setVisible(false);
     }
         else{
@@ -157,7 +156,7 @@ public class editAccount extends javax.swing.JFrame {
 
     private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-        if(!b.checkNameAccount(name.getText())){
+        if(!b.checkNameAccount(name.getText(),previousName)){
             checkName.setVisible(true);
             addButton.setEnabled(false);
             addButton.setFocusable(false);
