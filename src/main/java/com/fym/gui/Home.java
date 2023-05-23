@@ -7,6 +7,11 @@ import com.fym.model.*;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Calendar;
+
  
 
 
@@ -181,6 +186,16 @@ public class Home extends javax.swing.JFrame {
     }
     // Check if the clicked cell is a delete button
     else if (column == 7) {
+        editTransaction e = new editTransaction(budgetManager);
+        e.getTextAmount().setText((String) model.getValueAt(row,4));
+        e.getTextAmount().setText((String) model.getValueAt(row,5));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse((String) model.getValueAt(row, 0), formatter);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(localDate.getYear(), localDate.getMonthValue() - 1, localDate.getDayOfMonth());
+        Date date = calendar.getTime();
+        e.getDateTime().setDate(date);
+        e.setVisible(true);
         // Perform delete operation for the selected transaction
         //deleteTransaction(row);
     }
